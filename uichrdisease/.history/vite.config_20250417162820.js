@@ -6,6 +6,4 @@ export default defineConfig({
   plugins: [vue()],
 })
 
-module.exports = {
-  lintOnSave: false
-}
+module.exports = {}
