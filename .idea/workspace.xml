@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="后端-用户登录">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="修改配置application.properties" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +107,7 @@
       <workItem from="1744800462627" duration="444000" />
       <workItem from="1744801498996" duration="211000" />
       <workItem from="1744801743982" duration="341000" />
-      <workItem from="1744871686530" duration="6874000" />
+      <workItem from="1744871686530" duration="7747000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -136,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744878196350</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改配置application.properties">
+      <option name="closed" value="true" />
+      <created>1744879683025</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744879683025</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +163,7 @@
     <MESSAGE value="第二次提交" />
     <MESSAGE value="第三次提交" />
     <MESSAGE value="后端-用户登录" />
-    <option name="LAST_COMMIT_MESSAGE" value="后端-用户登录" />
+    <MESSAGE value="修改配置application.properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改配置application.properties" />
   </component>
 </project>
