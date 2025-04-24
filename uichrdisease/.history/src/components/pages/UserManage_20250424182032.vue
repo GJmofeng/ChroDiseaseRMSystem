@@ -1,0 +1,16 @@
+<template >
+    .user-manage
+        h1 User Manage
+</template>
+
+<script>
+export default {
+    name: 'UserManage',
+}
+</script>
+
+<style>
+
+</style>
+
+</template>
