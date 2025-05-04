@@ -11,7 +11,7 @@
     <div class="register-box">
       <div class="register-title">
         <i class="fas fa-hospital"></i>
-        <span>用户注册</span>
+        <span>慢性病报销系统 - 用户注册</span>
       </div>
 
       <form @submit.prevent="handleRegister">
