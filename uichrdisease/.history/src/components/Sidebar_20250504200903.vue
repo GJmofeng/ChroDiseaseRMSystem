@@ -122,11 +122,6 @@ const toggleMenuGroup = (group) => {
   flex-shrink: 0;
   transition: all 0.3s ease;
   position: relative;
-  background: #f0f2f5;
-  box-shadow: 
-    8px 8px 16px rgba(0, 0, 0, 0.1),
-    -8px -8px 16px rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -140,7 +135,13 @@ const toggleMenuGroup = (group) => {
     rgba(255,255,255,0.1) 40%,
     transparent 60%
   );
-  pointer-events: none;
+  transform: translateZ(20px);
+  transition: all 0.3s ease;
+}
+
+.sidebar:hover::before {
+  transform: translateZ(30px) rotate(5deg);
+  opacity: 0.8;
 }
 
 .sidebar.collapsed {
@@ -171,7 +172,6 @@ const toggleMenuGroup = (group) => {
 
 .menu-section {
   margin-bottom: 8px;
-  padding: 0 8px;
 }
 
 .menu-section-title {
@@ -182,18 +182,11 @@ const toggleMenuGroup = (group) => {
   transition: all 0.3s ease;
   color: #1a1a1a;
   font-weight: 500;
-  border-radius: 8px;
-  background: #f0f2f5;
-  box-shadow: 
-    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.8);
 }
 
 .menu-section-title:hover {
-  background: #e6e9ef;
-  box-shadow: 
-    inset 3px 3px 6px rgba(0, 0, 0, 0.1),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 }
 
 .menu-arrow {
@@ -208,11 +201,11 @@ const toggleMenuGroup = (group) => {
 .menu-group {
   overflow: hidden;
   transition: all 0.3s ease;
-  margin-top: 8px;
+  max-height: 500px;
 }
 
 .menu-group.collapsed {
-  display: none;
+  max-height: 0;
 }
 
 .menu-item {
@@ -223,19 +216,11 @@ const toggleMenuGroup = (group) => {
   transition: all 0.3s ease;
   color: #666;
   position: relative;
-  margin: 4px 0;
-  border-radius: 8px;
-  background: #f0f2f5;
-  box-shadow: 
-    inset 1px 1px 2px rgba(0, 0, 0, 0.1),
-    inset -1px -1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .menu-item:hover {
-  background: #e6e9ef;
-  box-shadow: 
-    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
   color: #1a1a1a;
 }
 
@@ -244,18 +229,16 @@ const toggleMenuGroup = (group) => {
   font-size: 16px;
   width: 16px;
   text-align: center;
-  color: #4c84ff;
 }
 
 .menu-item .badge {
   position: absolute;
   right: 16px;
-  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+  background: #ff4d4f;
   color: white;
   padding: 2px 6px;
   border-radius: 10px;
   font-size: 12px;
-  box-shadow: 0 2px 4px rgba(255, 77, 79, 0.2);
 }
 
 .sidebar-toggle {
@@ -273,18 +256,15 @@ const toggleMenuGroup = (group) => {
   transition: all 0.3s ease;
   border: none;
   color: #666;
-  background: #f0f2f5;
+  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
   box-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.1),
-    -2px -2px 4px rgba(255, 255, 255, 0.8);
+    2px 2px 4px rgba(0,0,0,0.1),
+    -2px -2px 4px rgba(255,255,255,0.1);
 }
 
 .sidebar-toggle:hover {
   transform: translateX(-50%) scale(1.1);
   color: #4c84ff;
-  box-shadow: 
-    3px 3px 6px rgba(0, 0, 0, 0.1),
-    -3px -3px 6px rgba(255, 255, 255, 0.8);
 }
 
 .sidebar-toggle i {

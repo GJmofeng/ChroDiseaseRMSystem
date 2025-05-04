@@ -260,7 +260,6 @@
   font-weight: 500;
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
 }
 
 .action-button::before {
@@ -278,7 +277,6 @@
   );
   transform: translateZ(20px);
   transition: all 0.3s ease;
-  border-radius: 12px;
 }
 
 .action-button:hover {

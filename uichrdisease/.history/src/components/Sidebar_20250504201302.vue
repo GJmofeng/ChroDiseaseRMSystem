@@ -122,25 +122,6 @@ const toggleMenuGroup = (group) => {
   flex-shrink: 0;
   transition: all 0.3s ease;
   position: relative;
-  background: #f0f2f5;
-  box-shadow: 
-    8px 8px 16px rgba(0, 0, 0, 0.1),
-    -8px -8px 16px rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.sidebar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    125deg,
-    rgba(255,255,255,0.3) 0%,
-    rgba(255,255,255,0.1) 40%,
-    transparent 60%
-  );
-  pointer-events: none;
 }
 
 .sidebar.collapsed {
@@ -157,21 +138,15 @@ const toggleMenuGroup = (group) => {
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: all 0.3s ease;
 }
 
 .sidebar-logo i {
   font-size: 24px;
   color: #4c84ff;
-  background: linear-gradient(135deg, #4c84ff 0%, #2d5cfe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 4px rgba(76, 132, 255, 0.2));
 }
 
 .menu-section {
   margin-bottom: 8px;
-  padding: 0 8px;
 }
 
 .menu-section-title {
@@ -179,21 +154,8 @@ const toggleMenuGroup = (group) => {
   align-items: center;
   padding: 12px 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
   color: #1a1a1a;
   font-weight: 500;
-  border-radius: 8px;
-  background: #f0f2f5;
-  box-shadow: 
-    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.8);
-}
-
-.menu-section-title:hover {
-  background: #e6e9ef;
-  box-shadow: 
-    inset 3px 3px 6px rgba(0, 0, 0, 0.1),
-    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
 }
 
 .menu-arrow {
@@ -208,7 +170,6 @@ const toggleMenuGroup = (group) => {
 .menu-group {
   overflow: hidden;
   transition: all 0.3s ease;
-  margin-top: 8px;
 }
 
 .menu-group.collapsed {
@@ -220,23 +181,8 @@ const toggleMenuGroup = (group) => {
   align-items: center;
   padding: 10px 16px 10px 40px;
   cursor: pointer;
-  transition: all 0.3s ease;
   color: #666;
   position: relative;
-  margin: 4px 0;
-  border-radius: 8px;
-  background: #f0f2f5;
-  box-shadow: 
-    inset 1px 1px 2px rgba(0, 0, 0, 0.1),
-    inset -1px -1px 2px rgba(255, 255, 255, 0.8);
-}
-
-.menu-item:hover {
-  background: #e6e9ef;
-  box-shadow: 
-    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.8);
-  color: #1a1a1a;
 }
 
 .menu-item i {
@@ -244,18 +190,16 @@ const toggleMenuGroup = (group) => {
   font-size: 16px;
   width: 16px;
   text-align: center;
-  color: #4c84ff;
 }
 
 .menu-item .badge {
   position: absolute;
   right: 16px;
-  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);
+  background: #ff4d4f;
   color: white;
   padding: 2px 6px;
   border-radius: 10px;
   font-size: 12px;
-  box-shadow: 0 2px 4px rgba(255, 77, 79, 0.2);
 }
 
 .sidebar-toggle {
@@ -270,21 +214,9 @@ const toggleMenuGroup = (group) => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
   border: none;
   color: #666;
-  background: #f0f2f5;
-  box-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.1),
-    -2px -2px 4px rgba(255, 255, 255, 0.8);
-}
-
-.sidebar-toggle:hover {
-  transform: translateX(-50%) scale(1.1);
-  color: #4c84ff;
-  box-shadow: 
-    3px 3px 6px rgba(0, 0, 0, 0.1),
-    -3px -3px 6px rgba(255, 255, 255, 0.8);
+  background: #f5f5f5;
 }
 
 .sidebar-toggle i {
