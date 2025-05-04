@@ -253,59 +253,10 @@
   gap: 8px;
   height: 40px;
   transition: all 0.3s ease;
-  border: none;
-  color: white;
-  font-weight: 500;
-  position: relative;
-  overflow: hidden;
-}
-
-.action-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    125deg,
-    rgba(255,255,255,0.2) 0%,
-    rgba(255,255,255,0.1) 40%,
-    transparent 60%
-  );
-  transform: translateZ(20px);
-  transition: all 0.3s ease;
 }
 
 .action-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.action-button:hover::before {
-  transform: translateZ(30px) rotate(5deg);
-  opacity: 0.8;
-}
-
-.action-button:nth-child(1) {
-  background: linear-gradient(135deg, #4c84ff 0%, #2d5cfe 100%);
-}
-
-.action-button:nth-child(2) {
-  background: linear-gradient(135deg, #00C9A7 0%, #00B4A7 100%);
-}
-
-.action-button:nth-child(3) {
-  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
-}
-
-.action-button:nth-child(4) {
-  background: linear-gradient(135deg, #9B51E0 0%, #6A3D9E 100%);
-}
-
-.action-button i {
-  font-size: 16px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 :deep(.el-card) {
