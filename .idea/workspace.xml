@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="修改配置application.properties">
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/DivisionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/Division.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/mapper/DivisionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/service/DivisionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/service/impl/DivisionServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SysChronicDisease/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SysChronicDisease/target/classes/com/gxwz/syschronicdisease/SysChronicDiseaseApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/target/classes/com/gxwz/syschronicdisease/SysChronicDiseaseApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +83,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gxwz.syschronicdisease.service.impl" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SysChronicDiseaseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -116,7 +123,7 @@
       <workItem from="1744801743982" duration="341000" />
       <workItem from="1744871686530" duration="7747000" />
       <workItem from="1745595670359" duration="228000" />
-      <workItem from="1746685319363" duration="3056000" />
+      <workItem from="1746685319363" duration="7208000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
