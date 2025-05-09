@@ -23,10 +23,6 @@
           </div>
           <!-- 下拉菜单 -->
           <div v-show="isDropdownOpen" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 z-50">
-            <router-link to="/profile" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
-              <i class="fas fa-user mr-2"></i>个人中心
-            </router-link>
-            <div class="border-t border-gray-100 my-1"></div>
             <button @click.stop="handleLogout" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
               <i class="fas fa-sign-out-alt mr-2"></i>退出登录
             </button>

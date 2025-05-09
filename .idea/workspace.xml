@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前台主页修复3" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前台主页修复4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,7 +119,7 @@
       <workItem from="1744871686530" duration="7747000" />
       <workItem from="1745595670359" duration="228000" />
       <workItem from="1746685319363" duration="7772000" />
-      <workItem from="1746794017861" duration="1986000" />
+      <workItem from="1746794017861" duration="2410000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -201,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746798099628</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="前台主页修复4">
+      <option name="closed" value="true" />
+      <created>1746798463251</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746798463251</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +220,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/resetui2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -230,6 +250,7 @@
     <MESSAGE value="前台主页修复" />
     <MESSAGE value="前台主页修复2" />
     <MESSAGE value="前台主页修复3" />
-    <option name="LAST_COMMIT_MESSAGE" value="前台主页修复3" />
+    <MESSAGE value="前台主页修复4" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台主页修复4" />
   </component>
 </project>
