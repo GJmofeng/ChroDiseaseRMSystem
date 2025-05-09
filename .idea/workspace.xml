@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前台主页修复">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212135.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212311.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212636.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212645.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/FrontPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/FrontPage.vue" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前台主页修复3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +119,7 @@
       <workItem from="1744871686530" duration="7747000" />
       <workItem from="1745595670359" duration="228000" />
       <workItem from="1746685319363" duration="7772000" />
-      <workItem from="1746794017861" duration="1372000" />
+      <workItem from="1746794017861" duration="1986000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -183,7 +177,31 @@
       <option name="project" value="LOCAL" />
       <updated>1746796091492</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="前台主页修复2">
+      <option name="closed" value="true" />
+      <created>1746797515770</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746797515770</updated>
+    </task>
+    <task id="LOCAL-00009" summary="前台主页修复2">
+      <option name="closed" value="true" />
+      <created>1746797525782</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746797525782</updated>
+    </task>
+    <task id="LOCAL-00010" summary="前台主页修复3">
+      <option name="closed" value="true" />
+      <created>1746798099628</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746798099628</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +228,8 @@
     <MESSAGE value="后端-行政区域管理" />
     <MESSAGE value="3" />
     <MESSAGE value="前台主页修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="前台主页修复" />
+    <MESSAGE value="前台主页修复2" />
+    <MESSAGE value="前台主页修复3" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台主页修复3" />
   </component>
 </project>
