@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="3">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250509204045.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509204950.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509204951.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509205031.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250509210408.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/router/index.js" afterDir="false" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前台主页修复">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212135.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212311.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212636.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250509212645.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/FrontPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/FrontPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +80,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "MavenSettings",
+    "ts.external.directory.path": "D:\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -127,7 +125,7 @@
       <workItem from="1744871686530" duration="7747000" />
       <workItem from="1745595670359" duration="228000" />
       <workItem from="1746685319363" duration="7772000" />
-      <workItem from="1746794017861" duration="698000" />
+      <workItem from="1746794017861" duration="1372000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -177,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746695659407</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="前台主页修复">
+      <option name="closed" value="true" />
+      <created>1746796091492</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746796091492</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +209,7 @@
     <MESSAGE value="修改配置application.properties" />
     <MESSAGE value="后端-行政区域管理" />
     <MESSAGE value="3" />
-    <option name="LAST_COMMIT_MESSAGE" value="3" />
+    <MESSAGE value="前台主页修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="前台主页修复" />
   </component>
 </project>
