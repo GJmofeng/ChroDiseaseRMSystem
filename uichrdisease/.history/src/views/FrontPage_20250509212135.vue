@@ -28,16 +28,16 @@
             </template>
             <template v-else>
               <div class="relative">
-                <div class="flex items-center space-x-2 cursor-pointer" @click.stop="toggleDropdown">
+                <div class="flex items-center space-x-2 cursor-pointer" @click="toggleDropdown">
                   <span class="text-gray-700">{{ username }}</span>
                   <i class="fas fa-chevron-down text-gray-500 text-sm transition-transform" :class="{ 'transform rotate-180': isDropdownOpen }"></i>
                 </div>
                 <!-- 下拉菜单 -->
-                <div v-show="isDropdownOpen" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 z-50">
+                <div v-if="isDropdownOpen" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 z-50">
                   <router-link to="/main" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
                     <i class="fas fa-desktop mr-2"></i>进入工作台
                   </router-link>
-                  <button @click.stop="handleLogout" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
+                  <button @click="handleLogout" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition">
                     <i class="fas fa-sign-out-alt mr-2"></i>退出登录
                   </button>
                 </div>
@@ -220,7 +220,8 @@ const toggleDropdown = () => {
 
 // 点击页面其他地方关闭下拉菜单
 const handleClickOutside = (event) => {
-  if (isDropdownOpen.value) {
+  const dropdown = document.querySelector('.relative')
+  if (dropdown && !dropdown.contains(event.target)) {
     isDropdownOpen.value = false
   }
 }
