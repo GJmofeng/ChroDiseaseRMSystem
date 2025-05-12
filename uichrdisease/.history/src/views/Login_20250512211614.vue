@@ -209,24 +209,17 @@ const handleLogin = async () => {
     
     const response = await login(userid.value, password.value)
     
-    // 检查后端返回的登录结果
-    if (response.code === 200) {  // 假设后端成功状态码为200
-      // 保存用户信息到本地存储
-      localStorage.setItem('userInfo', JSON.stringify({
-        userid: response.data.userid,
-        token: response.data.token,
-        role: response.data.role
-      }))
-      
-      // 登录成功后跳转到前台主页
-      router.push('/')
-    } else {
-      // 登录失败，显示后端返回的错误信息
-      errorMessage.value = response.msg || '登录失败，请检查用户ID和密码'
-    }
+    // 保存用户信息到本地存储
+    localStorage.setItem('userInfo', JSON.stringify({
+      userid: response.userid,
+      token: response.token,
+      role: response.role
+    }))
+    
+    // 登录成功后跳转到工作台
+    router.push('/dashboard')
   } catch (error) {
-    // 处理网络错误或服务器错误
-    errorMessage.value = error.response?.data?.msg || '登录失败，请稍后重试'
+    errorMessage.value = error.message || '登录失败，请检查用户ID和密码'
   } finally {
     loading.value = false
   }

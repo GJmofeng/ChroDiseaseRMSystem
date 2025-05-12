@@ -20,9 +20,9 @@
           <i class="fas fa-user"></i>
           <input 
             type="text" 
-            v-model="userid" 
+            v-model="username" 
             class="form-input" 
-            placeholder="请输入用户ID" 
+            placeholder="请输入用户名" 
             required
           >
         </div>
@@ -93,7 +93,7 @@ const router = useRouter()
 const captchaCode = ref('1234')
 const canvasContainer = ref(null)
 let particleSystem = null
-const userid = ref('')
+const username = ref('')
 const password = ref('')
 const loading = ref(false)
 const errorMessage = ref('')
@@ -198,8 +198,8 @@ const refreshCaptcha = () => {
 
 // 处理登录
 const handleLogin = async () => {
-  if (!userid.value || !password.value) {
-    errorMessage.value = '请输入用户ID和密码'
+  if (!username.value || !password.value) {
+    errorMessage.value = '请输入用户名和密码'
     return
   }
 
@@ -207,26 +207,19 @@ const handleLogin = async () => {
     loading.value = true
     errorMessage.value = ''
     
-    const response = await login(userid.value, password.value)
+    const response = await login(username.value, password.value)
     
-    // 检查后端返回的登录结果
-    if (response.code === 200) {  // 假设后端成功状态码为200
-      // 保存用户信息到本地存储
-      localStorage.setItem('userInfo', JSON.stringify({
-        userid: response.data.userid,
-        token: response.data.token,
-        role: response.data.role
-      }))
-      
-      // 登录成功后跳转到前台主页
-      router.push('/')
-    } else {
-      // 登录失败，显示后端返回的错误信息
-      errorMessage.value = response.msg || '登录失败，请检查用户ID和密码'
-    }
+    // 保存用户信息到本地存储
+    localStorage.setItem('userInfo', JSON.stringify({
+      username: response.username,
+      token: response.token,
+      role: response.role
+    }))
+    
+    // 登录成功后跳转到工作台
+    router.push('/dashboard')
   } catch (error) {
-    // 处理网络错误或服务器错误
-    errorMessage.value = error.response?.data?.msg || '登录失败，请稍后重试'
+    errorMessage.value = error.message || '登录失败，请检查用户名和密码'
   } finally {
     loading.value = false
   }

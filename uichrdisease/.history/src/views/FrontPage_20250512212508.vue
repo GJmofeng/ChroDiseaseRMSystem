@@ -29,7 +29,7 @@
             <template v-else>
               <div class="relative">
                 <div class="flex items-center space-x-2 cursor-pointer" @click.stop="toggleDropdown">
-                  <span class="text-gray-700">{{ username }}</span>
+                  <span class="text-gray-700">{{ usernid }}</span>
                   <i class="fas fa-chevron-down text-gray-500 text-sm transition-transform" :class="{ 'transform rotate-180': isDropdownOpen }"></i>
                 </div>
                 <!-- 下拉菜单 -->
@@ -229,16 +229,9 @@ const handleClickOutside = (event) => {
 const checkLoginStatus = () => {
   const userInfo = localStorage.getItem('userInfo')
   if (userInfo) {
-    try {
-      const { userid } = JSON.parse(userInfo)
-      isLoggedIn.value = true
-      username.value = userid
-    } catch (error) {
-      // 如果解析失败，清除可能损坏的数据
-      localStorage.removeItem('userInfo')
-      isLoggedIn.value = false
-      username.value = ''
-    }
+    const { username: storedUsername } = JSON.parse(userInfo)
+    isLoggedIn.value = true
+    username.value = storedUsername
   } else {
     isLoggedIn.value = false
     username.value = ''
@@ -251,15 +244,6 @@ const handleLogout = () => {
   isLoggedIn.value = false
   username.value = ''
   isDropdownOpen.value = false
-}
-
-// 处理进入工作台
-const handleEnterDashboard = () => {
-  if (isLoggedIn.value) {
-    router.push('/dashboard')
-  } else {
-    router.push('/login')
-  }
 }
 
 class Particle {
