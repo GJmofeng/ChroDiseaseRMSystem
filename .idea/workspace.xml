@@ -5,59 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="数据库配置">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/package_20250512205427.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512205359.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512205404.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210633.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210637.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210639.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210653.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210655.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210656.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210658.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210700.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210702.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210707.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210715.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210716.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210900.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512210915.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211603.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211624.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211908.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211913.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211915.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211920.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211925.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512211930.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512212002.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512212006.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512212056.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512212057.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512212102.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512213023.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250512213033.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250512212505.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250512212506.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250512212508.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250512212512.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512205420.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512210125.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512210130.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512211613.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512211614.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512212300.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512213015.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512213033.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/src/api/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/FrontPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/FrontPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/Login.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250512221153.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/FrontPage_20250512221221.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512221204.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Login_20250512221221.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,7 +248,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/resetui2" />
+                        <option value="feature/logintest" />
                       </list>
                     </value>
                   </entry>
