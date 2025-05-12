@@ -6,7 +6,7 @@ mybatis:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/medical?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/medicalsystemdb?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
 
