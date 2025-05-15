@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="修改配置application.properties" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="后端-参合消息录入">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,15 +16,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="feature/resetui2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,32 +51,42 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.SysChronicDiseaseApplication.executor": "Run",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "全局库",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Maven.SysChronicDisease [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.SysChronicDisease [package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SysChronicDiseaseApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gxwz.syschronicdisease.controller" />
+      <recent name="com.gxwz.syschronicdisease.service.impl" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="SysChronicDiseaseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -93,6 +106,7 @@
       <list>
         <item itemvalue="Spring Boot.SysChronicDiseaseApplication" />
         <item itemvalue="Spring Boot.SysChronicDiseaseApplication" />
+        <item itemvalue="Spring Boot.SysChronicDiseaseApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -108,6 +122,11 @@
       <workItem from="1744801498996" duration="211000" />
       <workItem from="1744801743982" duration="341000" />
       <workItem from="1744871686530" duration="7747000" />
+      <workItem from="1745595670359" duration="228000" />
+      <workItem from="1746685319363" duration="7772000" />
+      <workItem from="1746794017861" duration="3254000" />
+      <workItem from="1747053702039" duration="3550000" />
+      <workItem from="1747290105759" duration="7560000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -141,7 +160,103 @@
       <option name="project" value="LOCAL" />
       <updated>1744879683025</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="后端-行政区域管理">
+      <option name="closed" value="true" />
+      <created>1746693222092</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746693222092</updated>
+    </task>
+    <task id="LOCAL-00006" summary="3">
+      <option name="closed" value="true" />
+      <created>1746695659407</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746695659407</updated>
+    </task>
+    <task id="LOCAL-00007" summary="前台主页修复">
+      <option name="closed" value="true" />
+      <created>1746796091492</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746796091492</updated>
+    </task>
+    <task id="LOCAL-00008" summary="前台主页修复2">
+      <option name="closed" value="true" />
+      <created>1746797515770</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746797515770</updated>
+    </task>
+    <task id="LOCAL-00009" summary="前台主页修复2">
+      <option name="closed" value="true" />
+      <created>1746797525782</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746797525782</updated>
+    </task>
+    <task id="LOCAL-00010" summary="前台主页修复3">
+      <option name="closed" value="true" />
+      <created>1746798099628</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746798099628</updated>
+    </task>
+    <task id="LOCAL-00011" summary="前台主页修复4">
+      <option name="closed" value="true" />
+      <created>1746798463251</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746798463251</updated>
+    </task>
+    <task id="LOCAL-00012" summary="系统首页修复">
+      <option name="closed" value="true" />
+      <created>1746799995881</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1746799995881</updated>
+    </task>
+    <task id="LOCAL-00013" summary="数据库配置">
+      <option name="closed" value="true" />
+      <created>1747053872311</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747053872311</updated>
+    </task>
+    <task id="LOCAL-00014" summary="登录修复3">
+      <option name="closed" value="true" />
+      <created>1747059486725</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747059486725</updated>
+    </task>
+    <task id="LOCAL-00015" summary="登录修复4">
+      <option name="closed" value="true" />
+      <created>1747059859192</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747059859192</updated>
+    </task>
+    <task id="LOCAL-00016" summary="后端-参合消息录入">
+      <option name="closed" value="true" />
+      <created>1747295056611</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747295056611</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,18 +267,42 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/logintest" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="git init" />
     <MESSAGE value="第二次提交" />
     <MESSAGE value="第三次提交" />
     <MESSAGE value="后端-用户登录" />
     <MESSAGE value="修改配置application.properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改配置application.properties" />
+    <MESSAGE value="后端-行政区域管理" />
+    <MESSAGE value="3" />
+    <MESSAGE value="前台主页修复" />
+    <MESSAGE value="前台主页修复2" />
+    <MESSAGE value="前台主页修复3" />
+    <MESSAGE value="前台主页修复4" />
+    <MESSAGE value="系统首页修复" />
+    <MESSAGE value="数据库配置" />
+    <MESSAGE value="登录修复3" />
+    <MESSAGE value="登录修复4" />
+    <MESSAGE value="后端-参合消息录入" />
+    <option name="LAST_COMMIT_MESSAGE" value="后端-参合消息录入" />
   </component>
 </project>
