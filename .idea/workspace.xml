@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="后端-参合消息录入" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="develop分支运行测试" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747295056611</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="develop分支运行测试">
+      <option name="closed" value="true" />
+      <created>1747298427572</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747298427572</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +308,7 @@
     <MESSAGE value="登录修复3" />
     <MESSAGE value="登录修复4" />
     <MESSAGE value="后端-参合消息录入" />
-    <option name="LAST_COMMIT_MESSAGE" value="后端-参合消息录入" />
+    <MESSAGE value="develop分支运行测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="develop分支运行测试" />
   </component>
 </project>
