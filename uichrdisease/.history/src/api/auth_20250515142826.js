@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // 创建 axios 实例
 const api = axios.create({
-  baseURL: 'http://localhost:8080/user', // 替换为实际的后端 API 地址
+  baseURL: 'http://localhost:8080/user', // 替换为shi的后端 API 地址
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json'

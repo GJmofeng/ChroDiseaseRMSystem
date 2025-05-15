@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="登录修复3" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="登录修复4">
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/InsuredController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/Insured.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/mapper/InsuredMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/service/InsuredService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/service/impl/InsuredServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250515142820.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250515142822.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250515142826.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250515142830.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/auth_20250515142831.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/api/auth.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -80,6 +93,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gxwz.syschronicdisease.controller" />
       <recent name="com.gxwz.syschronicdisease.service.impl" />
     </key>
   </component>
@@ -121,6 +135,7 @@
       <workItem from="1746685319363" duration="7772000" />
       <workItem from="1746794017861" duration="3254000" />
       <workItem from="1747053702039" duration="3550000" />
+      <workItem from="1747290105759" duration="4901000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -234,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747059486725</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="登录修复4">
+      <option name="closed" value="true" />
+      <created>1747059859192</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747059859192</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +302,7 @@
     <MESSAGE value="系统首页修复" />
     <MESSAGE value="数据库配置" />
     <MESSAGE value="登录修复3" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录修复3" />
+    <MESSAGE value="登录修复4" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录修复4" />
   </component>
 </project>
