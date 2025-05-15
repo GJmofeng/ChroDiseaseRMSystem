@@ -12,7 +12,7 @@
         <span v-show="!isCollapsed">系统管理</span>
       </div>
       <div class="menu-group" :class="{ collapsed: !menuStates.system }">
-        <div class="menu-item" :class="{ active: isActive('/main/user-manage') }" @click="router.push('/main/user-manage')">
+        <div class="menu-item" @click="router.push('/main/user-manage')">
           <i class="fas fa-users"></i>
           <span v-show="!isCollapsed">用户管理</span>
         </div>
@@ -97,11 +97,10 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const route = useRoute()
 const isCollapsed = ref(false)
 const menuStates = reactive({
   system: true,
@@ -115,10 +114,6 @@ const toggleSidebar = () => {
 
 const toggleMenuGroup = (group) => {
   menuStates[group] = !menuStates[group]
-}
-
-const isActive = (path) => {
-  return route.path === path
 }
 </script>
 
@@ -296,14 +291,5 @@ const isActive = (path) => {
 
 .sidebar-toggle i {
   font-size: 14px;
-}
-
-.menu-item.active {
-  background: linear-gradient(90deg, #4c84ff 0%, #2d5cfe 100%);
-  color: #fff !important;
-}
-
-.menu-item.active i {
-  color: #fff !important;
 }
 </style> 

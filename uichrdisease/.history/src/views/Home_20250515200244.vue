@@ -10,7 +10,13 @@
           </div>
         </template>
       </draggable>
-      <TabMenu :onCloseOther="handleMenuCloseOther" :onCloseAll="handleMenuCloseAll" />
+      <div class="tab-actions" style="position:relative;">
+        <i class="fas fa-th grid-icon" @click.stop="handleGridClick"></i>
+        <div v-if="menuVisible" class="tab-menu-popup" :style="menuStyle" @click.stop>
+          <div class="tab-menu-item" @click="handleMenuCloseOther">关闭其他</div>
+          <div class="tab-menu-item" @click="handleMenuCloseAll">关闭所有</div>
+        </div>
+      </div>
     </div>
     <!-- 统计卡片区域 -->
     <div class="stat-cards">
@@ -116,7 +122,6 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import draggable from 'vuedraggable'
-import TabMenu from '../components/TabMenu.vue'
 
 const router = useRouter()
 
@@ -125,6 +130,8 @@ const tags = ref([
   { title: '用户管理', path: '/main/user-manage', icon: 'fa-users', closable: true }
 ])
 const activePath = ref('/main')
+const menuVisible = ref(false)
+const menuStyle = ref({})
 
 function handleTabClick(tag) {
   activePath.value = tag.path
@@ -142,13 +149,26 @@ function handleTabAdd() {
   activePath.value = '/main/new'
   router.push('/main/new')
 }
+function handleGridClick(e) {
+  menuVisible.value = true
+  // 计算菜单弹出位置
+  const rect = e.target.getBoundingClientRect()
+  menuStyle.value = {
+    position: 'absolute',
+    top: rect.bottom + 8 + 'px',
+    left: rect.left + 'px',
+    zIndex: 9999
+  }
+}
 function handleMenuCloseOther() {
   tags.value = tags.value.filter(tag => !tag.closable || tag.path === activePath.value)
+  menuVisible.value = false
 }
 function handleMenuCloseAll() {
   tags.value = tags.value.filter(tag => !tag.closable)
   activePath.value = '/main'
   router.push('/main')
+  menuVisible.value = false
 }
 function handleMenuClose() {
   menuVisible.value = false
@@ -437,7 +457,6 @@ document.addEventListener('click', handleMenuClose)
 }
 .tab-actions {
   margin-left: 16px;
-  margin-right: 40px;
   font-size: 18px;
   color: #888;
   cursor: pointer;
@@ -450,28 +469,5 @@ document.addEventListener('click', handleMenuClose)
 }
 .tab-ghost {
   opacity: 0.5;
-}
-.tab-menu-popup {
-  min-width: 120px;
-  background: #fff;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  border-radius: 8px;
-  padding: 8px 0;
-  position: absolute;
-  right: 0;
-  top: 38px;
-  z-index: 9999;
-  user-select: none;
-}
-.tab-menu-item {
-  padding: 8px 20px;
-  font-size: 15px;
-  color: #222;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.tab-menu-item:hover {
-  background: #f0f7ff;
-  color: #2563eb;
 }
 </style> 

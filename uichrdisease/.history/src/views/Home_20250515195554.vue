@@ -10,7 +10,9 @@
           </div>
         </template>
       </draggable>
-      <TabMenu :onCloseOther="handleMenuCloseOther" :onCloseAll="handleMenuCloseAll" />
+      <div class="tab-actions">
+        <i class="fas fa-th grid-icon"></i>
+      </div>
     </div>
     <!-- 统计卡片区域 -->
     <div class="stat-cards">
@@ -116,7 +118,6 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import draggable from 'vuedraggable'
-import TabMenu from '../components/TabMenu.vue'
 
 const router = useRouter()
 
@@ -132,28 +133,19 @@ function handleTabClick(tag) {
 }
 function handleTabClose(tag, idx) {
   tags.value.splice(idx, 1)
+  // 关闭后跳转到首页
   if (activePath.value === tag.path) {
     activePath.value = '/main'
     router.push('/main')
   }
 }
+
 function handleTabAdd() {
+  // 示例：添加一个新标签
   tags.value.push({ title: '新标签', path: '/main/new', icon: 'fa-star', closable: true })
   activePath.value = '/main/new'
   router.push('/main/new')
 }
-function handleMenuCloseOther() {
-  tags.value = tags.value.filter(tag => !tag.closable || tag.path === activePath.value)
-}
-function handleMenuCloseAll() {
-  tags.value = tags.value.filter(tag => !tag.closable)
-  activePath.value = '/main'
-  router.push('/main')
-}
-function handleMenuClose() {
-  menuVisible.value = false
-}
-document.addEventListener('click', handleMenuClose)
 </script>
 
 <style scoped>
@@ -437,41 +429,16 @@ document.addEventListener('click', handleMenuClose)
 }
 .tab-actions {
   margin-left: 16px;
-  margin-right: 40px;
   font-size: 18px;
   color: #888;
   cursor: pointer;
   display: flex;
   align-items: center;
-  position: relative;
 }
 .grid-icon {
   font-size: 18px;
 }
 .tab-ghost {
   opacity: 0.5;
-}
-.tab-menu-popup {
-  min-width: 120px;
-  background: #fff;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  border-radius: 8px;
-  padding: 8px 0;
-  position: absolute;
-  right: 0;
-  top: 38px;
-  z-index: 9999;
-  user-select: none;
-}
-.tab-menu-item {
-  padding: 8px 20px;
-  font-size: 15px;
-  color: #222;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.tab-menu-item:hover {
-  background: #f0f7ff;
-  color: #2563eb;
 }
 </style> 
