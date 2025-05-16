@@ -17,15 +17,6 @@ export default defineConfig({
         require('autoprefixer')
       ]
     }
-  },
-  server: {
-    proxy: {
-      '/user': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/user/, '/user')
-      }
-    }
   }
 })
 

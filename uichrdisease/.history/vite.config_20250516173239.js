@@ -18,6 +18,7 @@ export default defineConfig({
       ]
     }
   },
+
   server: {
     proxy: {
       '/user': {

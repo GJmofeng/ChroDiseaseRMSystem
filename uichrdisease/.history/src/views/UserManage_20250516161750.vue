@@ -48,7 +48,7 @@
           <el-table-column type="selection" width="50" fixed />
           <template v-for="col in columnSettings.filter(c => c.visible)" :key="col.prop">
             <el-table-column
-              v-if="col.prop !== 'operation'"
+              v-if="!['isSuper','status','operation'].includes(col.prop)"
               :prop="col.prop"
               :label="col.label"
               :width="col.width"
@@ -59,7 +59,18 @@
               </template>
             </el-table-column>
           </template>
-          <el-table-column
+          <el-table-column label="超管" width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
+            <template #default="scope">
+              <el-tag v-if="scope.row.isSuper" type="danger" effect="plain">超管</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column label="状态" width="80" v-if="columnSettings.find(c=>c.prop==='status')?.visible">
+            <template #default="scope">
+              <el-tag v-if="scope.row.status==='启用'" type="primary" effect="plain">启用</el-tag>
+              <el-tag v-else type="info" effect="plain">禁用</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column 
             v-if="columnSettings.find(c=>c.prop==='operation')?.visible"
             :label="columnSettings.find(c=>c.prop==='operation')?.label"
             :width="columnSettings.find(c=>c.prop==='operation')?.width"
@@ -90,11 +101,11 @@
       </div>
       <!-- 分页 -->
       <div class="flex justify-between items-center mt-4">
-        <div>共{{ total }}条</div>
+        <div>共{{ filteredUsers.length }}条</div>
         <el-pagination
           v-model:current-page="currentPage"
           :page-size="pageSize"
-          :total="total"
+          :total="filteredUsers.length"
           layout="prev, pager, next, sizes"
           :page-sizes="[10, 20, 50]"
           @size-change="handleSizeChange"
@@ -136,32 +147,21 @@ import { useRouter } from 'vue-router'
 import draggable from 'vuedraggable'
 import TabMenu from '../components/TabMenu.vue'
 import { IconRefresh, IconLayoutGridAdd } from '@tabler/icons-vue'
-import axios from 'axios'
 
 const router = useRouter()
 
-const users = ref([])
-const total = ref(0)
-
-async function fetchUsers() {
-  try {
-    const params = {
-      page: currentPage.value,
-      pageSize: pageSize.value,
-      search: searchKey.value,
-      status: statusFilter.value === '全部' ? '' : statusFilter.value
-    }
-    const res = await axios.get('/user/list', { params })
-    users.value = res.data.data || res.data
-    total.value = res.data.total || users.value.length
-  } catch (e) {
-    ElMessage.error('获取用户数据失败')
-  }
-}
-
-onMounted(() => {
-  fetchUsers()
-})
+// 静态用户数据
+const users = ref([
+  { id: 1, name: '管理员', gender: '未知', account: 'admin', password: '******', phone: '13500000000', email: '', isSuper: true, status: '启用', role: '' },
+  { id: 2, name: '胡克', gender: '未知', account: 'huke', password: '******', phone: '13123123121', email: '', isSuper: true, status: '启用', role: '' },
+  { id: 3, name: '卓大', gender: '男', account: 'zhuoda', password: '******', phone: '18637925892', email: '', isSuper: true, status: '启用', role: '' },
+  { id: 4, name: '善逸', gender: '男', account: 'shanyi', password: '******', phone: '17630506613', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 5, name: '琴酒', gender: '女', account: 'qinjiu', password: '******', phone: '14112343212', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 6, name: '清野', gender: '男', account: 'qingye', password: '******', phone: '13123123111', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 7, name: '飞叶', gender: '男', account: 'feiye', password: '******', phone: '13123123112', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 8, name: '玄朋', gender: '男', account: 'xuanpeng', password: '******', phone: '13123123124', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 9, name: '玄朋', gender: '男', account: 'peixian', password: '******', phone: '18377482773', email: '', isSuper: false, status: '启用', role: '' },
+])
 
 const statusFilter = ref('全部')
 const searchKey = ref('')
@@ -169,7 +169,23 @@ const currentPage = ref(1)
 const pageSize = ref(10)
 const multipleSelection = ref([])
 
-const filteredUsers = computed(() => users.value)
+const filteredUsers = computed(() => {
+  let data = users.value
+  if (statusFilter.value !== '全部') {
+    data = data.filter(u => u.status === statusFilter.value)
+  }
+  if (searchKey.value) {
+    data = data.filter(u =>
+      u.name.includes(searchKey.value) ||
+      u.phone.includes(searchKey.value) ||
+      u.account.includes(searchKey.value)
+    )
+  }
+  // 分页
+  const start = (currentPage.value - 1) * pageSize.value
+  const end = start + pageSize.value
+  return data.slice(start, end)
+})
 
 function handleSelectionChange(val) {
   multipleSelection.value = val
@@ -191,26 +207,21 @@ function onBatchDelete() {
 }
 function onSearch() {
   currentPage.value = 1
-  fetchUsers()
 }
 function onReset() {
   statusFilter.value = '全部'
   searchKey.value = ''
   currentPage.value = 1
-  fetchUsers()
 }
 function onRefresh() {
-  fetchUsers()
   ElMessage.success('已刷新')
 }
 function handleSizeChange(size) {
   pageSize.value = size
   currentPage.value = 1
-  fetchUsers()
 }
 function handlePageChange(page) {
   currentPage.value = page
-  fetchUsers()
 }
 
 const tags = ref([
@@ -256,14 +267,19 @@ const hoverDisable = ref(null)
 const showColumnSetting = ref(false)
 const defaultColumnSettings = [
   { label: 'ID', prop: 'id', width: 60, visible: true },
-  { label: '登录账号', prop: 'userid', width: 120, visible: true },
+  { label: '姓名', prop: 'name', width: 85, visible: true },
+  { label: '性别', prop: 'gender', width: 70, visible: true },
+  { label: '登录账号', prop: 'account', width: 100, visible: true },
   { label: '密码', prop: 'password', width: 100, visible: true },
-  { label: '姓名', prop: 'fullname', width: 100, visible: true },
+  { label: '手机号', prop: 'phone', width: 85, visible: true },
+  { label: '邮箱', prop: 'email', width: 100, visible: true },
+  { label: '超管', prop: 'isSuper', width: 60, visible: true },
+  { label: '状态', prop: 'status', width: 60, visible: true },
   { label: '角色', prop: 'role', width: 100, visible: true },
   { 
     label: '操作', 
     prop: 'operation', 
-    width: 200, 
+    width: 260, 
     visible: true, 
     fixed: 'right'
   }
@@ -321,22 +337,26 @@ function moveDown(index) {
 </script>
 
 <style scoped>
+html, body, #app {
+  overflow-x: hidden !important;
+}
 .user-manage-page {
-  padding: 24px;
-  background: #f5f6fa;
-  min-height: 100vh;
+  overflow-x: hidden !important;
 }
 .card {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   padding: 24px;
+  overflow-x: visible !important;
 }
 .table-container {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
 }
 .el-table {
+  min-width: 1200px;
   width: 100% !important;
   table-layout: fixed;
 }

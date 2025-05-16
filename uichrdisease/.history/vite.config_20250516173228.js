@@ -17,7 +17,8 @@ export default defineConfig({
         require('autoprefixer')
       ]
     }
-  },
+  }
+
   server: {
     proxy: {
       '/user': {

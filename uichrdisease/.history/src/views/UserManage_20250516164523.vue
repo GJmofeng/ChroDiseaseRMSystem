@@ -151,7 +151,7 @@ async function fetchUsers() {
       search: searchKey.value,
       status: statusFilter.value === '全部' ? '' : statusFilter.value
     }
-    const res = await axios.get('/user/list', { params })
+    const res = await axios.get('/user/getOne', { params })
     users.value = res.data.data || res.data
     total.value = res.data.total || users.value.length
   } catch (e) {

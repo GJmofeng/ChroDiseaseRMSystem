@@ -48,7 +48,7 @@
           <el-table-column type="selection" width="50" fixed />
           <template v-for="col in columnSettings.filter(c => c.visible)" :key="col.prop">
             <el-table-column
-              v-if="col.prop !== 'operation'"
+              v-if="!['isSuper','status','operation'].includes(col.prop)"
               :prop="col.prop"
               :label="col.label"
               :width="col.width"
@@ -59,7 +59,18 @@
               </template>
             </el-table-column>
           </template>
-          <el-table-column
+          <el-table-column label="超管" width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
+            <template #default="scope">
+              <el-tag v-if="scope.row.isSuper" type="danger" effect="plain">超管</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column label="状态" width="80" v-if="columnSettings.find(c=>c.prop==='status')?.visible">
+            <template #default="scope">
+              <el-tag v-if="scope.row.status==='启用'" type="primary" effect="plain">启用</el-tag>
+              <el-tag v-else type="info" effect="plain">禁用</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column 
             v-if="columnSettings.find(c=>c.prop==='operation')?.visible"
             :label="columnSettings.find(c=>c.prop==='operation')?.label"
             :width="columnSettings.find(c=>c.prop==='operation')?.width"
@@ -151,7 +162,7 @@ async function fetchUsers() {
       search: searchKey.value,
       status: statusFilter.value === '全部' ? '' : statusFilter.value
     }
-    const res = await axios.get('/user/list', { params })
+    const res = await axios.get('/user/getOne', { params })
     users.value = res.data.data || res.data
     total.value = res.data.total || users.value.length
   } catch (e) {
@@ -256,14 +267,19 @@ const hoverDisable = ref(null)
 const showColumnSetting = ref(false)
 const defaultColumnSettings = [
   { label: 'ID', prop: 'id', width: 60, visible: true },
-  { label: '登录账号', prop: 'userid', width: 120, visible: true },
+  { label: '姓名', prop: 'name', width: 85, visible: true },
+  { label: '性别', prop: 'gender', width: 70, visible: true },
+  { label: '登录账号', prop: 'account', width: 100, visible: true },
   { label: '密码', prop: 'password', width: 100, visible: true },
-  { label: '姓名', prop: 'fullname', width: 100, visible: true },
+  { label: '手机号', prop: 'phone', width: 85, visible: true },
+  { label: '邮箱', prop: 'email', width: 100, visible: true },
+  { label: '超管', prop: 'isSuper', width: 60, visible: true },
+  { label: '状态', prop: 'status', width: 60, visible: true },
   { label: '角色', prop: 'role', width: 100, visible: true },
   { 
     label: '操作', 
     prop: 'operation', 
-    width: 200, 
+    width: 260, 
     visible: true, 
     fixed: 'right'
   }
