@@ -53,11 +53,7 @@
               :label="col.label"
               :width="col.width"
               :fixed="col.fixed"
-            >
-              <template #default="scope" v-if="col.prop === 'password'">
-                <span>******</span>
-              </template>
-            </el-table-column>
+            />
           </template>
           <el-table-column label="超管" width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
             <template #default="scope">
@@ -152,15 +148,15 @@ const router = useRouter()
 
 // 静态用户数据
 const users = ref([
-  { id: 1, name: '管理员', gender: '未知', account: 'admin', password: '******', phone: '13500000000', email: '', isSuper: true, status: '启用', role: '' },
-  { id: 2, name: '胡克', gender: '未知', account: 'huke', password: '******', phone: '13123123121', email: '', isSuper: true, status: '启用', role: '' },
-  { id: 3, name: '卓大', gender: '男', account: 'zhuoda', password: '******', phone: '18637925892', email: '', isSuper: true, status: '启用', role: '' },
-  { id: 4, name: '善逸', gender: '男', account: 'shanyi', password: '******', phone: '17630506613', email: '', isSuper: false, status: '启用', role: '' },
-  { id: 5, name: '琴酒', gender: '女', account: 'qinjiu', password: '******', phone: '14112343212', email: '', isSuper: false, status: '启用', role: '' },
-  { id: 6, name: '清野', gender: '男', account: 'qingye', password: '******', phone: '13123123111', email: '', isSuper: false, status: '启用', role: '' },
-  { id: 7, name: '飞叶', gender: '男', account: 'feiye', password: '******', phone: '13123123112', email: '', isSuper: false, status: '启用', role: '' },
-  { id: 8, name: '玄朋', gender: '男', account: 'xuanpeng', password: '******', phone: '13123123124', email: '', isSuper: false, status: '启用', role: '' },
-  { id: 9, name: '玄朋', gender: '男', account: 'peixian', password: '******', phone: '18377482773', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 1, name: '管理员', gender: '未知', account: 'admin', phone: '13500000000', email: '', isSuper: true, status: '启用', role: '' },
+  { id: 2, name: '胡克', gender: '未知', account: 'huke', phone: '13123123121', email: '', isSuper: true, status: '启用', role: '' },
+  { id: 3, name: '卓大', gender: '男', account: 'zhuoda', phone: '18637925892', email: '', isSuper: true, status: '启用', role: '' },
+  { id: 4, name: '善逸', gender: '男', account: 'shanyi', phone: '17630506613', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 5, name: '琴酒', gender: '女', account: 'qinjiu', phone: '14112343212', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 6, name: '清野', gender: '男', account: 'qingye', phone: '13123123111', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 7, name: '飞叶', gender: '男', account: 'feiye', phone: '13123123112', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 8, name: '玄朋', gender: '男', account: 'xuanpeng', phone: '13123123124', email: '', isSuper: false, status: '启用', role: '' },
+  { id: 9, name: '玄朋', gender: '男', account: 'peixian', phone: '18377482773', email: '', isSuper: false, status: '启用', role: '' },
 ])
 
 const statusFilter = ref('全部')
@@ -270,7 +266,6 @@ const defaultColumnSettings = [
   { label: '姓名', prop: 'name', width: 85, visible: true },
   { label: '性别', prop: 'gender', width: 70, visible: true },
   { label: '登录账号', prop: 'account', width: 100, visible: true },
-  { label: '密码', prop: 'password', width: 100, visible: true },
   { label: '手机号', prop: 'phone', width: 85, visible: true },
   { label: '邮箱', prop: 'email', width: 100, visible: true },
   { label: '超管', prop: 'isSuper', width: 60, visible: true },
@@ -285,26 +280,8 @@ const defaultColumnSettings = [
   }
 ]
 
-// 合并localStorage和defaultColumnSettings，确保新加的列能自动补全
-function mergeColumnSettings(defaults, saved) {
-  const map = new Map(saved.map(c => [c.prop, c]))
-  // 保留顺序：先用已保存的顺序，再补充新加的列
-  const merged = []
-  for (const def of defaults) {
-    if (map.has(def.prop)) {
-      merged.push({ ...def, ...map.get(def.prop) })
-      map.delete(def.prop)
-    } else {
-      merged.push({ ...def })
-    }
-  }
-  return merged
-}
-
-const savedCols = JSON.parse(localStorage.getItem('userTableColumns') || '[]')
-const columnSettings = ref(
-  savedCols.length ? mergeColumnSettings(defaultColumnSettings, savedCols) : JSON.parse(JSON.stringify(defaultColumnSettings))
-)
+// 从localStorage读取列设置，如果没有则使用默认设置
+const columnSettings = ref(JSON.parse(localStorage.getItem('userTableColumns')) || JSON.parse(JSON.stringify(defaultColumnSettings)))
 
 // 监听列设置变化，自动保存到localStorage
 function saveColumnSetting() {

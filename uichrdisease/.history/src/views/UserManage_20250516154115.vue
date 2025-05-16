@@ -46,19 +46,17 @@
           height="420"
         >
           <el-table-column type="selection" width="50" fixed />
-          <template v-for="col in columnSettings.filter(c => c.visible)" :key="col.prop">
-            <el-table-column
-              v-if="!['isSuper','status','operation'].includes(col.prop)"
-              :prop="col.prop"
-              :label="col.label"
-              :width="col.width"
-              :fixed="col.fixed"
-            >
-              <template #default="scope" v-if="col.prop === 'password'">
-                <span>******</span>
-              </template>
-            </el-table-column>
-          </template>
+          <el-table-column label="ID" width="60" v-if="columnSettings.find(c=>c.prop==='id')?.visible" />
+          <el-table-column label="姓名" width="85" v-if="columnSettings.find(c=>c.prop==='name')?.visible" />
+          <el-table-column label="性别" width="70" v-if="columnSettings.find(c=>c.prop==='gender')?.visible" />
+          <el-table-column label="登录账号" width="100" v-if="columnSettings.find(c=>c.prop==='account')?.visible" />
+          <el-table-column label="密码" width="100" v-if="columnSettings.find(c=>c.prop==='password')?.visible">
+            <template #default="scope">
+              <span>******</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="手机号" width="85" v-if="columnSettings.find(c=>c.prop==='phone')?.visible" />
+          <el-table-column label="邮箱" width="100" v-if="columnSettings.find(c=>c.prop==='email')?.visible" />
           <el-table-column label="超管" width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
             <template #default="scope">
               <el-tag v-if="scope.row.isSuper" type="danger" effect="plain">超管</el-tag>
@@ -70,6 +68,7 @@
               <el-tag v-else type="info" effect="plain">禁用</el-tag>
             </template>
           </el-table-column>
+          <el-table-column label="角色" width="100" v-if="columnSettings.find(c=>c.prop==='role')?.visible" />
           <el-table-column 
             v-if="columnSettings.find(c=>c.prop==='operation')?.visible"
             :label="columnSettings.find(c=>c.prop==='operation')?.label"
@@ -285,26 +284,8 @@ const defaultColumnSettings = [
   }
 ]
 
-// 合并localStorage和defaultColumnSettings，确保新加的列能自动补全
-function mergeColumnSettings(defaults, saved) {
-  const map = new Map(saved.map(c => [c.prop, c]))
-  // 保留顺序：先用已保存的顺序，再补充新加的列
-  const merged = []
-  for (const def of defaults) {
-    if (map.has(def.prop)) {
-      merged.push({ ...def, ...map.get(def.prop) })
-      map.delete(def.prop)
-    } else {
-      merged.push({ ...def })
-    }
-  }
-  return merged
-}
-
-const savedCols = JSON.parse(localStorage.getItem('userTableColumns') || '[]')
-const columnSettings = ref(
-  savedCols.length ? mergeColumnSettings(defaultColumnSettings, savedCols) : JSON.parse(JSON.stringify(defaultColumnSettings))
-)
+// 从localStorage读取列设置，如果没有则使用默认设置
+const columnSettings = ref(JSON.parse(localStorage.getItem('userTableColumns')) || JSON.parse(JSON.stringify(defaultColumnSettings)))
 
 // 监听列设置变化，自动保存到localStorage
 function saveColumnSetting() {

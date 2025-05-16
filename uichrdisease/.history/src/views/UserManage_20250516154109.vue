@@ -48,17 +48,18 @@
           <el-table-column type="selection" width="50" fixed />
           <template v-for="col in columnSettings.filter(c => c.visible)" :key="col.prop">
             <el-table-column
-              v-if="!['isSuper','status','operation'].includes(col.prop)"
+              v-if="!['isSuper','status','operation','password'].includes(col.prop)"
               :prop="col.prop"
               :label="col.label"
               :width="col.width"
               :fixed="col.fixed"
-            >
-              <template #default="scope" v-if="col.prop === 'password'">
-                <span>******</span>
-              </template>
-            </el-table-column>
+            />
           </template>
+          <el-table-column label="密码" width="100" v-if="columnSettings.find(c=>c.prop==='password')?.visible">
+            <template #default="scope">
+              <span>******</span>
+            </template>
+          </el-table-column>
           <el-table-column label="超管" width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
             <template #default="scope">
               <el-tag v-if="scope.row.isSuper" type="danger" effect="plain">超管</el-tag>
@@ -285,26 +286,8 @@ const defaultColumnSettings = [
   }
 ]
 
-// 合并localStorage和defaultColumnSettings，确保新加的列能自动补全
-function mergeColumnSettings(defaults, saved) {
-  const map = new Map(saved.map(c => [c.prop, c]))
-  // 保留顺序：先用已保存的顺序，再补充新加的列
-  const merged = []
-  for (const def of defaults) {
-    if (map.has(def.prop)) {
-      merged.push({ ...def, ...map.get(def.prop) })
-      map.delete(def.prop)
-    } else {
-      merged.push({ ...def })
-    }
-  }
-  return merged
-}
-
-const savedCols = JSON.parse(localStorage.getItem('userTableColumns') || '[]')
-const columnSettings = ref(
-  savedCols.length ? mergeColumnSettings(defaultColumnSettings, savedCols) : JSON.parse(JSON.stringify(defaultColumnSettings))
-)
+// 从localStorage读取列设置，如果没有则使用默认设置
+const columnSettings = ref(JSON.parse(localStorage.getItem('userTableColumns')) || JSON.parse(JSON.stringify(defaultColumnSettings)))
 
 // 监听列设置变化，自动保存到localStorage
 function saveColumnSetting() {
