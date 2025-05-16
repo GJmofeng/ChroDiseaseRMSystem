@@ -41,26 +41,26 @@
         <el-table
           :data="filteredUsers"
           border
-          style="width: 100%; table-layout: fixed;"
+          style="width: 100%"
           @selection-change="handleSelectionChange"
           height="420"
         >
-          <el-table-column type="selection" width="50" fixed />
+          <el-table-column type="selection" width="50" />
           <template v-for="col in columnSettings.filter(c => c.visible)" :key="col.prop">
             <el-table-column
               v-if="!['isSuper','status','operation'].includes(col.prop)"
               :prop="col.prop"
               :label="col.label"
-              :width="col.width"
+              :min-width="col.width"
               :fixed="col.fixed"
             />
           </template>
-          <el-table-column label="超管" width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
+          <el-table-column label="超管" min-width="70" v-if="columnSettings.find(c=>c.prop==='isSuper')?.visible">
             <template #default="scope">
               <el-tag v-if="scope.row.isSuper" type="danger" effect="plain">超管</el-tag>
             </template>
           </el-table-column>
-          <el-table-column label="状态" width="80" v-if="columnSettings.find(c=>c.prop==='status')?.visible">
+          <el-table-column label="状态" min-width="80" v-if="columnSettings.find(c=>c.prop==='status')?.visible">
             <template #default="scope">
               <el-tag v-if="scope.row.status==='启用'" type="primary" effect="plain">启用</el-tag>
               <el-tag v-else type="info" effect="plain">禁用</el-tag>
@@ -69,7 +69,7 @@
           <el-table-column 
             v-if="columnSettings.find(c=>c.prop==='operation')?.visible"
             :label="columnSettings.find(c=>c.prop==='operation')?.label"
-            :width="columnSettings.find(c=>c.prop==='operation')?.width"
+            :min-width="columnSettings.find(c=>c.prop==='operation')?.width"
             :fixed="columnSettings.find(c=>c.prop==='operation')?.fixed"
             align="center"
           >
@@ -341,14 +341,7 @@ function moveDown(index) {
   overflow-x: auto;
 }
 .el-table {
-  width: 100% !important;
-  table-layout: fixed;
-}
-.el-table__body {
-  width: 100% !important;
-}
-.el-table__header {
-  width: 100% !important;
+  min-width: 900px;
 }
 .toolbar {
   margin-bottom: 16px;

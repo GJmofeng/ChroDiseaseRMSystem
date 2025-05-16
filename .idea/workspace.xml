@@ -4,63 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="develop分支运行测试">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250515171500.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250515171516.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250515172754.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250515172928.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/TabMenu_20250515202434.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/TabMenu_20250515202439.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/TabMenu_20250515202517.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250515171441.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250515171516.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515194737.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515195053.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515195054.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515195554.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515195606.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515200244.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515200245.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515200414.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515200705.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515200842.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515200844.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515201104.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515201107.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515201604.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515201607.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515201904.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515201906.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515202704.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/Home_20250515202757.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515171002.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515171006.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515171021.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515172805.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515172806.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515172927.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515192613.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515193701.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515194133.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515194136.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515194137.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515202913.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515202914.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515202943.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515203818.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250515204233.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/src/components/TabMenu.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/components/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/Home.vue" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -317,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747298427572</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="前端-用户管理">
+      <option name="closed" value="true" />
+      <created>1747317425209</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747317425209</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,6 +317,7 @@
     <MESSAGE value="登录修复4" />
     <MESSAGE value="后端-参合消息录入" />
     <MESSAGE value="develop分支运行测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="develop分支运行测试" />
+    <MESSAGE value="前端-用户管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理" />
   </component>
 </project>
