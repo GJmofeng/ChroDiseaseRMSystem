@@ -137,7 +137,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from 'vue-router'
 import draggable from 'vuedraggable'
@@ -279,24 +279,16 @@ const defaultColumnSettings = [
     fixed: 'right'
   }
 ]
+const columnSettings = ref(JSON.parse(JSON.stringify(defaultColumnSettings)))
 
-// 从localStorage读取列设置，如果没有则使用默认设置
-const columnSettings = ref(JSON.parse(localStorage.getItem('userTableColumns')) || JSON.parse(JSON.stringify(defaultColumnSettings)))
-
-// 监听列设置变化，自动保存到localStorage
 function saveColumnSetting() {
-  localStorage.setItem('userTableColumns', JSON.stringify(columnSettings.value))
   ElMessage.success('已保存列设置')
   showColumnSetting.value = false
 }
-
-// 重置列设置时同时清除localStorage中的设置
 function resetColumnSetting() {
   columnSettings.value = JSON.parse(JSON.stringify(defaultColumnSettings))
-  localStorage.removeItem('userTableColumns')
   ElMessage.success('已恢复默认')
 }
-
 function moveUp(index) {
   if (index > 0) {
     const temp = columnSettings.value[index]

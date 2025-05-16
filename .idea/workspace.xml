@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理2">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516151812.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516152157.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516152830.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516152915.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,6 +131,7 @@
       <workItem from="1746794017861" duration="3254000" />
       <workItem from="1747053702039" duration="3550000" />
       <workItem from="1747290105759" duration="7560000" />
+      <workItem from="1747376650143" duration="1334000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -269,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747317425209</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="前端-用户管理2">
+      <option name="closed" value="true" />
+      <created>1747379795342</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747379795342</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +334,7 @@
     <MESSAGE value="后端-参合消息录入" />
     <MESSAGE value="develop分支运行测试" />
     <MESSAGE value="前端-用户管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理" />
+    <MESSAGE value="前端-用户管理2" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理2" />
   </component>
 </project>
