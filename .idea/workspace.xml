@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理3">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516153738.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516153922.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516153924.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516154109.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516154114.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516154115.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516154143.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516154543.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516154705.vue" afterDir="false" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理4">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516160629.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516161055.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516161417.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250516161418.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +131,7 @@
       <workItem from="1746794017861" duration="3254000" />
       <workItem from="1747053702039" duration="3550000" />
       <workItem from="1747290105759" duration="7560000" />
-      <workItem from="1747376650143" duration="1978000" />
+      <workItem from="1747376650143" duration="3230000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -297,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747380877256</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="前端-用户管理4">
+      <option name="closed" value="true" />
+      <created>1747382518462</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747382518462</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +318,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/logintest" />
+                        <option value="feature/UserManager" />
                       </list>
                     </value>
                   </entry>
@@ -348,6 +352,7 @@
     <MESSAGE value="前端-用户管理" />
     <MESSAGE value="前端-用户管理2" />
     <MESSAGE value="前端-用户管理3" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理3" />
+    <MESSAGE value="前端-用户管理4" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理4" />
   </component>
 </project>
