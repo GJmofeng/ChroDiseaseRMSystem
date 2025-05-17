@@ -132,80 +132,6 @@
         <el-button type="danger" @click="resetColumnSetting">恢复默认</el-button>
       </template>
     </el-dialog>
-    <!-- 添加成员弹窗 -->
-    <el-drawer
-      v-model="showAddUser"
-      title="添加成员"
-      direction="rtl"
-      size="400px"
-      :close-on-click-modal="false"
-      :with-header="true"
-      :destroy-on-close="true"
-    >
-      <el-form
-        :model="addUserForm"
-        :rules="addUserRules"
-        ref="addUserFormRef"
-        label-width="80px"
-        class="add-user-form"
-      >
-        <el-form-item label="登录账号" prop="userid">
-          <el-input v-model="addUserForm.userid" placeholder="请输入登录账号" />
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="addUserForm.password" type="password" placeholder="请输入密码" show-password />
-        </el-form-item>
-        <el-form-item label="姓名" prop="fullname">
-          <el-input v-model="addUserForm.fullname" placeholder="请输入姓名" />
-        </el-form-item>
-        <el-form-item label="角色" prop="role">
-          <el-input v-model="addUserForm.role" placeholder="请输入角色" />
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="showAddUser = false">取消</el-button>
-          <el-button type="primary" @click="handleAddUser">确定</el-button>
-        </el-form-item>
-      </el-form>
-    </el-drawer>
-    <!-- 编辑成员弹窗 -->
-    <el-drawer
-      v-model="showEditUser"
-      title="编辑成员"
-      direction="rtl"
-      size="400px"
-      :close-on-click-modal="false"
-      :with-header="true"
-      :destroy-on-close="true"
-    >
-      <el-form
-        :model="editUserForm"
-        :rules="addUserRules"
-        ref="editUserFormRef"
-        label-width="80px"
-        class="add-user-form"
-      >
-        <el-form-item label="登录账号" prop="userid">
-          <el-input v-model="editUserForm.userid" placeholder="请输入登录账号" readonly>
-            <template #prefix>
-              <i class="fas fa-lock" style="color:#bbb;"></i>
-            </template>
-          </el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="editUserForm.password" type="password" placeholder="如需修改请输入新密码" show-password />
-        </el-form-item>
-        <el-form-item label="姓名" prop="fullname">
-          <el-input v-model="editUserForm.fullname" placeholder="请输入姓名" />
-        </el-form-item>
-        <el-form-item label="角色" prop="role">
-          <el-input v-model="editUserForm.role" placeholder="请输入角色" />
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="showEditUser = false">取消</el-button>
-          <el-button type="primary" @click="handleEditUser">确定</el-button>
-        </el-form-item>
-      </el-form>
-    </el-drawer>
   </div>
 </template>
 
@@ -254,64 +180,19 @@ const filteredUsers = computed(() => users.value)
 function handleSelectionChange(val) {
   multipleSelection.value = val
 }
-
-// 添加成员弹窗相关
-const showAddUser = ref(false)
-const addUserForm = ref({
-  userid: '',
-  password: '',
-  fullname: '',
-  role: ''
-})
-const addUserRules = {
-  userid: [ { required: true, message: '请输入登录账号', trigger: 'blur' } ],
-  password: [ { required: true, message: '请输入密码', trigger: 'blur' }, { min: 6, message: '密码至少6位', trigger: 'blur' } ],
-  fullname: [ { required: true, message: '请输入姓名', trigger: 'blur' } ],
-  role: [ { required: true, message: '请输入角色', trigger: 'blur' } ]
-}
-const addUserFormRef = ref()
-
 function onAddUser() {
-  showAddUser.value = true
-  addUserForm.value = { userid: '', password: '', fullname: '', role: '' }
+  ElMessage.info('添加成员功能待实现')
 }
-
-async function handleAddUser() {
-  addUserFormRef.value.validate(async (valid) => {
-    if (!valid) return
-    try {
-      await axios.post('/user/add', addUserForm.value)
-      ElMessage.success('添加成功')
-      showAddUser.value = false
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('添加失败')
-    }
-  })
-}
-
 function onAdjustDept() {
   ElMessage.info('调整部门功能待实现')
 }
-
 function onBatchDelete() {
-  if (!multipleSelection.value.length) {
-    ElMessage.warning('请先选择要删除的成员')
-    return
-  }
   ElMessageBox.confirm('确定要删除选中的成员吗？', '提示', {
     type: 'warning',
-  }).then(async () => {
-    const ids = multipleSelection.value.map(u => u.id)
-    console.log('删除这些id:', ids)
-    try {
-      await axios.post('/user/deleteBatch', ids)
-      ElMessage.success('删除成功')
-      fetchUsers()
-      multipleSelection.value = []
-    } catch (e) {
-      ElMessage.error('删除失败')
-    }
+  }).then(() => {
+    users.value = users.value.filter(u => !multipleSelection.value.includes(u))
+    ElMessage.success('删除成功')
+    multipleSelection.value = []
   })
 }
 function onSearch() {
@@ -364,52 +245,11 @@ function handleMenuCloseAll() {
   router.push('/main')
 }
 
-const showEditUser = ref(false)
-const editUserForm = ref({
-  id: null,
-  userid: '',
-  password: '',
-  fullname: '',
-  role: ''
-})
-const editUserFormRef = ref()
-
 function onEdit(row) {
-  editUserForm.value = { ...row }
-  editUserForm.value.password = '' // 编辑时密码默认置空
-  showEditUser.value = true
+  // 编辑逻辑
 }
-
-async function handleEditUser() {
-  editUserFormRef.value.validate(async (valid) => {
-    if (!valid) return
-    try {
-      await axios.post('/user/update', editUserForm.value)
-      ElMessage.success('编辑成功')
-      showEditUser.value = false
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('编辑失败')
-    }
-  })
-}
-
 function onResetPwd(row) {
-  ElMessageBox.confirm('确定要重置密码吗？', '提醒', {
-    type: 'warning',
-    confirmButtonText: '确定',
-    cancelButtonText: '取消'
-  }).then(async () => {
-    try {
-      await axios.post('/user/resetPwd', { id: row.id })
-      ElMessage.success('密码已重置为123456')
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('重置失败')
-    }
-  }).catch(() => {
-    // 用户点击取消，不做任何操作
-  })
+  // 重置密码逻辑
 }
 function onDisable(row) {
   // 禁用逻辑
@@ -665,40 +505,5 @@ function moveDown(index) {
   white-space: nowrap;
   letter-spacing: 1px;
   transition: opacity 0.2s;
-}
-/* 移除右侧弹出对话框的自定义样式（el-drawer自带右侧滑出效果） */
-.right-dialog, .right-dialog .el-dialog, .right-dialog .el-overlay-dialog, .right-dialog .el-dialog__header, .right-dialog .el-dialog__body, .right-dialog .el-dialog__footer, .right-dialog .el-dialog__title, .right-dialog .el-dialog__headerbtn, .right-dialog .el-overlay, .el-overlay-dialog, .el-overlay-dialog-leaving {
-  all: unset;
-}
-.add-user-form {
-  padding: 20px 0;
-}
-
-.add-user-form :deep(.el-form-item__label) {
-  font-weight: 500;
-  color: #333;
-}
-
-.add-user-form :deep(.el-input__wrapper) {
-  box-shadow: 0 0 0 1px #dcdfe6 inset;
-}
-
-.add-user-form :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 0 0 1px #409eff inset;
-}
-
-.add-user-form :deep(.el-input__wrapper[readonly]),
-.add-user-form :deep(.el-input[readonly] .el-input__wrapper) {
-  background: #f5f5f5 !important;
-  color: #999 !important;
-  border: 1.5px solid #d3d3d3 !important;
-  box-shadow: none !important;
-  cursor: not-allowed !important;
-}
-
-.dialog-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
 }
 </style> 

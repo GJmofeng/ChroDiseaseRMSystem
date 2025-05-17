@@ -36,4 +36,23 @@ export const eslint = {
   lintOnSave: false
 }
 
+function onBatchDelete() {
+  if (!multipleSelection.value.length) {
+    ElMessage.warning('请先选择要删除的成员')
+    return
+  }
+  ElMessageBox.confirm('确定要删除选中的成员吗？', '提示', {
+    type: 'warning',
+  }).then(async () => {
+    const ids = multipleSelection.value.map(u => u.id)
+    try {
+      await axios.post('/user/deleteBatch', ids)
+      ElMessage.success('删除成功')
+      fetchUsers()
+      multipleSelection.value = []
+    } catch (e) {
+      ElMessage.error('删除失败')
+    }
+  })
+}
 

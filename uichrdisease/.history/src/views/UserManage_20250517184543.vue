@@ -167,45 +167,6 @@
         </el-form-item>
       </el-form>
     </el-drawer>
-    <!-- 编辑成员弹窗 -->
-    <el-drawer
-      v-model="showEditUser"
-      title="编辑成员"
-      direction="rtl"
-      size="400px"
-      :close-on-click-modal="false"
-      :with-header="true"
-      :destroy-on-close="true"
-    >
-      <el-form
-        :model="editUserForm"
-        :rules="addUserRules"
-        ref="editUserFormRef"
-        label-width="80px"
-        class="add-user-form"
-      >
-        <el-form-item label="登录账号" prop="userid">
-          <el-input v-model="editUserForm.userid" placeholder="请输入登录账号" readonly>
-            <template #prefix>
-              <i class="fas fa-lock" style="color:#bbb;"></i>
-            </template>
-          </el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="editUserForm.password" type="password" placeholder="如需修改请输入新密码" show-password />
-        </el-form-item>
-        <el-form-item label="姓名" prop="fullname">
-          <el-input v-model="editUserForm.fullname" placeholder="请输入姓名" />
-        </el-form-item>
-        <el-form-item label="角色" prop="role">
-          <el-input v-model="editUserForm.role" placeholder="请输入角色" />
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="showEditUser = false">取消</el-button>
-          <el-button type="primary" @click="handleEditUser">确定</el-button>
-        </el-form-item>
-      </el-form>
-    </el-drawer>
   </div>
 </template>
 
@@ -293,7 +254,6 @@ async function handleAddUser() {
 function onAdjustDept() {
   ElMessage.info('调整部门功能待实现')
 }
-
 function onBatchDelete() {
   if (!multipleSelection.value.length) {
     ElMessage.warning('请先选择要删除的成员')
@@ -364,52 +324,11 @@ function handleMenuCloseAll() {
   router.push('/main')
 }
 
-const showEditUser = ref(false)
-const editUserForm = ref({
-  id: null,
-  userid: '',
-  password: '',
-  fullname: '',
-  role: ''
-})
-const editUserFormRef = ref()
-
 function onEdit(row) {
-  editUserForm.value = { ...row }
-  editUserForm.value.password = '' // 编辑时密码默认置空
-  showEditUser.value = true
+  // 编辑逻辑
 }
-
-async function handleEditUser() {
-  editUserFormRef.value.validate(async (valid) => {
-    if (!valid) return
-    try {
-      await axios.post('/user/update', editUserForm.value)
-      ElMessage.success('编辑成功')
-      showEditUser.value = false
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('编辑失败')
-    }
-  })
-}
-
 function onResetPwd(row) {
-  ElMessageBox.confirm('确定要重置密码吗？', '提醒', {
-    type: 'warning',
-    confirmButtonText: '确定',
-    cancelButtonText: '取消'
-  }).then(async () => {
-    try {
-      await axios.post('/user/resetPwd', { id: row.id })
-      ElMessage.success('密码已重置为123456')
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('重置失败')
-    }
-  }).catch(() => {
-    // 用户点击取消，不做任何操作
-  })
+  // 重置密码逻辑
 }
 function onDisable(row) {
   // 禁用逻辑
@@ -685,15 +604,6 @@ function moveDown(index) {
 
 .add-user-form :deep(.el-input__wrapper:hover) {
   box-shadow: 0 0 0 1px #409eff inset;
-}
-
-.add-user-form :deep(.el-input__wrapper[readonly]),
-.add-user-form :deep(.el-input[readonly] .el-input__wrapper) {
-  background: #f5f5f5 !important;
-  color: #999 !important;
-  border: 1.5px solid #d3d3d3 !important;
-  box-shadow: none !important;
-  cursor: not-allowed !important;
 }
 
 .dialog-footer {

@@ -185,11 +185,7 @@
         class="add-user-form"
       >
         <el-form-item label="登录账号" prop="userid">
-          <el-input v-model="editUserForm.userid" placeholder="请输入登录账号" readonly>
-            <template #prefix>
-              <i class="fas fa-lock" style="color:#bbb;"></i>
-            </template>
-          </el-input>
+          <el-input v-model="editUserForm.userid" placeholder="请输入登录账号" readonly />
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input v-model="editUserForm.password" type="password" placeholder="如需修改请输入新密码" show-password />
@@ -395,21 +391,7 @@ async function handleEditUser() {
 }
 
 function onResetPwd(row) {
-  ElMessageBox.confirm('确定要重置密码吗？', '提醒', {
-    type: 'warning',
-    confirmButtonText: '确定',
-    cancelButtonText: '取消'
-  }).then(async () => {
-    try {
-      await axios.post('/user/resetPwd', { id: row.id })
-      ElMessage.success('密码已重置为123456')
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('重置失败')
-    }
-  }).catch(() => {
-    // 用户点击取消，不做任何操作
-  })
+  // 重置密码逻辑
 }
 function onDisable(row) {
   // 禁用逻辑
@@ -691,9 +673,7 @@ function moveDown(index) {
 .add-user-form :deep(.el-input[readonly] .el-input__wrapper) {
   background: #f5f5f5 !important;
   color: #999 !important;
-  border: 1.5px solid #d3d3d3 !important;
-  box-shadow: none !important;
-  cursor: not-allowed !important;
+  cursor: not-allowed;
 }
 
 .dialog-footer {
