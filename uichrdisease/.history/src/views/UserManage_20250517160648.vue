@@ -48,43 +48,10 @@
           <el-table-column type="selection" width="50" fixed />
           <template v-for="col in columnSettings.filter(c => c.visible)" :key="col.prop">
             <el-table-column
-              v-if="col.prop === 'id'"
+              v-if="col.prop !== 'operation'"
               :prop="col.prop"
               :label="col.label"
               :width="col.width"
-              :fixed="col.fixed"
-            />
-            <el-table-column
-              v-else-if="col.prop === 'operation'"
-              :label="col.label"
-              :width="col.width"
-              :fixed="col.fixed"
-              align="center"
-            >
-              <template #default="scope">
-                <div class="action-row">
-                  <el-button class="action-btn edit" :class="{showText: hoverEdit===scope.$index}" round size="small"
-                    @mouseenter="hoverEdit=scope.$index" @mouseleave="hoverEdit=null" @click="onEdit(scope.row)">
-                    <i class="fas fa-edit"></i>
-                    <span v-if="hoverEdit===scope.$index" class="action-text">编辑</span>
-                  </el-button>
-                  <el-button class="action-btn reset" :class="{showText: hoverReset===scope.$index}" round size="small"
-                    @mouseenter="hoverReset=scope.$index" @mouseleave="hoverReset=null" @click="onResetPwd(scope.row)">
-                    <i class="fas fa-key"></i>
-                    <span v-if="hoverReset===scope.$index" class="action-text">重置密码</span>
-                  </el-button>
-                  <el-button class="action-btn disable" :class="{showText: hoverDisable===scope.$index}" round size="small"
-                    @mouseenter="hoverDisable=scope.$index" @mouseleave="hoverDisable=null" @click="onDisable(scope.row)">
-                    <i class="fas fa-ban"></i>
-                    <span v-if="hoverDisable===scope.$index" class="action-text">禁用</span>
-                  </el-button>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column
-              v-else
-              :prop="col.prop"
-              :label="col.label"
               :fixed="col.fixed"
             >
               <template #default="scope" v-if="col.prop === 'password'">
@@ -92,6 +59,33 @@
               </template>
             </el-table-column>
           </template>
+          <el-table-column
+            v-if="columnSettings.find(c=>c.prop==='operation')?.visible"
+            :label="columnSettings.find(c=>c.prop==='operation')?.label"
+            :width="columnSettings.find(c=>c.prop==='operation')?.width"
+            :fixed="columnSettings.find(c=>c.prop==='operation')?.fixed"
+            align="center"
+          >
+            <template #default="scope">
+              <div class="action-row">
+                <el-button class="action-btn edit" :class="{showText: hoverEdit===scope.$index}" round size="small"
+                  @mouseenter="hoverEdit=scope.$index" @mouseleave="hoverEdit=null" @click="onEdit(scope.row)">
+                  <i class="fas fa-edit"></i>
+                  <span v-if="hoverEdit===scope.$index" class="action-text">编辑</span>
+                </el-button>
+                <el-button class="action-btn reset" :class="{showText: hoverReset===scope.$index}" round size="small"
+                  @mouseenter="hoverReset=scope.$index" @mouseleave="hoverReset=null" @click="onResetPwd(scope.row)">
+                  <i class="fas fa-key"></i>
+                  <span v-if="hoverReset===scope.$index" class="action-text">重置密码</span>
+                </el-button>
+                <el-button class="action-btn disable" :class="{showText: hoverDisable===scope.$index}" round size="small"
+                  @mouseenter="hoverDisable=scope.$index" @mouseleave="hoverDisable=null" @click="onDisable(scope.row)">
+                  <i class="fas fa-ban"></i>
+                  <span v-if="hoverDisable===scope.$index" class="action-text">禁用</span>
+                </el-button>
+              </div>
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <!-- 分页 -->
@@ -262,10 +256,10 @@ const hoverDisable = ref(null)
 const showColumnSetting = ref(false)
 const defaultColumnSettings = [
   { label: 'ID', prop: 'id', width: 60, visible: true },
-  { label: '登录账号', prop: 'userid', visible: true },
-  { label: '密码', prop: 'password', visible: true },
-  { label: '姓名', prop: 'fullname', visible: true },
-  { label: '角色', prop: 'role', visible: true },
+  { label: '登录账号', prop: 'userid', width: 120, visible: true },
+  { label: '密码', prop: 'password', width: 100, visible: true },
+  { label: '姓名', prop: 'fullname', width: 100, visible: true },
+  { label: '角色', prop: 'role', width: 100, visible: true },
   { 
     label: '操作', 
     prop: 'operation', 
@@ -341,10 +335,11 @@ function moveDown(index) {
 .table-container {
   width: 100%;
   overflow-x: auto;
+  margin: 0 -24px;  /* 抵消父容器的padding */
+  padding: 0 24px;  /* 保持内容对齐 */
 }
 .el-table {
   width: 100% !important;
-  table-layout: fixed;
 }
 .el-table__body {
   width: 100% !important;

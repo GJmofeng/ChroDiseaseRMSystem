@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理5" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理6">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250517160648.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250517160824.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/UserManage_20250517161143.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/UserManage.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +130,7 @@
       <workItem from="1747053702039" duration="3550000" />
       <workItem from="1747290105759" duration="7560000" />
       <workItem from="1747376650143" duration="7702000" />
-      <workItem from="1747468275361" duration="304000" />
+      <workItem from="1747468275361" duration="914000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <option name="closed" value="true" />
@@ -303,7 +308,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747383997279</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="前端-用户管理6">
+      <option name="closed" value="true" />
+      <created>1747468592293</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1747468592293</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +369,7 @@
     <MESSAGE value="前端-用户管理3" />
     <MESSAGE value="前端-用户管理4" />
     <MESSAGE value="前端-用户管理5" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理5" />
+    <MESSAGE value="前端-用户管理6" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理6" />
   </component>
 </project>
