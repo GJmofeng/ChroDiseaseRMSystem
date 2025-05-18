@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="前端-用户管理-查询、编辑、删除、新增、重置密码">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="分支合并-用户管理" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/resetui2" />
+        <entry key="$PROJECT_DIR$" value="feature/UserManager" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -331,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747482068184</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="分支合并-用户管理">
+      <option name="closed" value="true" />
+      <created>1747554517335</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1747554517335</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +368,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="git init" />
     <MESSAGE value="第二次提交" />
     <MESSAGE value="第三次提交" />
     <MESSAGE value="后端-用户登录" />
@@ -387,6 +392,7 @@
     <MESSAGE value="前端-用户管理6" />
     <MESSAGE value="前端-用户管理7" />
     <MESSAGE value="前端-用户管理-查询、编辑、删除、新增、重置密码" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端-用户管理-查询、编辑、删除、新增、重置密码" />
+    <MESSAGE value="分支合并-用户管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="分支合并-用户管理" />
   </component>
 </project>
