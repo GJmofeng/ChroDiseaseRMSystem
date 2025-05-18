@@ -49,7 +49,8 @@
             v-model="form.parent"
             placeholder="请选择上级部门"
             style="width: 100%"
-            filterable
+            :disabled="!!form.parent"
+            :filterable="!form.parent"
             :filter-method="filterParentOptions"
             @visible-change="handleDropdownVisible"
             @change="handleParentChange"
@@ -60,12 +61,8 @@
               :key="item.id"
               :label="item.dname"
               :value="item.id"
-              :disabled="!item._allowSelect"
             >
-              <span :style="{ 
-                paddingLeft: (item._level * 20) + 'px',
-                color: item._allowSelect ? '' : '#999'
-              }">{{ item.dname }}</span>
+              <span>{{ item.dname }}</span>
             </el-option>
           </el-select>
         </el-form-item>
@@ -147,7 +144,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0, parentId = null, parentLevel = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -168,17 +165,19 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       if (parentLevel === 'district') allowSelect = false
     }
     
+    // 添加父ID信息
     const newItem = { 
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
+      _parentId: parentId,
       _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
     }
     
     result.push(newItem)
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+      result = result.concat(flattenTreeData(item.children, level + 1, item.id, item.level))
     }
   })
   return result
@@ -186,25 +185,28 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
 
 // 处理选项数据
 const selectOptions = computed(() => {
-  console.log('开始计算selectOptions...')
-  console.log('当前treeData:', treeData.value)
-  
   if (!treeData.value || !Array.isArray(treeData.value)) {
-    console.warn('treeData不是有效数组:', treeData.value)
     return []
   }
 
-  const flatData = flattenTreeData(treeData.value)
-  console.log('扁平化后的数据:', flatData)
-  
-  // 如果有搜索关键字，进行过滤
-  return flatData
+  // 如果是编辑模式或添加子节点模式，返回空数组
+  if (isEdit.value || form.value.parent) {
+    return []
+  }
+
+  // 只在新建根节点时显示选项
+  return treeData.value
     .filter(item => {
       if (filterKeyword.value) {
         return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
       }
       return true
     })
+    .map(item => ({
+      ...item,
+      _level: 0,
+      _allowSelect: true
+    }))
     .sort((a, b) => (a.sort || 0) - (b.sort || 0))
 })
 
@@ -355,13 +357,24 @@ async function onAddRoot() {
 function onAddChild(row) {
   isEdit.value = false
   dialogTitle.value = '添加下级行政区'
-  form.value = { id: null, dname: '', level: '', sort: 0, parent: row.id }
-  selectedParentName.value = row.dname
-  selectedParent.value = row
-  // 确保数据已加载
-  if (!treeData.value.length) {
-    fetchTree()
+  
+  // 设置表单数据
+  form.value = { 
+    id: null, 
+    dname: '', 
+    level: '', 
+    sort: 0, 
+    parent: row.id,
+    parentName: row.dname // 添加父节点名称
   }
+  
+  // 根据父级类型自动设置子级类型
+  if (row.level === 'province') {
+    form.value.level = 'city'
+  } else if (row.level === 'city') {
+    form.value.level = 'district'
+  }
+  
   showDialog.value = true
 }
 

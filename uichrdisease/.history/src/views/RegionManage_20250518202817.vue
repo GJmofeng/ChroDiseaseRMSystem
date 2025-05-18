@@ -147,7 +147,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0, parent = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -160,25 +160,26 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       return
     }
     
-    // 根据父级类型确定当前项可以选择的级别
+    // 根据当前表单的父级ID判断是否可选
     let allowSelect = true
-    if (parentLevel) {
-      if (parentLevel === 'province' && item.level !== 'city') allowSelect = false
-      if (parentLevel === 'city' && item.level !== 'district') allowSelect = false
-      if (parentLevel === 'district') allowSelect = false
+    if (form.value.id) { // 如果是编辑状态
+      // 不能选择自己或自己的子级作为父级
+      allowSelect = item.id !== form.value.id
     }
-    
+
+    // 创建新项，保持原有的父子关系
     const newItem = { 
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
-      _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
+      parent: parent // 保存完整的父级信息
     }
     
     result.push(newItem)
     
-    if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+    // 只处理当前项的直接子级
+    if (item.children && Array.isArray(item.children)) {
+      result = result.concat(flattenTreeData(item.children, level + 1, newItem))
     }
   })
   return result
@@ -187,7 +188,6 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
 // 处理选项数据
 const selectOptions = computed(() => {
   console.log('开始计算selectOptions...')
-  console.log('当前treeData:', treeData.value)
   
   if (!treeData.value || !Array.isArray(treeData.value)) {
     console.warn('treeData不是有效数组:', treeData.value)
@@ -205,7 +205,19 @@ const selectOptions = computed(() => {
       }
       return true
     })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+    // 保持与表格相同的顺序
+    .sort((a, b) => {
+      // 首先按照层级排序
+      if (a._level !== b._level) {
+        return a._level - b._level
+      }
+      // 同层级时，按照它们在原始数据中的顺序排序
+      if (a.parent?.id !== b.parent?.id) {
+        return (a.parent?.id || 0) - (b.parent?.id || 0)
+      }
+      // 最后按照排序字段排序
+      return (a.sort || 0) - (b.sort || 0)
+    })
 })
 
 // 处理下拉框显示/隐藏
@@ -230,7 +242,7 @@ function filterParentOptions(query) {
 
 // 在选择上级部门时，自动设置当前部门的级别
 function handleParentChange(value) {
-  const selectedParent = findParentById(treeData.value, value)
+  const selectedParent = selectOptions.value.find(item => item.id === value)
   if (selectedParent) {
     // 根据上级部门级别设置当前部门级别
     if (selectedParent.level === 'province') {
@@ -309,13 +321,14 @@ async function fetchTree() {
       return
     }
 
-    // 添加层级信息
-    const addLevel = (data, level = 0) => {
+    // 添加层级信息，保持原有的父子关系
+    const addLevel = (data, level = 0, parent = null) => {
       if (!Array.isArray(data)) return []
       return data.map(item => ({
         ...item,
         _level: level,
-        children: item.children ? addLevel(item.children, level + 1) : []
+        parent: parent,
+        children: item.children ? addLevel(item.children, level + 1, item) : []
       }))
     }
     

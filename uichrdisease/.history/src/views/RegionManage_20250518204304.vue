@@ -147,7 +147,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0, parentId = null, parentLevel = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -168,17 +168,19 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       if (parentLevel === 'district') allowSelect = false
     }
     
+    // 添加父ID信息
     const newItem = { 
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
+      _parentId: parentId,
       _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
     }
     
     result.push(newItem)
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+      result = result.concat(flattenTreeData(item.children, level + 1, item.id, item.level))
     }
   })
   return result
@@ -194,18 +196,27 @@ const selectOptions = computed(() => {
     return []
   }
 
-  const flatData = flattenTreeData(treeData.value)
-  console.log('扁平化后的数据:', flatData)
+  // 获取当前选中行的数据
+  const currentRow = form.value.parent ? findParentById(treeData.value, form.value.parent) : null
   
-  // 如果有搜索关键字，进行过滤
-  return flatData
-    .filter(item => {
-      if (filterKeyword.value) {
-        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
-      }
-      return true
-    })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+  // 如果是添加子级，只显示当前节点的直接子节点
+  if (currentRow) {
+    const children = currentRow.children || []
+    return children.map(child => ({
+      ...child,
+      _level: 0,
+      _allowSelect: true,
+      _label: child.dname
+    }))
+  }
+  
+  // 否则显示所有根节点
+  return treeData.value.map(item => ({
+    ...item,
+    _level: 0,
+    _allowSelect: true,
+    _label: item.dname
+  }))
 })
 
 // 处理下拉框显示/隐藏

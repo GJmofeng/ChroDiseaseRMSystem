@@ -45,29 +45,39 @@
     <el-dialog v-model="showDialog" :title="dialogTitle" width="400px" :close-on-click-modal="false">
       <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
         <el-form-item label="上级部门" prop="parent" v-if="!isEdit">
-          <el-select
-            v-model="form.parent"
-            placeholder="请选择上级部门"
-            style="width: 100%"
-            filterable
-            :filter-method="filterParentOptions"
-            @visible-change="handleDropdownVisible"
-            @change="handleParentChange"
-            popper-class="region-select-dropdown"
-          >
-            <el-option
-              v-for="item in selectOptions"
-              :key="item.id"
-              :label="item.dname"
-              :value="item.id"
-              :disabled="!item._allowSelect"
+          <template v-if="selectedParentName && form.parent !== 0">
+            <el-input
+              v-model="selectedParentName"
+              readonly
+              placeholder="上级部门"
+            />
+          </template>
+          <template v-else>
+            <el-select
+              v-model="form.parent"
+              placeholder="请选择上级部门"
+              style="width: 100%"
+              filterable
+              :filter-method="filterParentOptions"
+              @visible-change="handleDropdownVisible"
             >
-              <span :style="{ 
-                paddingLeft: (item._level * 20) + 'px',
-                color: item._allowSelect ? '' : '#999'
-              }">{{ item.dname }}</span>
-            </el-option>
-          </el-select>
+              <el-option-group
+                v-for="group in parentOptions"
+                :key="group.label"
+                :label="group.label"
+              >
+                <el-option
+                  v-for="item in group.options"
+                  :key="item.id"
+                  :label="item.dname"
+                  :value="item.id"
+                  :style="{ paddingLeft: (item._level * 20) + 'px' }"
+                >
+                  <span>{{ item.dname }}</span>
+                </el-option>
+              </el-option-group>
+            </el-select>
+          </template>
         </el-form-item>
         <el-form-item label="名称" prop="dname">
           <el-input v-model="form.dname" placeholder="请输入名称" />
@@ -147,7 +157,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -160,33 +170,18 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       return
     }
     
-    // 根据父级类型确定当前项可以选择的级别
-    let allowSelect = true
-    if (parentLevel) {
-      if (parentLevel === 'province' && item.level !== 'city') allowSelect = false
-      if (parentLevel === 'city' && item.level !== 'district') allowSelect = false
-      if (parentLevel === 'district') allowSelect = false
-    }
-    
-    const newItem = { 
-      ...item, 
-      _level: level,
-      _allowSelect: allowSelect,
-      _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
-    }
-    
+    const newItem = { ...item, _level: level }
     result.push(newItem)
-    
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+      result = result.concat(flattenTreeData(item.children, level + 1))
     }
   })
   return result
 }
 
-// 处理选项数据
-const selectOptions = computed(() => {
-  console.log('开始计算selectOptions...')
+// 按行政区级别对选项进行分组
+const parentOptions = computed(() => {
+  console.log('开始计算parentOptions...')
   console.log('当前treeData:', treeData.value)
   
   if (!treeData.value || !Array.isArray(treeData.value)) {
@@ -197,15 +192,42 @@ const selectOptions = computed(() => {
   const flatData = flattenTreeData(treeData.value)
   console.log('扁平化后的数据:', flatData)
   
-  // 如果有搜索关键字，进行过滤
-  return flatData
-    .filter(item => {
-      if (filterKeyword.value) {
-        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
+  // 按级别分组
+  const groups = {}
+  flatData.forEach(item => {
+    if (!item.level) {
+      console.warn('数据项缺少level字段:', item)
+      return
+    }
+    
+    const level = item.level
+    if (!groups[level]) {
+      groups[level] = {
+        label: getLevelLabel(level),
+        options: []
       }
-      return true
-    })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+    }
+
+    // 如果有搜索关键字，进行过滤
+    if (filterKeyword.value) {
+      if (item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())) {
+        groups[level].options.push(item)
+      }
+    } else {
+      groups[level].options.push(item)
+    }
+  })
+
+  // 转换为数组并排序
+  const result = Object.entries(groups)
+    .map(([level, group]) => ({
+      label: group.label,
+      options: group.options
+    }))
+    .filter(group => group.options.length > 0)
+
+  console.log('最终分组结果:', result)
+  return result
 })
 
 // 处理下拉框显示/隐藏
@@ -219,39 +241,13 @@ async function handleDropdownVisible(visible) {
       await fetchTree()
     }
     console.log('当前树形数据:', treeData.value)
-    console.log('当前selectOptions:', selectOptions.value)
+    console.log('当前parentOptions:', parentOptions.value)
   }
 }
 
 // 过滤选项
 function filterParentOptions(query) {
   filterKeyword.value = query
-}
-
-// 在选择上级部门时，自动设置当前部门的级别
-function handleParentChange(value) {
-  const selectedParent = findParentById(treeData.value, value)
-  if (selectedParent) {
-    // 根据上级部门级别设置当前部门级别
-    if (selectedParent.level === 'province') {
-      form.value.level = 'city'
-    } else if (selectedParent.level === 'city') {
-      form.value.level = 'district'
-    }
-  }
-}
-
-// 递归查找父级部门
-function findParentById(data, id) {
-  if (!Array.isArray(data)) return null
-  for (const item of data) {
-    if (item.id === id) return item
-    if (item.children) {
-      const found = findParentById(item.children, id)
-      if (found) return found
-    }
-  }
-  return null
 }
 
 // 监听父级搜索关键字变化
@@ -348,7 +344,7 @@ async function onAddRoot() {
   showDialog.value = true
   console.log('新建对话框打开，当前数据状态：', {
     treeData: treeData.value,
-    selectOptions: selectOptions.value
+    parentOptions: parentOptions.value
   })
 }
 
@@ -496,108 +492,17 @@ watch(searchName, (val) => {
   cursor: pointer;
   background-color: #fff;
 }
-
-/* 下拉菜单样式优化 */
-:deep(.el-select-dropdown) {
-  max-height: 400px;
-}
-
-:deep(.el-select-dropdown.el-popper) {
-  min-width: 300px !important;
-}
-
 :deep(.el-select-dropdown__item) {
-  height: auto !important;
-  line-height: 26px !important;
-  padding: 5px 20px !important;
-  position: relative !important;
+  padding-left: 0 !important;
 }
-
-:deep(.el-select-dropdown__item span) {
-  display: block;
-  padding-left: var(--indent, 0px);
-}
-
-:deep(.el-select-group__wrap) {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-:deep(.el-select-group__title) {
-  padding: 8px 20px !important;
-  font-size: 13px;
-  font-weight: bold;
-  color: #606266;
-  background-color: #f5f7fa;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-:deep(.el-select-group) {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 :deep(.el-select-group__wrap:not(:last-of-type)) {
-  margin-bottom: 0 !important;
+  padding-bottom: 0;
 }
-
-:deep(.el-select-group__wrap:not(:first-of-type)) {
-  margin-top: 0 !important;
-}
-
-:deep(.el-popper.is-light) {
-  border: 1px solid #dcdfe6;
-}
-
-:deep(.el-select-dropdown.is-multiple .el-select-dropdown__item) {
-  padding-right: 40px !important;
-}
-
-:deep(.el-select-dropdown__list) {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-:deep(.el-select-dropdown__item.selected) {
+:deep(.el-select-group__title) {
   font-weight: bold;
-  color: var(--el-color-primary);
-}
-
-:deep(.el-select-dropdown__item.hover) {
-  background-color: var(--el-fill-color-light);
-}
-
-:deep(.el-select-dropdown__empty) {
-  padding: 10px 20px;
-  margin: 0;
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-}
-</style>
-
-<style>
-/* 全局样式，确保下拉菜单样式生效 */
-.region-select-dropdown {
-  min-width: 300px !important;
-}
-
-.region-select-dropdown .el-select-dropdown__item {
-  height: auto !important;
-  line-height: 26px !important;
-  padding: 5px 20px !important;
-}
-
-.region-select-dropdown .el-select-dropdown__item span {
-  white-space: pre !important;
-  font-family: monospace;
-  display: block;
-  line-height: 1.5 !important;
-}
-
-.region-select-dropdown .el-select-dropdown__item.is-disabled span {
-  color: #999;
+  background-color: #f5f7fa;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #606266;
 }
 </style>

@@ -45,29 +45,41 @@
     <el-dialog v-model="showDialog" :title="dialogTitle" width="400px" :close-on-click-modal="false">
       <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
         <el-form-item label="上级部门" prop="parent" v-if="!isEdit">
-          <el-select
-            v-model="form.parent"
-            placeholder="请选择上级部门"
-            style="width: 100%"
-            filterable
-            :filter-method="filterParentOptions"
-            @visible-change="handleDropdownVisible"
-            @change="handleParentChange"
-            popper-class="region-select-dropdown"
-          >
-            <el-option
-              v-for="item in selectOptions"
-              :key="item.id"
-              :label="item.dname"
-              :value="item.id"
-              :disabled="!item._allowSelect"
+          <template v-if="selectedParentName && form.parent !== 0">
+            <el-input
+              v-model="selectedParentName"
+              readonly
+              placeholder="上级部门"
+            />
+          </template>
+          <template v-else>
+            <el-select
+              v-model="form.parent"
+              placeholder="请选择上级部门"
+              style="width: 100%"
+              filterable
+              :filter-method="filterParentOptions"
+              @visible-change="handleDropdownVisible"
+              @change="handleParentChange"
+              popper-class="region-select-dropdown"
             >
-              <span :style="{ 
-                paddingLeft: (item._level * 20) + 'px',
-                color: item._allowSelect ? '' : '#999'
-              }">{{ item.dname }}</span>
-            </el-option>
-          </el-select>
+              <el-option-group
+                v-for="group in parentOptions"
+                :key="group.label"
+                :label="group.label"
+              >
+                <el-option
+                  v-for="item in group.options"
+                  :key="item.id"
+                  :label="item.dname"
+                  :value="item.id"
+                  :disabled="!item._allowSelect"
+                >
+                  <span :style="{ paddingLeft: (item._level * 20) + 'px' }">{{ item.dname }}</span>
+                </el-option>
+              </el-option-group>
+            </el-select>
+          </template>
         </el-form-item>
         <el-form-item label="名称" prop="dname">
           <el-input v-model="form.dname" placeholder="请输入名称" />
@@ -171,11 +183,12 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
     const newItem = { 
       ...item, 
       _level: level,
-      _allowSelect: allowSelect,
-      _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
+      _allowSelect: allowSelect 
     }
     
-    result.push(newItem)
+    if (allowSelect) {
+      result.push(newItem)
+    }
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
       result = result.concat(flattenTreeData(item.children, level + 1, item.level))
@@ -184,9 +197,9 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
   return result
 }
 
-// 处理选项数据
-const selectOptions = computed(() => {
-  console.log('开始计算selectOptions...')
+// 按行政区级别对选项进行分组
+const parentOptions = computed(() => {
+  console.log('开始计算parentOptions...')
   console.log('当前treeData:', treeData.value)
   
   if (!treeData.value || !Array.isArray(treeData.value)) {
@@ -197,15 +210,49 @@ const selectOptions = computed(() => {
   const flatData = flattenTreeData(treeData.value)
   console.log('扁平化后的数据:', flatData)
   
-  // 如果有搜索关键字，进行过滤
-  return flatData
-    .filter(item => {
-      if (filterKeyword.value) {
-        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
+  // 按级别分组
+  const groups = {}
+  flatData.forEach(item => {
+    if (!item.level) {
+      console.warn('数据项缺少level字段:', item)
+      return
+    }
+    
+    // 只添加允许选择的选项
+    if (!item._allowSelect) return
+    
+    const level = item.level
+    if (!groups[level]) {
+      groups[level] = {
+        label: getLevelLabel(level),
+        options: []
       }
-      return true
+    }
+
+    // 如果有搜索关键字，进行过滤
+    if (filterKeyword.value) {
+      if (item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())) {
+        groups[level].options.push(item)
+      }
+    } else {
+      groups[level].options.push(item)
+    }
+  })
+
+  // 转换为数组并按级别排序
+  const result = Object.entries(groups)
+    .sort(([a], [b]) => {
+      const order = { province: 1, city: 2, district: 3 }
+      return order[a] - order[b]
     })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+    .map(([level, group]) => ({
+      label: group.label,
+      options: group.options.sort((a, b) => (a.sort || 0) - (b.sort || 0))
+    }))
+    .filter(group => group.options.length > 0)
+
+  console.log('最终分组结果:', result)
+  return result
 })
 
 // 处理下拉框显示/隐藏
@@ -219,7 +266,7 @@ async function handleDropdownVisible(visible) {
       await fetchTree()
     }
     console.log('当前树形数据:', treeData.value)
-    console.log('当前selectOptions:', selectOptions.value)
+    console.log('当前parentOptions:', parentOptions.value)
   }
 }
 
@@ -348,7 +395,7 @@ async function onAddRoot() {
   showDialog.value = true
   console.log('新建对话框打开，当前数据状态：', {
     treeData: treeData.value,
-    selectOptions: selectOptions.value
+    parentOptions: parentOptions.value
   })
 }
 
@@ -591,13 +638,8 @@ watch(searchName, (val) => {
 }
 
 .region-select-dropdown .el-select-dropdown__item span {
-  white-space: pre !important;
-  font-family: monospace;
-  display: block;
+  white-space: normal !important;
+  word-break: break-all !important;
   line-height: 1.5 !important;
-}
-
-.region-select-dropdown .el-select-dropdown__item.is-disabled span {
-  color: #999;
 }
 </style>

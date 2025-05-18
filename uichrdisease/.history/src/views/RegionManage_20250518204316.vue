@@ -147,7 +147,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0, parentId = null, parentLevel = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -168,17 +168,19 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       if (parentLevel === 'district') allowSelect = false
     }
     
+    // 添加父ID信息
     const newItem = { 
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
+      _parentId: parentId,
       _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
     }
     
     result.push(newItem)
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+      result = result.concat(flattenTreeData(item.children, level + 1, item.id, item.level))
     }
   })
   return result
@@ -194,18 +196,42 @@ const selectOptions = computed(() => {
     return []
   }
 
-  const flatData = flattenTreeData(treeData.value)
-  console.log('扁平化后的数据:', flatData)
+  let options = []
   
-  // 如果有搜索关键字，进行过滤
-  return flatData
-    .filter(item => {
-      if (filterKeyword.value) {
-        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
-      }
-      return true
-    })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+  // 如果是编辑模式，返回空数组（因为编辑时不需要显示上级部门选项）
+  if (isEdit.value) {
+    return []
+  }
+  
+  // 如果当前选择了父节点（添加子节点模式）
+  if (form.value.parent) {
+    const parentNode = findParentById(treeData.value, form.value.parent)
+    if (parentNode) {
+      // 只返回当前父节点的直接子节点
+      options = parentNode.children || []
+      options = options.map(item => ({
+        ...item,
+        _level: 0,
+        _allowSelect: true
+      }))
+    }
+  } else {
+    // 如果是新建根节点，显示所有顶级节点
+    options = treeData.value.map(item => ({
+      ...item,
+      _level: 0,
+      _allowSelect: true
+    }))
+  }
+
+  // 应用搜索过滤
+  if (filterKeyword.value) {
+    options = options.filter(item => 
+      item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
+    )
+  }
+
+  return options.sort((a, b) => (a.sort || 0) - (b.sort || 0))
 })
 
 // 处理下拉框显示/隐藏

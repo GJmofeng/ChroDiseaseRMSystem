@@ -147,7 +147,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0, parentId = null, parentLevel = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -168,17 +168,19 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       if (parentLevel === 'district') allowSelect = false
     }
     
+    // 添加父ID信息
     const newItem = { 
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
+      _parentId: parentId,
       _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
     }
     
     result.push(newItem)
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+      result = result.concat(flattenTreeData(item.children, level + 1, item.id, item.level))
     }
   })
   return result

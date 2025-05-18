@@ -45,29 +45,30 @@
     <el-dialog v-model="showDialog" :title="dialogTitle" width="400px" :close-on-click-modal="false">
       <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
         <el-form-item label="上级部门" prop="parent" v-if="!isEdit">
-          <el-select
-            v-model="form.parent"
-            placeholder="请选择上级部门"
-            style="width: 100%"
-            filterable
-            :filter-method="filterParentOptions"
-            @visible-change="handleDropdownVisible"
-            @change="handleParentChange"
-            popper-class="region-select-dropdown"
-          >
-            <el-option
-              v-for="item in selectOptions"
-              :key="item.id"
-              :label="item.dname"
-              :value="item.id"
-              :disabled="!item._allowSelect"
+          <template v-if="form.parent">
+            <el-input v-model="form.parentName" disabled />
+          </template>
+          <template v-else>
+            <el-select
+              v-model="form.parent"
+              placeholder="请选择上级部门"
+              style="width: 100%"
+              filterable
+              :filter-method="filterParentOptions"
+              @visible-change="handleDropdownVisible"
+              @change="handleParentChange"
+              popper-class="region-select-dropdown"
             >
-              <span :style="{ 
-                paddingLeft: (item._level * 20) + 'px',
-                color: item._allowSelect ? '' : '#999'
-              }">{{ item.dname }}</span>
-            </el-option>
-          </el-select>
+              <el-option
+                v-for="item in selectOptions"
+                :key="item.id"
+                :label="item.dname"
+                :value="item.id"
+              >
+                <span>{{ item.dname }}</span>
+              </el-option>
+            </el-select>
+          </template>
         </el-form-item>
         <el-form-item label="名称" prop="dname">
           <el-input v-model="form.dname" placeholder="请输入名称" />
@@ -128,7 +129,14 @@ const searchName = ref('')
 const treeData = ref([])
 const showDialog = ref(false)
 const dialogTitle = ref('新建行政区')
-const form = ref({ id: null, dname: '', level: '', sort: 0, parent: 0 })
+const form = ref({ 
+  id: null, 
+  dname: '', 
+  level: '', 
+  sort: 0, 
+  parent: 0,
+  parentName: '' // 添加父节点名称字段
+})
 const formRef = ref()
 const isEdit = ref(false)
 const filterKeyword = ref('')
@@ -147,7 +155,7 @@ const rules = {
 }
 
 // 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
+function flattenTreeData(data, level = 0, parentId = null, parentLevel = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -168,17 +176,19 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
       if (parentLevel === 'district') allowSelect = false
     }
     
+    // 添加父ID信息
     const newItem = { 
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
+      _parentId: parentId,
       _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
     }
     
     result.push(newItem)
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+      result = result.concat(flattenTreeData(item.children, level + 1, item.id, item.level))
     }
   })
   return result
@@ -186,26 +196,62 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
 
 // 处理选项数据
 const selectOptions = computed(() => {
-  console.log('开始计算selectOptions...')
-  console.log('当前treeData:', treeData.value)
-  
   if (!treeData.value || !Array.isArray(treeData.value)) {
-    console.warn('treeData不是有效数组:', treeData.value)
     return []
   }
 
-  const flatData = flattenTreeData(treeData.value)
-  console.log('扁平化后的数据:', flatData)
-  
-  // 如果有搜索关键字，进行过滤
-  return flatData
-    .filter(item => {
-      if (filterKeyword.value) {
-        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
+  // 如果是编辑模式，不显示选项
+  if (isEdit.value) {
+    return []
+  }
+
+  // 如果是添加子节点模式，只显示当前父节点
+  if (form.value.parent) {
+    const parentNode = findParentById(treeData.value, form.value.parent)
+    if (parentNode) {
+      return [{
+        id: parentNode.id,
+        dname: parentNode.dname,
+        level: parentNode.level,
+        _level: 0,
+        _allowSelect: true
+      }]
+    }
+    return []
+  }
+
+  // 如果是新建模式，显示完整的树形结构
+  const flattenTree = (nodes, level = 0) => {
+    if (!Array.isArray(nodes)) return []
+    
+    let result = []
+    nodes.forEach(node => {
+      // 添加当前节点
+      result.push({
+        ...node,
+        _level: level,
+        _allowSelect: true,
+        _label: ''.padStart(level * 4, ' ') + node.dname
+      })
+      
+      // 递归处理子节点
+      if (node.children && node.children.length) {
+        result = result.concat(flattenTree(node.children, level + 1))
       }
-      return true
     })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+    return result
+  }
+
+  let options = flattenTree(treeData.value)
+
+  // 应用搜索过滤
+  if (filterKeyword.value) {
+    options = options.filter(item => 
+      item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
+    )
+  }
+
+  return options.sort((a, b) => (a.sort || 0) - (b.sort || 0))
 })
 
 // 处理下拉框显示/隐藏
@@ -335,33 +381,36 @@ function resetSearch() {
 async function onAddRoot() {
   isEdit.value = false
   dialogTitle.value = '新建行政区'
-  form.value = { id: null, dname: '', level: '', sort: 0, parent: 0 }
-  selectedParentName.value = ''
-  selectedParent.value = null
-  filterKeyword.value = ''
-  
-  // 确保数据已加载
-  if (!treeData.value || !treeData.value.length) {
-    await fetchTree()
+  form.value = { 
+    id: null, 
+    dname: '', 
+    level: '', 
+    sort: 0, 
+    parent: 0,
+    parentName: '' 
   }
-  
   showDialog.value = true
-  console.log('新建对话框打开，当前数据状态：', {
-    treeData: treeData.value,
-    selectOptions: selectOptions.value
-  })
 }
 
 function onAddChild(row) {
   isEdit.value = false
   dialogTitle.value = '添加下级行政区'
-  form.value = { id: null, dname: '', level: '', sort: 0, parent: row.id }
-  selectedParentName.value = row.dname
-  selectedParent.value = row
-  // 确保数据已加载
-  if (!treeData.value.length) {
-    fetchTree()
+  form.value = { 
+    id: null, 
+    dname: '', 
+    level: '', 
+    sort: 0, 
+    parent: row.id,
+    parentName: row.dname // 设置父节点名称
   }
+  
+  // 根据父级类型自动设置子级类型
+  if (row.level === 'province') {
+    form.value.level = 'city'
+  } else if (row.level === 'city') {
+    form.value.level = 'district'
+  }
+  
   showDialog.value = true
 }
 

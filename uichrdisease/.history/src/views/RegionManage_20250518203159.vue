@@ -186,18 +186,7 @@ function flattenTreeData(data, level = 0, parentLevel = null) {
 
 // 处理选项数据
 const selectOptions = computed(() => {
-  console.log('开始计算selectOptions...')
-  console.log('当前treeData:', treeData.value)
-  
-  if (!treeData.value || !Array.isArray(treeData.value)) {
-    console.warn('treeData不是有效数组:', treeData.value)
-    return []
-  }
-
   const flatData = flattenTreeData(treeData.value)
-  console.log('扁平化后的数据:', flatData)
-  
-  // 如果有搜索关键字，进行过滤
   return flatData
     .filter(item => {
       if (filterKeyword.value) {
