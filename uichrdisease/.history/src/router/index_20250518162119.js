@@ -5,7 +5,6 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import FrontPage from '../views/FrontPage.vue'
 import UserManage from '../views/UserManage.vue'
-import RegionManage from '../views/RegionManage.vue'
 
 const routes = [
   {
@@ -31,7 +30,8 @@ const routes = [
       {
         path: 'region-manage',
         name: 'RegionManage',
-        component: RegionManage
+        component: RegionManage,
+        
       }
     ]
   },

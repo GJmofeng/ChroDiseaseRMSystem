@@ -4,7 +4,89 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="分支合并-用户管理" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="分支合并-用户管理2">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250518161435.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250518161607.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250518162722.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250518162730.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/layouts/MainLayout_20250518161423.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/controller/DivisionController_20250518161026.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/controller/DivisionController_20250518161030.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/controller/RegionController_20250518160635.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/controller/RegionController_20250518160638.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/controller/RegionController_20250518160639.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/entity/Division_20250518160952.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/entity/Division_20250518160956.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/entity/Division_20250518160957.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/entity/Region_20250518160602.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/entity/Region_20250518160609.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/mapper/RegionMapper_20250518160624.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/mapper/RegionMapper_20250518160629.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/service/RegionService_20250518160611.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/service/RegionService_20250518160616.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/service/impl/RegionServiceImpl_20250518160618.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/service/impl/RegionServiceImpl_20250518160622.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/gxwz/syschronicdisease/service/impl/RegionServiceImpl_20250518160623.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518160658.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518161414.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162014.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162054.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162112.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162115.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162119.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162122.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162318.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162337.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162350.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250518162353.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518160553.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518160558.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518161018.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518161020.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518161021.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518165235.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518172304.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518184514.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518184726.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518185252.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518185359.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518185753.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518185806.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518185949.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518190032.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518190444.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518190531.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518191616.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518191728.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518191916.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192046.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192437.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192505.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192721.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192756.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192757.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192819.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192821.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192833.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192835.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192847.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192849.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518192902.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518193421.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518193500.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518193530.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/RegionManage_20250518193532.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250518170431.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250518170436.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/src/views/RegionManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/DivisionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/DivisionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/Division.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/Division.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/components/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/vite.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -337,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747554517335</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="分支合并-用户管理2">
+      <option name="closed" value="true" />
+      <created>1747554556099</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1747554556099</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +458,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="第二次提交" />
     <MESSAGE value="第三次提交" />
     <MESSAGE value="后端-用户登录" />
     <MESSAGE value="修改配置application.properties" />
@@ -393,6 +482,7 @@
     <MESSAGE value="前端-用户管理7" />
     <MESSAGE value="前端-用户管理-查询、编辑、删除、新增、重置密码" />
     <MESSAGE value="分支合并-用户管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="分支合并-用户管理" />
+    <MESSAGE value="分支合并-用户管理2" />
+    <option name="LAST_COMMIT_MESSAGE" value="分支合并-用户管理2" />
   </component>
 </project>

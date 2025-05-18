@@ -20,7 +20,7 @@
           <i class="fas fa-shield-alt"></i>
           <span v-show="!isCollapsed">权限管理</span>
         </div>
-        <div class="menu-item" :class="{ active: isActive('/main/region-manage') }" @click="router.push('/main/region-manage')">
+        <div class="menu-item">
           <i class="fas fa-map-marked-alt"></i>
           <span v-show="!isCollapsed">行政区管理</span>
         </div>

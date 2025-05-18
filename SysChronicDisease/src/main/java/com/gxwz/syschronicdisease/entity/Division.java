@@ -3,9 +3,9 @@ package com.gxwz.syschronicdisease.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.time.LocalDateTime;
 
 @TableName("division")
-
 public class Division {
     @TableId(type = IdType.AUTO)
     private Long id;
@@ -16,14 +16,23 @@ public class Division {
 
     private String level;
 
+    private Integer sort;
+
+    private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
+
     public Division() {
     }
 
-    public Division(Long id, Long parent, String dname, String level) {
+    public Division(Long id, Long parent, String dname, String level, Integer sort, LocalDateTime createTime, LocalDateTime updateTime) {
         this.id = id;
         this.parent = parent;
         this.dname = dname;
         this.level = level;
+        this.sort = sort;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 
     public Long getId() {
@@ -58,6 +67,30 @@ public class Division {
         this.level = level;
     }
 
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         return "Division{" +
@@ -65,6 +98,9 @@ public class Division {
                 ", parent=" + parent +
                 ", dname='" + dname + '\'' +
                 ", level='" + level + '\'' +
+                ", sort=" + sort +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

@@ -7,6 +7,11 @@ import com.gxwz.syschronicdisease.service.DivisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/division")
 public class DivisionController {
@@ -51,5 +56,53 @@ public class DivisionController {
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable Long id) {
         return new Result("删除成功", divisionService.removeById(id), 200);
+    }
+
+    // 树形结构
+    @GetMapping("/tree")
+    public Result tree(@RequestParam(required = false) String name) {
+        List<Division> all = divisionService.list();
+        // 可加名称过滤
+        if (name != null && !name.isEmpty()) {
+            all = all.stream().filter(d -> d.getDname().contains(name)).collect(Collectors.toList());
+        }
+        List<DivisionNode> tree = buildTree(0L, all);
+        return new Result("获取成功", tree, 200);
+    }
+
+    // 获取某节点下的直接子节点
+    @GetMapping("/children")
+    public Result children(@RequestParam Long parent) {
+        List<Division> children = divisionService.lambdaQuery().eq(Division::getParent, parent).list();
+        return new Result("获取成功", children, 200);
+    }
+
+    // 递归构建树
+    private List<DivisionNode> buildTree(Long parentId, List<Division> all) {
+        List<DivisionNode> nodes = new ArrayList<>();
+        for (Division d : all) {
+            if (Objects.equals(d.getParent(), parentId)) {
+                DivisionNode node = new DivisionNode(d);
+                node.setChildren(buildTree(d.getId(), all));
+                nodes.add(node);
+            }
+        }
+        return nodes;
+    }
+
+    // DivisionNode 内部类
+    public static class DivisionNode extends Division {
+        private List<DivisionNode> children = new ArrayList<>();
+        public DivisionNode(Division d) {
+            this.setId(d.getId());
+            this.setParent(d.getParent());
+            this.setDname(d.getDname());
+            this.setLevel(d.getLevel());
+            this.setSort(d.getSort());
+            this.setCreateTime(d.getCreateTime());
+            this.setUpdateTime(d.getUpdateTime());
+        }
+        public List<DivisionNode> getChildren() { return children; }
+        public void setChildren(List<DivisionNode> children) { this.children = children; }
     }
 }
