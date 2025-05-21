@@ -306,20 +306,8 @@ function onDelete(row) {
           instance.confirmButtonLoading = true
           instance.confirmButtonText = '删除中...'
           try {
-            // 先检查服务器连接
-            try {
-              await axios.get('/division/tree', { params: { name: '' } })
-            } catch (error) {
-              if (error.response?.status === 404) {
-                ElMessage.error('无法连接到服务器，请确保后端服务已启动（端口8080）')
-                done()
-                return
-              }
-            }
-            
-            // 修改为DELETE方法和正确的URL格式
-            const res = await axios.delete(`/division/delete/${row.id}`)
-            if (res.data.code === 200) { // 修改状态码判断
+            const res = await axios.post('/division/delete', { id: row.id })
+            if (res.data.code === 0) {
               ElMessage.success('删除成功')
               await fetchTree() // 重新加载树形数据
             } else {
@@ -328,15 +316,10 @@ function onDelete(row) {
             done()
           } catch (error) {
             console.error('删除失败:', error)
-            if (error.response?.status === 404) {
-              ElMessage.error('接口未找到，请确保后端服务正常运行')
-            } else if (error.response?.status === 500) {
-              ElMessage.error('服务器内部错误：' + (error.response?.data?.message || '未知错误'))
-            } else if (error.code === 'ERR_NETWORK') {
-              ElMessage.error('网络错误，请检查网络连接和后端服务是否正常')
-            } else {
-              ElMessage.error(error.response?.data?.message || '删除失败，请稍后重试')
-            }
+            ElMessage.error(error.response?.data?.message || '删除失败，请稍后重试')
+          } finally {
+            instance.confirmButtonLoading = false
+            instance.confirmButtonText = '确定删除'
           }
         } else {
           done()
