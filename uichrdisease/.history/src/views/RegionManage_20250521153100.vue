@@ -56,7 +56,7 @@
       </div>
       <!-- 新建/编辑弹窗 -->
       <el-dialog v-model="showDialog" :title="dialogTitle" width="400px" :close-on-click-modal="false">
-        <el-form :model="form" :rules="rules" ref="formRef" label-width="100px">
+        <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
           <el-form-item label="上级行政区" prop="parent" v-if="!isEdit">
             <el-select
               v-model="form.parent"

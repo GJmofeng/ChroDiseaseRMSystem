@@ -56,7 +56,7 @@
       </div>
       <!-- 新建/编辑弹窗 -->
       <el-dialog v-model="showDialog" :title="dialogTitle" width="400px" :close-on-click-modal="false">
-        <el-form :model="form" :rules="rules" ref="formRef" label-width="100px">
+        <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
           <el-form-item label="上级行政区" prop="parent" v-if="!isEdit">
             <el-select
               v-model="form.parent"
@@ -193,7 +193,7 @@ const parentTreeRef = ref(null)
 const rules = {
   dname: [{ required: true, message: '请输入名称', trigger: 'blur' }],
   level: [{ required: true, message: '请选择级别', trigger: 'change' }],
-  parent: [{ required: true, message: '请选择上级行政区', trigger: 'change' }]
+  parent: [{ required: true, message: '请选择上级部门', trigger: 'change' }]
 }
 
 function getLevelType(level) {

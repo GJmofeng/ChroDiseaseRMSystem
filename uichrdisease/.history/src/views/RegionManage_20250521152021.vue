@@ -56,11 +56,11 @@
       </div>
       <!-- 新建/编辑弹窗 -->
       <el-dialog v-model="showDialog" :title="dialogTitle" width="400px" :close-on-click-modal="false">
-        <el-form :model="form" :rules="rules" ref="formRef" label-width="100px">
-          <el-form-item label="上级行政区" prop="parent" v-if="!isEdit">
+        <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
+          <el-form-item label="上级部门" prop="parent" v-if="!isEdit">
             <el-select
               v-model="form.parent"
-              placeholder="请选择上级行政区"
+              placeholder="请选择上级部门"
               style="width: 100%"
               filterable
               :filter-method="filterParentOptions"
@@ -137,43 +137,7 @@
 import { ref, onMounted, watch, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import axios from 'axios'
-import draggable from 'vuedraggable'
-import TabMenu from '../components/TabMenu.vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
-
-// 标签导航相关
-const tags = ref([
-  { title: '首页', path: '/main', icon: 'fa-home', closable: false },
-  { title: '行政区管理', path: '/main/region-manage', icon: 'fa-map-marker-alt', closable: true }
-])
-const activePath = ref('/main/region-manage')
-
-function handleTabClick(tag) {
-  activePath.value = tag.path
-  router.push(tag.path)
-}
-
-function handleTabClose(tag, idx) {
-  tags.value.splice(idx, 1)
-  if (activePath.value === tag.path) {
-    activePath.value = '/main'
-    router.push('/main')
-  }
-}
-
-function handleMenuCloseOther() {
-  tags.value = tags.value.filter(tag => !tag.closable || tag.path === activePath.value)
-}
-
-function handleMenuCloseAll() {
-  tags.value = tags.value.filter(tag => !tag.closable)
-  activePath.value = '/main'
-  router.push('/main')
-}
-
-// 原有的代码
 const searchName = ref('')
 const treeData = ref([])
 const showDialog = ref(false)
@@ -193,7 +157,140 @@ const parentTreeRef = ref(null)
 const rules = {
   dname: [{ required: true, message: '请输入名称', trigger: 'blur' }],
   level: [{ required: true, message: '请选择级别', trigger: 'change' }],
-  parent: [{ required: true, message: '请选择上级行政区', trigger: 'change' }]
+  parent: [{ required: true, message: '请选择上级部门', trigger: 'change' }]
+}
+
+// 将树形数据转换为扁平数组，并添加层级信息
+function flattenTreeData(data, level = 0, parentLevel = null) {
+  if (!Array.isArray(data)) {
+    console.warn('flattenTreeData接收到非数组数据:', data)
+    return []
+  }
+  
+  let result = []
+  data.forEach(item => {
+    if (!item) {
+      console.warn('存在无效的数据项')
+      return
+    }
+    
+    // 根据父级类型确定当前项可以选择的级别
+    let allowSelect = true
+    if (parentLevel) {
+      if (parentLevel === 'province' && item.level !== 'city') allowSelect = false
+      if (parentLevel === 'city' && item.level !== 'district') allowSelect = false
+      if (parentLevel === 'district') allowSelect = false
+    }
+    
+    const newItem = { 
+      ...item, 
+      _level: level,
+      _allowSelect: allowSelect,
+      _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
+    }
+    
+    result.push(newItem)
+    
+    if (item.children && Array.isArray(item.children) && item.children.length) {
+      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
+    }
+  })
+  return result
+}
+
+// 处理选项数据
+const selectOptions = computed(() => {
+  console.log('开始计算selectOptions...')
+  console.log('当前treeData:', treeData.value)
+  
+  if (!treeData.value || !Array.isArray(treeData.value)) {
+    console.warn('treeData不是有效数组:', treeData.value)
+    return []
+  }
+
+  const flatData = flattenTreeData(treeData.value)
+  console.log('扁平化后的数据:', flatData)
+  
+  // 如果有搜索关键字，进行过滤
+  return flatData
+    .filter(item => {
+      if (filterKeyword.value) {
+        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
+      }
+      return true
+    })
+    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
+})
+
+// 处理下拉框显示/隐藏
+async function handleDropdownVisible(visible) {
+  console.log('下拉框显示状态改变:', visible)
+  if (visible) {
+    filterKeyword.value = ''
+    // 确保有数据
+    if (!treeData.value || !treeData.value.length) {
+      console.log('下拉框打开时发现数据为空，开始获取数据...')
+      await fetchTree()
+    }
+    console.log('当前树形数据:', treeData.value)
+    console.log('当前selectOptions:', selectOptions.value)
+  }
+}
+
+// 过滤选项
+function filterParentOptions(query) {
+  filterKeyword.value = query
+}
+
+// 在选择上级部门时，自动设置当前部门的级别
+function handleParentChange(value) {
+  const selectedParent = findParentById(treeData.value, value)
+  if (selectedParent) {
+    // 根据上级部门级别设置当前部门级别
+    if (selectedParent.level === 'province') {
+      form.value.level = 'city'
+    } else if (selectedParent.level === 'city') {
+      form.value.level = 'district'
+    }
+  }
+}
+
+// 递归查找父级部门
+function findParentById(data, id) {
+  if (!Array.isArray(data)) return null
+  for (const item of data) {
+    if (item.id === id) return item
+    if (item.children) {
+      const found = findParentById(item.children, id)
+      if (found) return found
+    }
+  }
+  return null
+}
+
+// 监听父级搜索关键字变化
+watch(parentSearchKey, (val) => {
+  parentTreeRef.value?.filter(val)
+})
+
+// 过滤节点方法
+function filterNode(value, data) {
+  if (!value) return true
+  return data.dname.toLowerCase().includes(value.toLowerCase())
+}
+
+// 处理父级选择
+function handleParentSelect(data) {
+  selectedParent.value = data
+  selectedParentName.value = data.dname
+}
+
+// 确认父级选择
+function confirmParentSelect() {
+  if (selectedParent.value) {
+    form.value.parent = selectedParent.value.id
+  }
+  showParentSelect.value = false
 }
 
 function getLevelType(level) {
@@ -357,219 +454,21 @@ watch(searchName, (val) => {
   console.log('搜索关键字变化:', val)
   fetchTree()
 })
-
-// 将树形数据转换为扁平数组，并添加层级信息
-function flattenTreeData(data, level = 0, parentLevel = null) {
-  if (!Array.isArray(data)) {
-    console.warn('flattenTreeData接收到非数组数据:', data)
-    return []
-  }
-  
-  let result = []
-  data.forEach(item => {
-    if (!item) {
-      console.warn('存在无效的数据项')
-      return
-    }
-    
-    // 根据父级类型确定当前项可以选择的级别
-    let allowSelect = true
-    if (parentLevel) {
-      if (parentLevel === 'province' && item.level !== 'city') allowSelect = false
-      if (parentLevel === 'city' && item.level !== 'district') allowSelect = false
-      if (parentLevel === 'district') allowSelect = false
-    }
-    
-    const newItem = { 
-      ...item, 
-      _level: level,
-      _allowSelect: allowSelect,
-      _label: ''.padStart(level * 4, ' ') + item.dname // 添加缩进空格
-    }
-    
-    result.push(newItem)
-    
-    if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
-    }
-  })
-  return result
-}
-
-// 处理选项数据
-const selectOptions = computed(() => {
-  console.log('开始计算selectOptions...')
-  console.log('当前treeData:', treeData.value)
-  
-  if (!treeData.value || !Array.isArray(treeData.value)) {
-    console.warn('treeData不是有效数组:', treeData.value)
-    return []
-  }
-
-  const flatData = flattenTreeData(treeData.value)
-  console.log('扁平化后的数据:', flatData)
-  
-  // 如果有搜索关键字，进行过滤
-  return flatData
-    .filter(item => {
-      if (filterKeyword.value) {
-        return item.dname.toLowerCase().includes(filterKeyword.value.toLowerCase())
-      }
-      return true
-    })
-    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
-})
-
-// 处理下拉框显示/隐藏
-async function handleDropdownVisible(visible) {
-  console.log('下拉框显示状态改变:', visible)
-  if (visible) {
-    filterKeyword.value = ''
-    // 确保有数据
-    if (!treeData.value || !treeData.value.length) {
-      console.log('下拉框打开时发现数据为空，开始获取数据...')
-      await fetchTree()
-    }
-    console.log('当前树形数据:', treeData.value)
-    console.log('当前selectOptions:', selectOptions.value)
-  }
-}
-
-// 过滤选项
-function filterParentOptions(query) {
-  filterKeyword.value = query
-}
-
-// 在选择上级部门时，自动设置当前部门的级别
-function handleParentChange(value) {
-  const selectedParent = findParentById(treeData.value, value)
-  if (selectedParent) {
-    // 根据上级部门级别设置当前部门级别
-    if (selectedParent.level === 'province') {
-      form.value.level = 'city'
-    } else if (selectedParent.level === 'city') {
-      form.value.level = 'district'
-    }
-  }
-}
-
-// 递归查找父级部门
-function findParentById(data, id) {
-  if (!Array.isArray(data)) return null
-  for (const item of data) {
-    if (item.id === id) return item
-    if (item.children) {
-      const found = findParentById(item.children, id)
-      if (found) return found
-    }
-  }
-  return null
-}
-
-// 监听父级搜索关键字变化
-watch(parentSearchKey, (val) => {
-  parentTreeRef.value?.filter(val)
-})
-
-// 过滤节点方法
-function filterNode(value, data) {
-  if (!value) return true
-  return data.dname.toLowerCase().includes(value.toLowerCase())
-}
-
-// 处理父级选择
-function handleParentSelect(data) {
-  selectedParent.value = data
-  selectedParentName.value = data.dname
-}
-
-// 确认父级选择
-function confirmParentSelect() {
-  if (selectedParent.value) {
-    form.value.parent = selectedParent.value.id
-  }
-  showParentSelect.value = false
-}
 </script>
 
 <style scoped>
 .region-manage-page {
-  padding: 24px;
-  background: #f5f6fa;
-  min-height: 100vh;
+  padding: 20px;
 }
-
+.tab-nav-bar {
+  margin-bottom: 16px;
+}
 .card {
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 24px;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
-
-.tab-nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fff;
-  padding: 0 0 8px 0;
-  border-radius: 10px 10px 0 0;
-  border-bottom: 1px solid #f0f0f0;
-  margin-bottom: 18px;
-}
-
-.tab-list {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-}
-
-.tab-item {
-  display: flex;
-  align-items: center;
-  background: #f7f7f7;
-  border-radius: 10px 10px 0 0;
-  padding: 0 18px 0 14px;
-  height: 38px;
-  font-size: 15px;
-  color: #222;
-  cursor: pointer;
-  position: relative;
-  margin-right: 2px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.tab-item.active {
-  background: #fff;
-  color: #2563eb;
-  font-weight: 600;
-  border-bottom: 2.5px solid #2563eb;
-  box-shadow: 0 2px 8px rgba(76,132,255,0.04);
-}
-
-.tab-item:not(.active):hover {
-  background: #f0f7ff;
-  color: #2563eb;
-}
-
-.tab-icon {
-  margin-right: 6px;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-}
-
-.tab-close {
-  margin-left: 10px;
-  color: #bbb;
-  font-size: 13px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.tab-close:hover {
-  color: #ff4d4f;
-}
-
 .top-bar {
   margin-bottom: 16px;
 }
