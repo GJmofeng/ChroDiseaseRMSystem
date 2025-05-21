@@ -26,7 +26,7 @@
         </div>
         <div class="menu-item">
           <i class="fas fa-bell"></i>
-          <span v-show="!isCollapsed">慢病信息管理</span>
+          <span v-show="!isCollapsed">慢病消信息管理</span>
           <span class="badge" v-show="!isCollapsed">20</span>
         </div>
         <div class="menu-item">
