@@ -148,13 +148,7 @@ const tags = ref([
   { title: '首页', path: '/main', icon: 'fa-home', closable: false }
 ])
 
-const activePath = ref('/main/region-manage')
-
-// 添加路由监听
-watch(() => router.currentRoute.value.path, (newPath) => {
-  // 根据路由路径添加对应的标签
-  addTag(newPath)
-}, { immediate: true })
+const activePath = ref(router.currentRoute.value.path)
 
 // 添加标签的方法
 function addTag(path) {
@@ -189,7 +183,7 @@ function addTag(path) {
       if (path === '/main') return // 首页已经存在，不需要添加
       // 对于未知路径，可以添加一个默认标签
       newTag = {
-        title: '未知页面',
+        title: path.split('/').pop(),
         path: path,
         icon: 'fa-question-circle',
         closable: true
@@ -202,12 +196,29 @@ function addTag(path) {
   }
 }
 
+// 在组件挂载时初始化当前页面的标签
+onMounted(() => {
+  console.log('组件挂载，初始化标签...')
+  const currentPath = router.currentRoute.value.path
+  addTag(currentPath)
+})
+
+// 监听路由变化
+watch(() => router.currentRoute.value.path, (newPath, oldPath) => {
+  console.log('路由变化:', { newPath, oldPath })
+  if (newPath !== oldPath) {
+    addTag(newPath)
+  }
+})
+
 function handleTabClick(tag) {
+  console.log('点击标签:', tag)
   activePath.value = tag.path
   router.push(tag.path)
 }
 
 function handleTabClose(tag, idx) {
+  console.log('关闭标签:', { tag, idx })
   // 如果关闭的是当前激活的标签，需要激活其他标签
   if (activePath.value === tag.path) {
     // 优先激活左侧标签，如果没有左侧标签则激活右侧标签
@@ -225,11 +236,13 @@ function handleTabClose(tag, idx) {
 }
 
 function handleMenuCloseOther() {
+  console.log('关闭其他标签')
   // 保留首页和当前激活的标签
   tags.value = tags.value.filter(tag => !tag.closable || tag.path === activePath.value)
 }
 
 function handleMenuCloseAll() {
+  console.log('关闭所有标签')
   // 只保留首页标签
   tags.value = tags.value.filter(tag => !tag.closable)
   activePath.value = '/main'
@@ -457,18 +470,6 @@ watch(showDialog, async (visible) => {
       console.log('已有数据，无需重新获取')
     }
   }
-})
-
-// 在组件挂载时获取数据
-onMounted(() => {
-  console.log('组件挂载，开始获取初始数据...')
-  fetchTree()
-})
-
-// 监听搜索关键字变化
-watch(searchName, (val) => {
-  console.log('搜索关键字变化:', val)
-  fetchTree()
 })
 
 // 将树形数据转换为扁平数组，并添加层级信息

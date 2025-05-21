@@ -145,62 +145,10 @@ const router = useRouter()
 
 // 标签导航相关
 const tags = ref([
-  { title: '首页', path: '/main', icon: 'fa-home', closable: false }
+  { title: '首页', path: '/main', icon: 'fa-home', closable: false },
+  { title: '行政区管理', path: '/main/region-manage', icon: 'fa-map-marker-alt', closable: true }
 ])
-
 const activePath = ref('/main/region-manage')
-
-// 添加路由监听
-watch(() => router.currentRoute.value.path, (newPath) => {
-  // 根据路由路径添加对应的标签
-  addTag(newPath)
-}, { immediate: true })
-
-// 添加标签的方法
-function addTag(path) {
-  // 如果标签已存在，只激活不添加
-  const existingTag = tags.value.find(tag => tag.path === path)
-  if (existingTag) {
-    activePath.value = path
-    return
-  }
-
-  // 根据路径添加对应的标签
-  let newTag = null
-  switch (path) {
-    case '/main/region-manage':
-      newTag = { 
-        title: '行政区管理', 
-        path: '/main/region-manage', 
-        icon: 'fa-map-marker-alt', 
-        closable: true 
-      }
-      break
-    case '/main/user-manage':
-      newTag = { 
-        title: '用户管理', 
-        path: '/main/user-manage', 
-        icon: 'fa-users', 
-        closable: true 
-      }
-      break
-    // 可以添加更多的路由匹配
-    default:
-      if (path === '/main') return // 首页已经存在，不需要添加
-      // 对于未知路径，可以添加一个默认标签
-      newTag = {
-        title: '未知页面',
-        path: path,
-        icon: 'fa-question-circle',
-        closable: true
-      }
-  }
-
-  if (newTag) {
-    tags.value.push(newTag)
-    activePath.value = path
-  }
-}
 
 function handleTabClick(tag) {
   activePath.value = tag.path
@@ -208,29 +156,18 @@ function handleTabClick(tag) {
 }
 
 function handleTabClose(tag, idx) {
-  // 如果关闭的是当前激活的标签，需要激活其他标签
-  if (activePath.value === tag.path) {
-    // 优先激活左侧标签，如果没有左侧标签则激活右侧标签
-    const nextTag = tags.value[idx - 1] || tags.value[idx + 1]
-    if (nextTag) {
-      activePath.value = nextTag.path
-      router.push(nextTag.path)
-    } else {
-      // 如果没有其他标签了，回到首页
-      activePath.value = '/main'
-      router.push('/main')
-    }
-  }
   tags.value.splice(idx, 1)
+  if (activePath.value === tag.path) {
+    activePath.value = '/main'
+    router.push('/main')
+  }
 }
 
 function handleMenuCloseOther() {
-  // 保留首页和当前激活的标签
   tags.value = tags.value.filter(tag => !tag.closable || tag.path === activePath.value)
 }
 
 function handleMenuCloseAll() {
-  // 只保留首页标签
   tags.value = tags.value.filter(tag => !tag.closable)
   activePath.value = '/main'
   router.push('/main')
