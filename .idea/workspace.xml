@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="行政区域管理-导航栏修改2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="菜单栏修改" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -405,7 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747824412831</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="菜单栏修改">
+      <option name="closed" value="true" />
+      <created>1747829769425</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1747829769425</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +442,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="前台主页修复3" />
     <MESSAGE value="前台主页修复4" />
     <MESSAGE value="系统首页修复" />
     <MESSAGE value="数据库配置" />
@@ -461,6 +466,7 @@
     <MESSAGE value="行政区域管理-删除2" />
     <MESSAGE value="行政区域管理-导航栏修改" />
     <MESSAGE value="行政区域管理-导航栏修改2" />
-    <option name="LAST_COMMIT_MESSAGE" value="行政区域管理-导航栏修改2" />
+    <MESSAGE value="菜单栏修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="菜单栏修改" />
   </component>
 </project>
