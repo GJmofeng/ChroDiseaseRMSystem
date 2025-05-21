@@ -4,7 +4,196 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="菜单栏修改" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="菜单栏修改">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/shims-vue.d_20250521224211.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/shims-vue.d_20250521224217.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/shims-vue.d_20250521224218.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521223951.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224101.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224107.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224119.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224121.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224141.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224144.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224151.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224155.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224230.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224232.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224307.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224324.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224327.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224336.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224339.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250521224349.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/InsuredController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/InsuredController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/.vite/deps/vue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.d.cts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.d.mts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/dist/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vitejs/plugin-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.esm-browser.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.esm-browser.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.global.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.global.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/dist/compiler-dom.global.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-dom/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/dist/compiler-sfc.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/dist/compiler-sfc.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/dist/compiler-sfc.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/dist/compiler-sfc.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-sfc/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/dist/compiler-ssr.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/dist/compiler-ssr.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/dist/compiler-ssr.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/dist/compiler-ssr.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/compiler-ssr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.esm-browser.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.esm-browser.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.global.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.global.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/dist/reactivity.global.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/reactivity/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-browser.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-browser.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.global.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.global.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/dist/runtime-dom.global.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/runtime-dom/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.esm-browser.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.esm-browser.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/dist/server-renderer.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/server-renderer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/dist/shared.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/@vue/shared/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode_codepoint.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode_codepoint.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode_codepoint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/decode_codepoint.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/encode.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/encode.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/encode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/encode.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/escape.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/escape.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/escape.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/escape.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode_codepoint.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode_codepoint.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode_codepoint.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/decode_codepoint.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/encode.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/encode.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/encode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/encode.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/escape.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/escape.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/escape.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/escape.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-html.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-html.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-html.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-html.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-xml.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-xml.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-xml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/decode-data-xml.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/encode-html.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/encode-html.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/encode-html.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/generated/encode-html.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/index.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/index.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/esm/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-html.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-html.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-html.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-html.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-xml.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-xml.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-xml.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/decode-data-xml.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/encode-html.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/encode-html.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/encode-html.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/generated/encode-html.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/index.d.ts.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/lib/index.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/entities/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/compiler-sfc/index.browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/compiler-sfc/index.browser.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/compiler-sfc/register-ts.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/compiler-sfc/register-ts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.cjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.cjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.cjs.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.cjs.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.d.mts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.d.mts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.esm-browser.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.esm-browser.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.global.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.global.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.global.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.esm-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.esm-browser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.esm-browser.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.esm-browser.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.esm-bundler.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.esm-bundler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.global.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.global.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/dist/vue.runtime.global.prod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/jsx-runtime/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/jsx-runtime/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/jsx-runtime/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/jsx-runtime/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/jsx.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/jsx.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/node_modules/vue/server-renderer/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/node_modules/vue/server-renderer/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -428,7 +617,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/UserManager" />
+                        <option value="feature/Insured" />
                       </list>
                     </value>
                   </entry>

@@ -42,7 +42,7 @@ public class InsuredController {
     }
 
     @GetMapping("/getInsured/{cardId}")
-    public Result getInsured(@PathVariable("cardId") Integer cardId) {
+    public Result getInsured(@PathVariable("cardId") String cardId) {
         return new Result("查询成功", insuredService.getOne(new QueryWrapper<Insured>().eq("card_id", cardId)), 200);
     }
 }
