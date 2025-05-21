@@ -125,9 +125,105 @@
 import { ref, onMounted, watch, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import axios from 'axios'
+import draggable from 'vuedraggable'
+import TabMenu from '../components/TabMenu.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+// // 标签导航相关
+// const tags = ref([
+//   { title: '首页', path: '/main', icon: 'fa-home', closable: false },
+//   { title: '行政区管理', path: '/main/region-manage', icon: 'fa-map-marker-alt', closable: true }
+// ])
+
+// const activePath = ref(router.currentRoute.value.path)
+
+// // 添加路由监听
+// watch(() => router.currentRoute.value.path, (newPath) => {
+//   // 根据路由路径添加对应的标签
+//   addTag(newPath)
+// }, { immediate: true })
+
+// // 添加标签的方法
+// function addTag(path) {
+//   // 如果标签已存在，只激活不添加
+//   const existingTag = tags.value.find(tag => tag.path === path)
+//   if (existingTag) {
+//     activePath.value = path
+//     return
+//   }
+
+//   // 根据路径添加对应的标签
+//   let newTag = null
+//   switch (path) {
+//     case '/main/region-manage':
+//       newTag = { 
+//         title: '行政区管理', 
+//         path: '/main/region-manage', 
+//         icon: 'fa-map-marker-alt', 
+//         closable: true 
+//       }
+//       break
+//     case '/main/user-manage':
+//       newTag = { 
+//         title: '用户管理', 
+//         path: '/main/user-manage', 
+//         icon: 'fa-users', 
+//         closable: true 
+//       }
+//       break
+//     // 可以添加更多的路由匹配
+//     default:
+//       if (path === '/main') return // 首页已经存在，不需要添加
+//       // 对于未知路径，可以添加一个默认标签
+//       newTag = {
+//         title: '未知页面',
+//         path: path,
+//         icon: 'fa-question-circle',
+//         closable: true
+//       }
+//   }
+
+//   if (newTag) {
+//     tags.value.push(newTag)
+//     activePath.value = path
+//   }
+// }
+
+// function handleTabClick(tag) {
+//   activePath.value = tag.path
+//   router.push(tag.path)
+// }
+
+// function handleTabClose(tag, idx) {
+//   // 如果关闭的是当前激活的标签，需要激活其他标签
+//   if (activePath.value === tag.path) {
+//     // 优先激活左侧标签，如果没有左侧标签则激活右侧标签
+//     const nextTag = tags.value[idx - 1] || tags.value[idx + 1]
+//     if (nextTag) {
+//       activePath.value = nextTag.path
+//       router.push(nextTag.path)
+//     } else {
+//       // 如果没有其他标签了，回到首页
+//       activePath.value = '/main'
+//       router.push('/main')
+//     }
+//   }
+//   tags.value.splice(idx, 1)
+// }
+
+// function handleMenuCloseOther() {
+//   // 保留首页和当前激活的标签
+//   tags.value = tags.value.filter(tag => !tag.closable || tag.path === activePath.value)
+// }
+
+// function handleMenuCloseAll() {
+//   // 只保留首页标签
+//   tags.value = tags.value.filter(tag => !tag.closable)
+//   activePath.value = '/main'
+//   router.push('/main')
+// }
 
 // 原有的代码
 const searchName = ref('')
@@ -510,6 +606,70 @@ function confirmParentSelect() {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   padding: 24px;
+}
+
+.tab-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0 0 8px 0;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 18px;
+}
+
+.tab-list {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 10px 10px 0 0;
+  padding: 0 18px 0 14px;
+  height: 38px;
+  font-size: 15px;
+  color: #222;
+  cursor: pointer;
+  position: relative;
+  margin-right: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-item.active {
+  background: #fff;
+  color: #2563eb;
+  font-weight: 600;
+  border-bottom: 2.5px solid #2563eb;
+  box-shadow: 0 2px 8px rgba(76,132,255,0.04);
+}
+
+.tab-item:not(.active):hover {
+  background: #f0f7ff;
+  color: #2563eb;
+}
+
+.tab-icon {
+  margin-right: 6px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.tab-close {
+  margin-left: 10px;
+  color: #bbb;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tab-close:hover {
+  color: #ff4d4f;
 }
 
 .top-bar {
