@@ -1,5 +1,7 @@
 <template>
   <div class="participation-info">
+    <!-- 添加TabNav组件 -->
+    <TabNav />
     <div class="card">
       <!-- 搜索表单 -->
       <el-form :model="searchForm" inline>
@@ -142,6 +144,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { searchParticipationInfo, getInsuredByCardId, addParticipationInfo, updateParticipationInfo, deleteParticipationInfo } from '@/api/participation'
+import TabNav from '@/components/TabNav.vue'
 
 // 搜索表单数据
 const searchForm = reactive({
@@ -360,15 +363,6 @@ onMounted(() => {
 <style scoped>
 .participation-info {
   padding: 24px;
-  background: #f5f6fa;
-  min-height: 100vh;
-}
-
-.card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 24px;
 }
 
 .card-header {
@@ -391,23 +385,5 @@ onMounted(() => {
 
 :deep(.el-form-item__label) {
   font-weight: bold;
-}
-
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.el-table {
-  width: 100% !important;
-  table-layout: fixed;
-}
-
-.el-table__body {
-  width: 100% !important;
-}
-
-.el-table__header {
-  width: 100% !important;
 }
 </style>

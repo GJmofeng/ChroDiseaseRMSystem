@@ -110,10 +110,6 @@ const pathToTagConfig = {
     title: '报销管理',
     icon: 'fa-money-bill-wave'
   },
-  '/main/participation': {
-    title: '参合信息录入',
-    icon: 'fa-user-check'
-  }
 }
 
 // 添加标签

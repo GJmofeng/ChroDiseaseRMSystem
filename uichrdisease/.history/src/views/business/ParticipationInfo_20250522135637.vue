@@ -1,5 +1,7 @@
 <template>
   <div class="participation-info">
+    <!-- 添加TabNav组件 -->
+    <TabNav />
     <div class="card">
       <!-- 搜索表单 -->
       <el-form :model="searchForm" inline>
@@ -142,6 +144,7 @@
 import { ref, reactive, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { searchParticipationInfo, getInsuredByCardId, addParticipationInfo, updateParticipationInfo, deleteParticipationInfo } from '@/api/participation'
+import TabNav from '@/components/TabNav.vue'
 
 // 搜索表单数据
 const searchForm = reactive({
