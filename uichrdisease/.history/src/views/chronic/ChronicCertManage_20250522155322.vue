@@ -1,6 +1,6 @@
 <template>
   <div class="chronic-cert-manage">
-    <div class="page-header">
+    <div class="page-header"></div>
       <el-button type="primary" @click="handleAdd">
         <i class="fas fa-plus"></i> 新增慢性病证
       </el-button>
