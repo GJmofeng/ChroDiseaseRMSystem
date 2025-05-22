@@ -24,7 +24,11 @@
           <i class="fas fa-map-marked-alt"></i>
           <span v-show="!isCollapsed">行政区管理</span>
         </div>
-        <div class="menu-item" :class="{ active: isActive('/main/disease-info') }" @click="router.push('/main/disease-info')">
+        <div class="menu-item" :class="{ active: isActive('/main/{
+        path: 'DiseaseInfo',
+        name: 'DiseaseInfo',
+        component: DiseaseInfo
+      }') }" @click="router.push('/main/disease-info')">
           <i class="fas fa-bell"></i>
           <span v-show="!isCollapsed">慢病信息管理</span>
           <span class="badge" v-show="!isCollapsed">20</span>

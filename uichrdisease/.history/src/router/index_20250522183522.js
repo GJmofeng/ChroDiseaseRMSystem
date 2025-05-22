@@ -51,7 +51,7 @@ const routes = [
         component: () => import('@/views/chronic/ChronicCertManage.vue')
       },
       {
-        path: 'disease-info',
+        path: 'DiseaseInfo',
         name: 'DiseaseInfo',
         component: DiseaseInfo
       }

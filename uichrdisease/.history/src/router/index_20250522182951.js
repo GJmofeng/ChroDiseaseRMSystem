@@ -7,7 +7,6 @@ import FrontPage from '../views/FrontPage.vue'
 import UserManage from '../views/UserManage.vue'
 import RegionManage from '../views/RegionManage.vue'
 import ParticipationInfo from '../views/business/ParticipationInfo.vue'
-import DiseaseInfo from '../views/disease/DiseaseInfo.vue'
 
 const routes = [
   {
@@ -51,8 +50,8 @@ const routes = [
         component: () => import('@/views/chronic/ChronicCertManage.vue')
       },
       {
-        path: 'disease-info',
-        name: 'DiseaseInfo',
+        path: 'DiseaseInfo',
+        name: 'Disease',
         component: DiseaseInfo
       }
     ]

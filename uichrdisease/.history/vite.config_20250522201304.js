@@ -43,8 +43,7 @@ export default defineConfig({
       },
       '/disease': {
         target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/disease/, '/disease')
+        changeOrigin: true
       }
     }
   }

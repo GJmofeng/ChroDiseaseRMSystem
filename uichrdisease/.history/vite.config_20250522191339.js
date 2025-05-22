@@ -40,11 +40,6 @@ export default defineConfig({
         target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/medicalCard/, '/medicalCard')
-      },
-      '/disease': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/disease/, '/disease')
       }
     }
   }

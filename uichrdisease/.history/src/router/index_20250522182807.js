@@ -7,7 +7,6 @@ import FrontPage from '../views/FrontPage.vue'
 import UserManage from '../views/UserManage.vue'
 import RegionManage from '../views/RegionManage.vue'
 import ParticipationInfo from '../views/business/ParticipationInfo.vue'
-import DiseaseInfo from '../views/disease/DiseaseInfo.vue'
 
 const routes = [
   {
@@ -49,11 +48,6 @@ const routes = [
         path: 'chronic-cert',
         name: 'ChronicCertManage',
         component: () => import('@/views/chronic/ChronicCertManage.vue')
-      },
-      {
-        path: 'disease-info',
-        name: 'DiseaseInfo',
-        component: DiseaseInfo
       }
     ]
   },
@@ -66,6 +60,21 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/disease',
+    component: Layout,
+    redirect: '/disease/info',
+    name: 'Disease',
+    meta: { title: '慢病管理', icon: 'el-icon-first-aid-kit' },
+    children: [
+      {
+        path: 'info',
+        name: 'DiseaseInfo',
+        component: () => import('@/views/disease/DiseaseInfo.vue'),
+        meta: { title: '慢病信息管理' }
+      }
+    ]
   },
 ]
 
