@@ -57,13 +57,12 @@
 
     <!-- 分页 -->
     <div class="pagination-container">
-      <div class="total-text">共 {{ total }} 条</div>
       <el-pagination
         v-model:current-page="currentPage"
         v-model:page-size="pageSize"
         :page-sizes="[10, 20, 50, 100]"
         :total="total"
-        layout="sizes, prev, pager, next, jumper"
+        layout="total, sizes, prev, pager, next, jumper"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -333,13 +332,7 @@ onMounted(() => {
 .pagination-container {
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.total-text {
-  font-size: 14px;
-  color: #606266;
+  justify-content: flex-end;
 }
 
 .dialog-form {
