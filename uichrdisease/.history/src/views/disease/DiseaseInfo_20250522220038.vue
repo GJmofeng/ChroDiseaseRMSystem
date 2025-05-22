@@ -118,7 +118,6 @@ const dialogVisible = ref(false)
 const dialogType = ref('add')
 const formRef = ref(null)
 const form = reactive({
-  id: null,
   diseaseCode: '',
   diseaseName: '',
   diseaseType: '',
