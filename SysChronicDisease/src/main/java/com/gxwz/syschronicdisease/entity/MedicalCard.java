@@ -21,7 +21,7 @@ import java.sql.Date;
 public class MedicalCard {
     @TableId(type = IdType.AUTO)
     private Long id;
-    @TableField(value = "card_id")
+    @TableField(value = "cardId")
     private String cardId;
     @TableField(value = "insured_name")
     private String insuredName;

@@ -4,87 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="分支合并-参合信息录入2">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic-cert_20250522144425.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic-cert_20250522144429.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic-cert_20250522145020.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522154051.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522154054.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522154114.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522154549.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522154615.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250522152700.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250522152807.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/components/Sidebar_20250522154326.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/controller/ChronicCertController_20250522144607.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/controller/ChronicCertController_20250522144611.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/controller/ChronicCertController_20250522144738.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/controller/ChronicCertController_20250522145407.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522144502.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522144506.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522144738.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522144804.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522145223.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522145238.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/ChronicCert_20250522145239.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/Result_20250522145426.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/entity/Result_20250522145429.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/mapper/ChronicCertMapper_20250522144515.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/mapper/ChronicCertMapper_20250522144518.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/mapper/ChronicCertMapper_20250522144738.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/service/ChronicCertService_20250522144528.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/service/ChronicCertService_20250522144532.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/service/ChronicCertService_20250522144738.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/service/impl/ChronicCertServiceImpl_20250522144549.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/service/impl/ChronicCertServiceImpl_20250522144553.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/service/impl/ChronicCertServiceImpl_20250522144738.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/resources/db/migration/V1__create_chronic_cert_table_20250522144626.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/resources/db/migration/V1__create_chronic_cert_table_20250522144629.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/resources/db/migration/V1__create_chronic_cert_table_20250522144738.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250522152632.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250522152800.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/utils/date_20250522154057.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/utils/date_20250522154101.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/utils/date_20250522154114.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522144412.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522144416.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522144448.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522144449.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522144450.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522145005.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522145035.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522145037.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522145839.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522145843.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522150023.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522150051.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522150145.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522150146.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522150209.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522154046.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522154114.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522154602.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522154615.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522154652.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153144.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153147.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153153.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153156.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153159.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153201.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153328.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153333.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153336.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153340.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/vite.config_20250522153342.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/src/api/chronic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/src/utils/date.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/src/views/chronic/ChronicCertManage.vue" afterDir="false" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病证管理-表格宽度修改">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522155753.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522155810.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/components/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/MedicalCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/MedicalCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/chronic/ChronicCertManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/chronic/ChronicCertManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -549,7 +474,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747895728637</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="慢性病证管理">
+      <option name="closed" value="true" />
+      <created>1747900305374</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1747900305374</updated>
+    </task>
+    <task id="LOCAL-00044" summary="慢性病证管理-表格宽度修改">
+      <option name="closed" value="true" />
+      <created>1747900491697</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1747900491697</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -580,8 +521,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="前端-用户管理" />
-    <MESSAGE value="前端-用户管理2" />
     <MESSAGE value="前端-用户管理3" />
     <MESSAGE value="前端-用户管理4" />
     <MESSAGE value="前端-用户管理5" />
@@ -605,6 +544,8 @@
     <MESSAGE value="参合信息录入-顶部标签2" />
     <MESSAGE value="分支合并-参合信息录入" />
     <MESSAGE value="分支合并-参合信息录入2" />
-    <option name="LAST_COMMIT_MESSAGE" value="分支合并-参合信息录入2" />
+    <MESSAGE value="慢性病证管理" />
+    <MESSAGE value="慢性病证管理-表格宽度修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="慢性病证管理-表格宽度修改" />
   </component>
 </project>
