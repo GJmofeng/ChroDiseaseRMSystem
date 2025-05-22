@@ -118,10 +118,7 @@ const pathToTagConfig = {
     title: '慢性病证管理',
     icon: 'fa-id-card'
   },
-  '/main/disease-info': {
-    title: '疾病信息管理',
-    icon: 'fas fa-bell'
-  }
+  
 }
 
 // 添加标签

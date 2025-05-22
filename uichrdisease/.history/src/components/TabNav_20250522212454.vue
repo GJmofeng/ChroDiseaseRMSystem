@@ -120,7 +120,7 @@ const pathToTagConfig = {
   },
   '/main/disease-info': {
     title: '疾病信息管理',
-    icon: 'fas fa-bell'
+    icon: "fas fa-bell'
   }
 }
 
