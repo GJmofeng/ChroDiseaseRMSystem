@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="参合信息录入-顶部标签2">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250522141635.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250522141702.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250522142034.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/business/ParticipationInfo_20250522142045.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/business/ParticipationInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/business/ParticipationInfo.vue" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="分支合并-参合信息录入" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -458,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747894251758</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="分支合并-参合信息录入">
+      <option name="closed" value="true" />
+      <created>1747895568446</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1747895568446</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +491,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="后端-参合消息录入" />
     <MESSAGE value="develop分支运行测试" />
     <MESSAGE value="前端-用户管理" />
     <MESSAGE value="前端-用户管理2" />
@@ -514,6 +515,7 @@
     <MESSAGE value="参合信息录入2" />
     <MESSAGE value="参合信息录入-顶部标签" />
     <MESSAGE value="参合信息录入-顶部标签2" />
-    <option name="LAST_COMMIT_MESSAGE" value="参合信息录入-顶部标签2" />
+    <MESSAGE value="分支合并-参合信息录入" />
+    <option name="LAST_COMMIT_MESSAGE" value="分支合并-参合信息录入" />
   </component>
 </project>
