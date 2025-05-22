@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病证管理-表格样式修改" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病证管理-顶部导航" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -516,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747903219604</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="慢性病证管理-顶部导航">
+      <option name="closed" value="true" />
+      <created>1747903611431</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1747903611431</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +555,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="前端-用户管理7" />
     <MESSAGE value="前端-用户管理-查询、编辑、删除、新增、重置密码" />
     <MESSAGE value="分支合并-用户管理" />
     <MESSAGE value="分支合并-用户管理2" />
@@ -572,6 +579,7 @@
     <MESSAGE value="慢性病证管理-表格查询功能" />
     <MESSAGE value="慢性病证管理-表格查询功能2" />
     <MESSAGE value="慢性病证管理-表格样式修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="慢性病证管理-表格样式修改" />
+    <MESSAGE value="慢性病证管理-顶部导航" />
+    <option name="LAST_COMMIT_MESSAGE" value="慢性病证管理-顶部导航" />
   </component>
 </project>
