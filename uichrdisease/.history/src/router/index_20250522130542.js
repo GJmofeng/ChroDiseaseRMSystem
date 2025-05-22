@@ -6,7 +6,6 @@ import Register from '../views/Register.vue'
 import FrontPage from '../views/FrontPage.vue'
 import UserManage from '../views/UserManage.vue'
 import RegionManage from '../views/RegionManage.vue'
-import ParticipationInfo from '../views/business/ParticipationInfo.vue'
 
 const routes = [
   {
@@ -37,8 +36,11 @@ const routes = [
       {
         path: 'participation',
         name: 'ParticipationInfo',
-        component: ParticipationInfo
-      }
+        children: [
+          {
+           
+            component: () => import('@/views/business/ParticipationInfo.vue'),
+            meta: { title: '参合信息录入' }
     ]
   },
   {

@@ -30,11 +30,6 @@ export default defineConfig({
         target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/division/, '/division')
-      },
-      '/insureds': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/insureds/, '/insureds')
       }
     }
   }

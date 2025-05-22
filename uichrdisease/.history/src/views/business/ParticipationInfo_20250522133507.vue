@@ -80,19 +80,6 @@
         </el-table-column>
       </el-table>
 
-      <!-- 分页组件 -->
-      <div class="pagination-container">
-        <el-pagination
-          v-model:current-page="currentPage"
-          v-model:page-size="pageSize"
-          :page-sizes="[10, 20, 50, 100]"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
-
       <!-- 新增/编辑弹窗 -->
       <el-dialog
         v-model="modalVisible"
@@ -152,11 +139,6 @@ const searchForm = reactive({
 const tableData = ref([])
 const loading = ref(false)
 
-// 分页相关数据
-const currentPage = ref(1)
-const pageSize = ref(10)
-const total = ref(0)
-
 // 表单相关
 const modalVisible = ref(false)
 const modalTitle = ref('新增参合人员')
@@ -199,18 +181,13 @@ const rules = {
 const fetchData = async () => {
   loading.value = true
   try {
-    const res = await searchParticipationInfo({
-      pageNum: currentPage.value,
-      pageSize: pageSize.value
-    })
+    const res = await searchParticipationInfo()
     if (res.code === 200) {
-      tableData.value = res.data.records
-      total.value = res.data.total
+      tableData.value = res.data
     } else {
       ElMessage.error(res.msg || '获取数据失败')
     }
   } catch (error) {
-    console.error('获取数据失败:', error)
     ElMessage.error('获取数据失败')
   } finally {
     loading.value = false
@@ -340,18 +317,6 @@ const handleDelete = async (row) => {
   }
 }
 
-// 处理每页显示数量变化
-const handleSizeChange = (val) => {
-  pageSize.value = val
-  fetchData()
-}
-
-// 处理页码变化
-const handleCurrentChange = (val) => {
-  currentPage.value = val
-  fetchData()
-}
-
 onMounted(() => {
   fetchData()
 })
@@ -366,12 +331,6 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.pagination-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
 }
 
 .dialog-footer {

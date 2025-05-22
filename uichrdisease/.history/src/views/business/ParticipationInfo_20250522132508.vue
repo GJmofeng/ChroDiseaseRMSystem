@@ -35,6 +35,16 @@
           width="120"
         />
         <el-table-column
+          prop="phone"
+          label="联系电话"
+          width="120"
+        />
+        <el-table-column
+          prop="address"
+          label="地址"
+          width="200"
+        />
+        <el-table-column
           prop="gender"
           label="性别"
           width="80"
@@ -43,16 +53,6 @@
           prop="nation"
           label="民族"
           width="100"
-        />
-        <el-table-column
-          prop="phone"
-          label="联系电话"
-          width="120"
-        />
-        <el-table-column
-          prop="address"
-          label="地址"
-          min-width="200"
         />
         <el-table-column label="操作" fixed="right" width="150">
           <template #default="scope">
@@ -80,19 +80,6 @@
         </el-table-column>
       </el-table>
 
-      <!-- 分页组件 -->
-      <div class="pagination-container">
-        <el-pagination
-          v-model:current-page="currentPage"
-          v-model:page-size="pageSize"
-          :page-sizes="[10, 20, 50, 100]"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
-      </div>
-
       <!-- 新增/编辑弹窗 -->
       <el-dialog
         v-model="modalVisible"
@@ -111,6 +98,15 @@
           <el-form-item label="姓名" prop="insuredName">
             <el-input v-model="form.insuredName" placeholder="请输入姓名" />
           </el-form-item>
+          <el-form-item label="身份证号" prop="idNumber">
+            <el-input v-model="form.idNumber" placeholder="请输入身份证号" />
+          </el-form-item>
+          <el-form-item label="联系电话" prop="phone">
+            <el-input v-model="form.phone" placeholder="请输入联系电话" />
+          </el-form-item>
+          <el-form-item label="地址" prop="address">
+            <el-input v-model="form.address" placeholder="请输入地址" />
+          </el-form-item>
           <el-form-item label="性别" prop="gender">
             <el-select v-model="form.gender" placeholder="请选择性别">
               <el-option label="男" value="男" />
@@ -119,12 +115,6 @@
           </el-form-item>
           <el-form-item label="民族" prop="nation">
             <el-input v-model="form.nation" placeholder="请输入民族" />
-          </el-form-item>
-          <el-form-item label="联系电话" prop="phone">
-            <el-input v-model="form.phone" placeholder="请输入联系电话" />
-          </el-form-item>
-          <el-form-item label="地址" prop="address">
-            <el-input v-model="form.address" placeholder="请输入地址" />
           </el-form-item>
         </el-form>
         <template #footer>
@@ -152,11 +142,6 @@ const searchForm = reactive({
 const tableData = ref([])
 const loading = ref(false)
 
-// 分页相关数据
-const currentPage = ref(1)
-const pageSize = ref(10)
-const total = ref(0)
-
 // 表单相关
 const modalVisible = ref(false)
 const modalTitle = ref('新增参合人员')
@@ -164,9 +149,8 @@ const formRef = ref()
 const form = reactive({
   id: '',
   cardId: '',
-  insuredName: '',
-  gender: '',
-  nation: '',
+  name: '',
+  idNumber: '',
   phone: '',
   address: ''
 })
@@ -177,14 +161,12 @@ const rules = {
     { required: true, message: '请输入参合证号', trigger: 'blur' },
     { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
   ],
-  insuredName: [
+  name: [
     { required: true, message: '请输入姓名', trigger: 'blur' }
   ],
-  gender: [
-    { required: true, message: '请选择性别', trigger: 'change' }
-  ],
-  nation: [
-    { required: true, message: '请输入民族', trigger: 'blur' }
+  idNumber: [
+    { required: true, message: '请输入身份证号', trigger: 'blur' },
+    { pattern: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/, message: '请输入正确的身份证号', trigger: 'blur' }
   ],
   phone: [
     { required: true, message: '请输入联系电话', trigger: 'blur' },
@@ -199,18 +181,13 @@ const rules = {
 const fetchData = async () => {
   loading.value = true
   try {
-    const res = await searchParticipationInfo({
-      pageNum: currentPage.value,
-      pageSize: pageSize.value
-    })
+    const res = await searchParticipationInfo()
     if (res.code === 200) {
-      tableData.value = res.data.records
-      total.value = res.data.total
+      tableData.value = res.data
     } else {
       ElMessage.error(res.msg || '获取数据失败')
     }
   } catch (error) {
-    console.error('获取数据失败:', error)
     ElMessage.error('获取数据失败')
   } finally {
     loading.value = false
@@ -218,50 +195,21 @@ const fetchData = async () => {
 }
 
 const handleSearch = async () => {
-  if (!searchForm.cardId || !searchForm.cardId.trim()) {
-    ElMessage.warning('请输入参合证号')
-    return
-  }
-  
-  const cardId = searchForm.cardId.trim()
-  // 验证参合证号格式
-  if (!/^\d+$/.test(cardId)) {
-    ElMessage.warning('参合证号必须是数字')
+  if (!searchForm.cardId) {
+    fetchData()
     return
   }
   
   loading.value = true
   try {
-    const res = await getInsuredByCardId(cardId)
+    const res = await getInsuredByCardId(searchForm.cardId)
     if (res.code === 200) {
-      if (res.data) {
-        // 确保数据字段匹配
-        const formattedData = {
-          id: res.data.id,
-          cardId: res.data.cardId,
-          insuredName: res.data.insuredName,
-          gender: res.data.gender,
-          nation: res.data.nation,
-          phone: res.data.phone,
-          address: res.data.address
-        }
-        tableData.value = [formattedData]
-      } else {
-        tableData.value = []
-        ElMessage.info(res.msg || '未找到相关参合人员信息')
-      }
+      tableData.value = res.data ? [res.data] : []
     } else {
-      tableData.value = []
-      if (res.code === 400) {
-        ElMessage.warning(res.msg || '参合证号格式不正确')
-      } else {
-        ElMessage.error(res.msg || '查询失败')
-      }
+      ElMessage.error(res.msg || '查询失败')
     }
   } catch (error) {
-    console.error('查询出错:', error)
-    tableData.value = []
-    ElMessage.error('查询失败，请稍后重试')
+    ElMessage.error('查询失败')
   } finally {
     loading.value = false
   }
@@ -272,20 +220,15 @@ const handleReset = () => {
   fetchData()
 }
 
-const resetForm = () => {
-  form.id = ''
-  form.cardId = ''
-  form.insuredName = ''
-  form.gender = ''
-  form.nation = ''
-  form.phone = ''
-  form.address = ''
-}
-
 const showAddModal = () => {
   modalTitle.value = '新增参合人员'
   modalVisible.value = true
-  resetForm()
+  form.id = ''
+  form.cardId = ''
+  form.name = ''
+  form.idNumber = ''
+  form.phone = ''
+  form.address = ''
   if (formRef.value) {
     formRef.value.resetFields()
   }
@@ -340,18 +283,6 @@ const handleDelete = async (row) => {
   }
 }
 
-// 处理每页显示数量变化
-const handleSizeChange = (val) => {
-  pageSize.value = val
-  fetchData()
-}
-
-// 处理页码变化
-const handleCurrentChange = (val) => {
-  currentPage.value = val
-  fetchData()
-}
-
 onMounted(() => {
   fetchData()
 })
@@ -366,12 +297,6 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.pagination-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
 }
 
 .dialog-footer {
