@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病消息管理3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病消息管理4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,14 +131,6 @@
       <workItem from="1747553401566" duration="682000" />
       <workItem from="1747810803408" duration="7895000" />
       <workItem from="1747889848602" duration="2634000" />
-    </task>
-    <task id="LOCAL-00007" summary="前台主页修复">
-      <option name="closed" value="true" />
-      <created>1746796091492</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1746796091492</updated>
     </task>
     <task id="LOCAL-00008" summary="前台主页修复2">
       <option name="closed" value="true" />
@@ -526,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747921210200</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="慢性病消息管理4">
+      <option name="closed" value="true" />
+      <created>1747922768230</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1747922768230</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +555,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="行政区域管理-删除" />
     <MESSAGE value="行政区域管理-删除2" />
     <MESSAGE value="行政区域管理-导航栏修改" />
     <MESSAGE value="行政区域管理-导航栏修改2" />
@@ -582,6 +579,7 @@
     <MESSAGE value="慢性病消息管理-顶部导航栏" />
     <MESSAGE value="慢性病消息管理2" />
     <MESSAGE value="慢性病消息管理3" />
-    <option name="LAST_COMMIT_MESSAGE" value="慢性病消息管理3" />
+    <MESSAGE value="慢性病消息管理4" />
+    <option name="LAST_COMMIT_MESSAGE" value="慢性病消息管理4" />
   </component>
 </project>
