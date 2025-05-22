@@ -47,7 +47,7 @@
           <i class="fas fa-user-plus"></i>
           <span v-show="!isCollapsed">参合信息录入</span>
         </div>
-        <div class="menu-item" :class="{ active: isActive('/main/chronic') }" @click="router.push('/main/chronic-cert')">
+        <div class="menu-item" :class="{ active: isActive('/main/chronic-cert') }" @click="router.push('/main/chronic-cert')">
           <i class="fas fa-id-card"></i>
           <span v-show="!isCollapsed">慢性病证管理</span>
         </div>

@@ -39,7 +39,7 @@ export default defineConfig({
       '/medicalCard': {
         target: 'http://localhost:8080',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/medicalCard/, '/medicalCard')
+        rewrite: path => path.replace(/^\/medicalCard/, '/chronic-cert')
       }
     }
   }
