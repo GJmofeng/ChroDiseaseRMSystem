@@ -45,7 +45,7 @@ public class MedicalController {
             data.put("list", result.getRecords());
             data.put("total", result.getTotal());
 
-            return new Result("success", data, 0);
+            return new Result("success", data, 200);
         } catch (Exception e) {
             // 捕获异常，返回错误信息和非零状态码
             e.printStackTrace(); // 打印异常堆栈到后端控制台，便于排查
@@ -58,27 +58,27 @@ public class MedicalController {
     public Result add(@RequestBody Medical medical) {
         medical.setCreateTime(LocalDateTime.now());
         boolean saved = medicalService.save(medical);
-        return saved ? new Result("新增成功", null, 0) : new Result("新增失败", null, 1);
+        return saved ? new Result("新增成功", null, 200) : new Result("新增失败", null, 500);
     }
 
     // 编辑
     @PutMapping("/edit")
     public Result update(@RequestBody Medical medical) {
         boolean updated = medicalService.updateById(medical);
-        return updated ? new Result("编辑成功", null, 0) : new Result("编辑失败", null, 1);
+        return updated ? new Result("编辑成功", null, 200) : new Result("编辑失败", null, 500);
     }
 
     // 删除
     @DeleteMapping("/delete/{id}")
     public Result delete(@PathVariable("id") Integer id) {
         boolean removed = medicalService.removeById(id);
-        return removed ? new Result("删除成功", null, 0) : new Result("删除失败", null, 1);
+        return removed ? new Result("删除成功", null, 200) : new Result("删除失败", null, 500);
     }
 
     // 详情
     @GetMapping("/detail/{id}")
     public Result detail(@PathVariable("id") Integer id) {
         Medical medical = medicalService.getById(id);
-        return medical != null ? new Result("success", medical, 0) : new Result("未找到数据", null, 1);
+        return medical != null ? new Result("success", medical, 200) : new Result("未找到数据", null, 500);
     }
 }

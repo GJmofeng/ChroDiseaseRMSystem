@@ -35,7 +35,7 @@ service.interceptors.response.use(
     const res = response.data
     
     // 如果返回的状态码不是0，说明接口有问题，应该提示错误信息
-    if (res.code !== 200) {
+    if (res.code !== 20) {
       ElMessage({
         message: res.msg || '系统错误',
         type: 'error',
