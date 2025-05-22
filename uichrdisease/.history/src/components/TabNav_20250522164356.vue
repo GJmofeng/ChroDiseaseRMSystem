@@ -114,10 +114,6 @@ const pathToTagConfig = {
     title: '参合信息录入',
     icon: 'fa-user-check'
   },
-  '/main/chronic-cert': {
-    title: '慢性病证管理',
-    icon: 'fa-id-card'
-  }
 }
 
 // 添加标签
