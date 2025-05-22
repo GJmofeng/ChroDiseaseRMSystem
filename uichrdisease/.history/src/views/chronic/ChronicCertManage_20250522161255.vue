@@ -166,24 +166,15 @@ const fetchData = async () => {
   try {
     let res
     if (searchForm.cardId) {
-      // 如果输入了卡号，优先使用卡号查询
       res = await getMedicalByCardId(searchForm.cardId)
-    } else if (searchForm.insuredName) {
-      // 如果输入了参保人姓名，使用姓名查询
-      res = await getChronicCertList({
-        insuredName: searchForm.insuredName.trim()  // 去除可能的空格
-      })
     } else {
-      // 如果都没有输入，获取所有数据
-      res = await getChronicCertList({})
+      res = await getChronicCertList({
+        insuredName: searchForm.insuredName
+      })
     }
-    
     if (res.code === 200) {
       tableData.value = Array.isArray(res.data) ? res.data : []
       total.value = tableData.value.length
-      if (tableData.value.length === 0) {
-        ElMessage.info('未查询到相关数据')
-      }
     } else {
       ElMessage.error(res.msg || '获取数据失败')
     }
@@ -197,10 +188,6 @@ const fetchData = async () => {
 
 // 搜索
 const handleSearch = () => {
-  if (!searchForm.cardId && !searchForm.insuredName) {
-    ElMessage.warning('请输入卡号或参保人姓名进行查询')
-    return
-  }
   currentPage.value = 1
   fetchData()
 }

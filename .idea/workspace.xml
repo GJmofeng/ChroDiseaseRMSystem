@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病证管理-表格宽度修改">
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522155753.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522155810.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/MedicalCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/entity/MedicalCard.java" afterDir="false" />
+    <list default="true" id="acec08eb-cc37-4e3f-af91-eab76aca4d29" name="更改" comment="慢性病证管理-表格新增功能">
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522161243.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/api/chronic_20250522161700.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/controller/MedicalCardController_20250522162100.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/main/java/com/example/uichrdisease/controller/MedicalCardController_20250522162104.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250522161409.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/router/index_20250522161426.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522161255.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522161347.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522161714.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uichrdisease/.history/src/views/chronic/ChronicCertManage_20250522161852.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/MedicalCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SysChronicDisease/src/main/java/com/gxwz/syschronicdisease/controller/MedicalCardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uichrdisease/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uichrdisease/src/views/chronic/ChronicCertManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/uichrdisease/src/views/chronic/ChronicCertManage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -490,7 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747900491697</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="慢性病证管理-表格新增功能">
+      <option name="closed" value="true" />
+      <created>1747901313398</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1747901313398</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +537,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="前端-用户管理3" />
     <MESSAGE value="前端-用户管理4" />
     <MESSAGE value="前端-用户管理5" />
     <MESSAGE value="前端-用户管理6" />
@@ -546,6 +561,7 @@
     <MESSAGE value="分支合并-参合信息录入2" />
     <MESSAGE value="慢性病证管理" />
     <MESSAGE value="慢性病证管理-表格宽度修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="慢性病证管理-表格宽度修改" />
+    <MESSAGE value="慢性病证管理-表格新增功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="慢性病证管理-表格新增功能" />
   </component>
 </project>
