@@ -122,10 +122,7 @@ const pathToTagConfig = {
     title: '疾病信息管理',
     icon: 'fas fa-bell'
   },
-  '/main/policy-manage': {
-    title: '慢病政策管理',
-    icon: 'fa-file-alt'
-  }
+  
 }
 
 // 添加标签

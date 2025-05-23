@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeHttpRequests()
-                .antMatchers("/user/**","/division/**","/insureds/**","/medicalCard/**","/disease/**").permitAll() // 放行用户相关接口
+                .antMatchers("/user/**","/division/**","/insureds/**","/medicalCard/**","/disease/**","/policy/**").permitAll() // 放行用户相关接口
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().disable(); // 如不需要表单登录可禁用

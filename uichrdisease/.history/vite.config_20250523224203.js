@@ -45,12 +45,7 @@ export default defineConfig({
         target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/disease/, '/disease')
-      },
-      '/policy': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/policy/, '/policy')
-      }
+      }，
     }
   }
 })
