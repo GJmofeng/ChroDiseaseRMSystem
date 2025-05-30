@@ -23,36 +23,31 @@ export default defineConfig({
     proxy: {
       '/user': {
         // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/user/, '/user')
       },
       '/division': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/division/, '/division')
       },
       '/insureds': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/insureds/, '/insureds')
       },
       '/medicalCard': {
-        // target: 'http://localhost:8080',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/medicalCard/, '/medicalCard')
       },
       '/disease': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/disease/, '/disease')
       },
       '/policy': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/policy/, '/policy')
       }
