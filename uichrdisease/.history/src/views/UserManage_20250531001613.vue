@@ -219,22 +219,10 @@ async function fetchUsers() {
       status: statusFilter.value === '全部' ? '' : statusFilter.value
     }
     const res = await request.get('/user/list', { params })
-    console.log('获取到的用户数据:', res)
-    
-    // 检查返回的数据结构
-    if (res && typeof res === 'object') {
-      users.value = Array.isArray(res.data) ? res.data : []
-      total.value = res.total || users.value.length
-    } else {
-      console.error('返回数据格式不正确:', res)
-      users.value = []
-      total.value = 0
-    }
+    users.value = res.data || []
+    total.value = res.total || users.value.length
   } catch (e) {
-    console.error('获取用户数据失败:', e)
     ElMessage.error('获取用户数据失败')
-    users.value = []
-    total.value = 0
   }
 }
 

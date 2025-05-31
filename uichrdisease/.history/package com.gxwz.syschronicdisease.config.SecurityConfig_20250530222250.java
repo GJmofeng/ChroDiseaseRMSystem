@@ -36,16 +36,16 @@ public class SecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         // 设置允许的头
         configuration.setAllowedHeaders(Arrays.asList(
-                "Content-Type",
-                "X-CAF-Auth-Token",
-                "sessionToken",
-                "token",
-                "customercoderoute",
-                "authorization",
-                "conntectionid",
-                "Cookie",
-                "request-ajax",
-                "X-Requested-With"
+            "Content-Type", 
+            "X-CAF-Auth-Token", 
+            "sessionToken", 
+            "token", 
+            "customercoderoute", 
+            "authorization", 
+            "conntectionid", 
+            "Cookie", 
+            "request-ajax",
+            "X-Requested-With"
         ));
         // 设置允许的凭证
         configuration.setAllowCredentials(true);
@@ -58,35 +58,4 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-}
-
-//@Configuration
-//public class SecurityConfig {
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .cors().and()
-//                .authorizeHttpRequests()
-//                .antMatchers("/user/**","/division/**","/insureds/**","/medicalCard/**","/disease/**","/policy/**","/reimbursement/**").permitAll() // 放行用户相关接口
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().disable(); // 如不需要表单登录可禁用
-//
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        //configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // 前端地址
-//        configuration.setAllowedOrigins(Arrays.asList("*")); // 前端地址
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//        configuration.setAllowedHeaders(Arrays.asList("*"));
-//        configuration.setAllowCredentials(true);
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-//}
+} 

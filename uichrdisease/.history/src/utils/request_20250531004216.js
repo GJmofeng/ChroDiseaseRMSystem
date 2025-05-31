@@ -35,6 +35,12 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     
+    
+    // 如果返回的是数组或包含data字段的对象，说明是正常的数据返回
+    if (Array.isArray(res) || (res && typeof res === 'object' && 'data' in res)) {
+      return res
+    }
+    
     // 如果返回的状态码不是200，说明接口有问题，应该提示错误信息
     if (res.code !== 200) {
       ElMessage({

@@ -4,7 +4,7 @@ import router from '@/router'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://154.12.36.159:8080', // 添加基础URL
+  // 移除baseURL，使用相对路径，让请求通过Vite代理
   timeout: 5000, // 请求超时时间
   withCredentials: true // 允许携带cookie
 })
@@ -61,9 +61,9 @@ service.interceptors.response.use(
       }
       
       return Promise.reject(new Error(res.msg || '系统错误'))
+    } else {
+      return res
     }
-    
-    return res
   },
   error => {
     // 处理网络错误或后端返回的错误

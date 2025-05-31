@@ -176,7 +176,7 @@ async function fetchTree() {
     const res = await getDivisionTree(searchName.value)
     console.log('接口返回原始数据:', res)
     
-    if (!Array.isArray(res)) {
+    if (!res || !res.data) {
       console.error('接口返回数据格式错误:', res)
       ElMessage.error('获取数据失败')
       return
@@ -192,7 +192,7 @@ async function fetchTree() {
       }))
     }
     
-    treeData.value = addLevel(res)
+    treeData.value = addLevel(res.data)
     console.log('处理后的树形数据:', treeData.value)
   } catch (error) {
     console.error('获取树形数据失败:', error)
@@ -247,7 +247,7 @@ function onEdit(row) {
   showDialog.value = true
 }
 
-async function onDelete(row) {
+function onDelete(row) {
   ElMessageBox.confirm(
     `确定要删除行政区"${row.dname}"吗？删除后将无法恢复，且会同时删除其下级行政区。`,
     '删除确认',
@@ -264,7 +264,7 @@ async function onDelete(row) {
           try {
             // 先检查服务器连接
             try {
-              await getDivisionTree('')
+              await request.get('/division/tree', { params: { name: '' } })
             } catch (error) {
               if (error.response?.status === 404) {
                 ElMessage.error('无法连接到服务器，请确保后端服务已启动（端口8080）')
@@ -273,12 +273,13 @@ async function onDelete(row) {
               }
             }
             
-            const res = await deleteDivision(row.id)
-            if (res.code === 200) {
+            // 修改为DELETE方法和正确的URL格式
+            const res = await request.delete(`/division/delete/${row.id}`)
+            if (res.data.code === 200) {
               ElMessage.success('删除成功')
               await fetchTree() // 重新加载树形数据
             } else {
-              ElMessage.error(res.message || '删除失败')
+              ElMessage.error(res.data.message || '删除失败')
             }
             done()
           } catch (error) {
@@ -319,16 +320,15 @@ async function onSubmit() {
       return
     }
     
-    const res = form.value.id 
-      ? await updateDivision(form.value)
-      : await addDivision(form.value)
+    const url = form.value.id ? '/division/update' : '/division/add'
+    const res = await request.post(url, form.value)
     
-    if (res.code === 0) {
+    if (res.data.code === 0) {
       ElMessage.success(form.value.id ? '更新成功' : '添加成功')
       showDialog.value = false
       fetchTree()
     } else {
-      ElMessage.error(res.message || '操作失败')
+      ElMessage.error(res.data.message || '操作失败')
     }
   } catch (error) {
     console.error('表单提交失败:', error)

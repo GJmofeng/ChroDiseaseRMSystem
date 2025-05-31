@@ -35,34 +35,51 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     
-    // 如果返回的状态码不是200，说明接口有问题，应该提示错误信息
-    if (res.code !== 200) {
-      ElMessage({
-        message: res.msg || '系统错误',
-        type: 'error',
-        duration: 5 * 1000
-      })
-
-      // 如果是401，说明未登录或token过期，需要跳转到登录页
-      if (res.code === 401 || response.status === 401) {
-        localStorage.removeItem('token')
-        router.push('/login')
-        return Promise.reject(new Error('未登录或登录已过期，请重新登录'))
-      }
-      
-      // 如果是403，说明没有权限
-      if (res.code === 403 || response.status === 403) {
+    // 如果是Map格式（包含data和total字段），说明是分页数据
+    if (res && typeof res === 'object' && 'data' in res && 'total' in res) {
+      return res
+    }
+    
+    // 如果是Result格式（包含code字段）
+    if (res && typeof res === 'object' && 'code' in res) {
+      // 如果返回的状态码不是200，说明接口有问题，应该提示错误信息
+      if (res.code !== 200) {
         ElMessage({
-          message: '对不起，您没有访问权限',
+          message: res.msg || '系统错误',
           type: 'error',
           duration: 5 * 1000
         })
-        return Promise.reject(new Error('没有权限'))
+
+        // 如果是401，说明未登录或token过期，需要跳转到登录页
+        if (res.code === 401 || response.status === 401) {
+          localStorage.removeItem('token')
+          router.push('/login')
+          return Promise.reject(new Error('未登录或登录已过期，请重新登录'))
+        }
+        
+        // 如果是403，说明没有权限
+        if (res.code === 403 || response.status === 403) {
+          ElMessage({
+            message: '对不起，您没有访问权限',
+            type: 'error',
+            duration: 5 * 1000
+          })
+          return Promise.reject(new Error('没有权限'))
+        }
+        
+        return Promise.reject(new Error(res.msg || '系统错误'))
       }
       
-      return Promise.reject(new Error(res.msg || '系统错误'))
+      // 如果是200，返回data字段
+      return res.data
     }
     
+    // 如果是数组，直接返回
+    if (Array.isArray(res)) {
+      return res
+    }
+    
+    // 其他情况，直接返回
     return res
   },
   error => {

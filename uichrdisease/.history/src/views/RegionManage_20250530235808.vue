@@ -176,7 +176,7 @@ async function fetchTree() {
     const res = await getDivisionTree(searchName.value)
     console.log('接口返回原始数据:', res)
     
-    if (!Array.isArray(res)) {
+    if (!res || !res.data) {
       console.error('接口返回数据格式错误:', res)
       ElMessage.error('获取数据失败')
       return
@@ -192,7 +192,7 @@ async function fetchTree() {
       }))
     }
     
-    treeData.value = addLevel(res)
+    treeData.value = addLevel(res.data)
     console.log('处理后的树形数据:', treeData.value)
   } catch (error) {
     console.error('获取树形数据失败:', error)

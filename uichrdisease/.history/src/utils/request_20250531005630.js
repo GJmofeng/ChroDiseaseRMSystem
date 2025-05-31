@@ -61,9 +61,8 @@ service.interceptors.response.use(
       }
       
       return Promise.reject(new Error(res.msg || '系统错误'))
-    }
-    
-    return res
+    } else {
+      return res
   },
   error => {
     // 处理网络错误或后端返回的错误
