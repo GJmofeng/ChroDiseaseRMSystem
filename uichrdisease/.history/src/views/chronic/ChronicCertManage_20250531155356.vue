@@ -197,7 +197,7 @@ const fetchData = async () => {
       // 如果输入了卡号，优先使用卡号查询
       res = await getMedicalByCardId(searchForm.cardId.trim())
       if (res.code === 200) {
-        tableData.value = Array.isArray(res.data) ? res.data : [res.data]
+        tableData.value = Array.isArray(res.data) ? res.data : []
         total.value = tableData.value.length
       }
     } else {
@@ -270,14 +270,12 @@ const handleEdit = (row) => {
 // 删除
 const handleDelete = (row) => {
   ElMessageBox.confirm('确认删除该慢性病证吗？', '提示', {
-    type: 'warning',
-    confirmButtonText: '确定',
-    cancelButtonText: '取消'
+    type: 'warning'
   }).then(async () => {
     try {
       const res = await deleteChronicCert(row.id)
       if (res.code === 200) {
-        ElMessage.success('删除成功')
+        ElMessage.success(res.msg)
         fetchData()
       } else {
         ElMessage.error(res.msg || '删除失败')
@@ -286,8 +284,6 @@ const handleDelete = (row) => {
       console.error('删除失败:', error)
       ElMessage.error('删除失败')
     }
-  }).catch(() => {
-    // 用户取消删除操作
   })
 }
 
@@ -314,11 +310,13 @@ const handleSubmit = async () => {
         }
         
         if (res.code === 200) {
-          ElMessage.success(form.id ? '更新成功' : '添加成功')
-          dialogVisible.value = false
-          fetchData()
-        } else if (res.code === 400) {
-          ElMessage.warning(res.msg || '数据验证失败')
+          if (res.msg === '已存在') {
+            ElMessage.warning('该记录已存在')
+          } else {
+            ElMessage.success(res.msg)
+            dialogVisible.value = false
+            fetchData()
+          }
         } else if (res.code === 404) {
           ElMessage.warning('记录不存在')
         } else {
