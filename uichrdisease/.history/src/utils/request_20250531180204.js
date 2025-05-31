@@ -5,12 +5,11 @@ import router from '@/router'
 // 创建axios实例
 const request = axios.create({
   baseURL: 'http://154.12.36.159:8080',
-  timeout: 15000,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'request-ajax': 'true'
+    'Accept': 'application/json'
   },
   withCredentials: true // 允许跨域携带cookie
 })

@@ -9,8 +9,7 @@ const request = axios.create({
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'request-ajax': 'true'
+    'Accept': 'application/json'
   },
   withCredentials: true // 允许跨域携带cookie
 })

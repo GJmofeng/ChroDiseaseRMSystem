@@ -1,18 +1,15 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import router from '@/router'
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: 'http://154.12.36.159:8080',
-  timeout: 15000,
+  baseURL: 'http://154.12.36.159:8080', // 添加完整的baseURL
+  timeout: 5000, // 请求超时时间
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'request-ajax': 'true'
-  },
-  withCredentials: true // 允许跨域携带cookie
+    'Accept': 'application/json'
+  }
 })
 
 // 请求拦截器
@@ -31,6 +28,13 @@ request.interceptors.request.use(
       data: config.data,
       headers: config.headers
     })
+    
+    // 处理OPTIONS请求
+    if (config.method === 'options') {
+      config.headers['Access-Control-Allow-Origin'] = '*'
+      config.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+      config.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    }
     
     return config
   },
@@ -55,7 +59,7 @@ request.interceptors.response.use(
     // 如果返回的状态码不是200，说明接口请求有误
     if (res.code !== 200) {
       ElMessage({
-        message: res.message || '请求失败',
+        message: res.msg || '请求失败',
         type: 'error',
         duration: 5 * 1000
       })
@@ -65,10 +69,10 @@ request.interceptors.response.use(
         // 清除本地token
         localStorage.removeItem('token')
         // 跳转到登录页
-        router.push('/login')
+        window.location.href = '/login'
       }
       
-      return Promise.reject(new Error(res.message || '请求失败'))
+      return Promise.reject(new Error(res.msg || '请求失败'))
     } else {
       return res
     }
@@ -83,36 +87,8 @@ request.interceptors.response.use(
         headers: error.response.headers
       })
     }
-    
-    let errorMessage = '请求失败'
-    if (error.response) {
-      switch (error.response.status) {
-        case 400:
-          errorMessage = '请求错误'
-          break
-        case 401:
-          errorMessage = '未授权，请重新登录'
-          localStorage.removeItem('token')
-          router.push('/login')
-          break
-        case 403:
-          errorMessage = '拒绝访问'
-          break
-        case 404:
-          errorMessage = '请求地址出错'
-          break
-        case 500:
-          errorMessage = '服务器内部错误'
-          break
-        default:
-          errorMessage = `请求失败(${error.response.status})`
-      }
-    } else if (error.request) {
-      errorMessage = '服务器未响应'
-    }
-    
     ElMessage({
-      message: errorMessage,
+      message: error.message || '请求失败',
       type: 'error',
       duration: 5 * 1000
     })
@@ -120,4 +96,4 @@ request.interceptors.response.use(
   }
 )
 
-export default request
+export default request 

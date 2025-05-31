@@ -4,15 +4,13 @@ import router from '@/router'
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: 'http://154.12.36.159:8080',
-  timeout: 15000,
+  baseURL: '', // 使用相对路径，让请求跟随当前域名
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'request-ajax': 'true'
-  },
-  withCredentials: true // 允许跨域携带cookie
+    'Accept': 'application/json'
+  }
 })
 
 // 请求拦截器

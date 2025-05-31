@@ -219,8 +219,6 @@ async function fetchUsers() {
       status: statusFilter.value === '全部' ? '' : statusFilter.value
     }
     const res = await getUserList(params)
-    console.log('获取到的用户数据:', res)
-    
     if (res && res.data) {
       users.value = res.data
       total.value = res.total
@@ -228,15 +226,10 @@ async function fetchUsers() {
       console.error('返回数据格式不正确:', res)
       users.value = []
       total.value = 0
-      ElMessage.warning('获取数据格式不正确')
     }
   } catch (e) {
     console.error('获取用户数据失败:', e)
-    if (e.code === 'ECONNABORTED') {
-      ElMessage.error('请求超时，请检查网络连接')
-    } else {
-      ElMessage.error(e.message || '获取用户数据失败')
-    }
+    ElMessage.error('获取用户数据失败')
     users.value = []
     total.value = 0
   }

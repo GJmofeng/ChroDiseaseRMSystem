@@ -203,7 +203,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from 'vue-router'
 import draggable from 'vuedraggable'
 import { IconRefresh, IconLayoutGridAdd } from '@tabler/icons-vue'
-import { getUserList, addUser, updateUser, deleteBatchUser, resetPassword } from '@/api/user'
+import request from '@/utils/request'
 
 const router = useRouter()
 
@@ -218,25 +218,21 @@ async function fetchUsers() {
       search: searchKey.value,
       status: statusFilter.value === '全部' ? '' : statusFilter.value
     }
-    const res = await getUserList(params)
+    const res = await request.get('/user/list', { params })
     console.log('获取到的用户数据:', res)
     
-    if (res && res.data) {
-      users.value = res.data
-      total.value = res.total
+    // 检查返回的数据结构
+    if (res && typeof res === 'object') {
+      users.value = Array.isArray(res.data) ? res.data : []
+      total.value = res.total || users.value.length
     } else {
       console.error('返回数据格式不正确:', res)
       users.value = []
       total.value = 0
-      ElMessage.warning('获取数据格式不正确')
     }
   } catch (e) {
     console.error('获取用户数据失败:', e)
-    if (e.code === 'ECONNABORTED') {
-      ElMessage.error('请求超时，请检查网络连接')
-    } else {
-      ElMessage.error(e.message || '获取用户数据失败')
-    }
+    ElMessage.error('获取用户数据失败')
     users.value = []
     total.value = 0
   }
@@ -281,17 +277,14 @@ function onAddUser() {
 
 async function handleAddUser() {
   try {
-    const res = await addUser(addUserForm.value)
+    const res = await request.post('/user/add', addUserForm.value)
     if (res.code === 200) {
       ElMessage.success('添加成功')
       showAddUser.value = false
       fetchUsers()
-    } else {
-      ElMessage.error(res.message || '添加失败')
     }
   } catch (error) {
     console.error('添加用户失败:', error)
-    ElMessage.error('添加用户失败')
   }
 }
 
@@ -308,18 +301,16 @@ function onBatchDelete() {
     type: 'warning',
   }).then(async () => {
     const ids = multipleSelection.value.map(u => u.id)
+    console.log('删除这些id:', ids)
     try {
-      const res = await deleteBatchUser(ids)
+      const res = await request.post('/user/deleteBatch', ids)
       if (res.code === 200) {
         ElMessage.success('删除成功')
         fetchUsers()
         multipleSelection.value = []
-      } else {
-        ElMessage.error(res.message || '删除失败')
       }
     } catch (e) {
       console.error('批量删除失败:', e)
-      ElMessage.error('批量删除失败')
     }
   })
 }
@@ -365,17 +356,14 @@ function onEdit(row) {
 
 async function handleEditUser() {
   try {
-    const res = await updateUser(editUserForm.value)
+    const res = await request.post('/user/update', editUserForm.value)
     if (res.code === 200) {
       ElMessage.success('编辑成功')
       showEditUser.value = false
       fetchUsers()
-    } else {
-      ElMessage.error(res.message || '编辑失败')
     }
   } catch (error) {
     console.error('编辑用户失败:', error)
-    ElMessage.error('编辑用户失败')
   }
 }
 
@@ -386,15 +374,12 @@ function onResetPwd(row) {
     cancelButtonText: '取消'
   }).then(async () => {
     try {
-      const res = await resetPassword(row.id)
+      const res = await request.post('/user/resetPwd', { id: row.id })
       if (res.code === 200) {
         ElMessage.success('密码重置成功')
-      } else {
-        ElMessage.error(res.message || '密码重置失败')
       }
     } catch (error) {
       console.error('重置密码失败:', error)
-      ElMessage.error('重置密码失败')
     }
   }).catch(() => {
     // 用户点击取消，不做任何操作

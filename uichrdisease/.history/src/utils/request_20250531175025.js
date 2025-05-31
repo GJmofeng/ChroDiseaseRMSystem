@@ -4,13 +4,12 @@ import router from '@/router'
 
 // 创建axios实例
 const request = axios.create({
-  baseURL: 'http://154.12.36.159:8080',
-  timeout: 15000,
+  baseURL: 'http://154.12.36.159:8080', // 添加完整的baseURL
+  timeout: 5000, // 请求超时时间
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'request-ajax': 'true'
+    'Accept': 'application/json'
   },
   withCredentials: true // 允许跨域携带cookie
 })
@@ -31,6 +30,13 @@ request.interceptors.request.use(
       data: config.data,
       headers: config.headers
     })
+    
+    // 处理OPTIONS请求
+    if (config.method === 'options') {
+      config.headers['Access-Control-Allow-Origin'] = '*'
+      config.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+      config.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    }
     
     return config
   },
@@ -120,4 +126,4 @@ request.interceptors.response.use(
   }
 )
 
-export default request
+export default request 
