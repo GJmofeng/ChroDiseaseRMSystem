@@ -222,9 +222,8 @@ async function fetchUsers() {
     console.log('获取到的用户数据:', res)
     
     if (res && res.data) {
-      // 直接使用返回的数据
-      users.value = res.data
-      total.value = res.total
+      users.value = Array.isArray(res.data) ? res.data : res.data.data
+      total.value = res.total || (res.data.total || 0)
     } else {
       console.error('返回数据格式不正确:', res)
       users.value = []

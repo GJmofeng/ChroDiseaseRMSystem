@@ -81,16 +81,6 @@ request.interceptors.response.use(
         }
       }
       
-      // 如果返回的是Map格式（包含data和total）
-      if (res.data !== undefined && res.total !== undefined) {
-        return {
-          code: 200,
-          data: res.data,
-          total: res.total,
-          message: 'success'
-        }
-      }
-      
       // 如果不是Result格式，包装成Result格式
       return {
         code: 200,

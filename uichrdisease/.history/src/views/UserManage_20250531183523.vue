@@ -221,15 +221,21 @@ async function fetchUsers() {
     const res = await getUserList(params)
     console.log('获取到的用户数据:', res)
     
-    if (res && res.data) {
-      // 直接使用返回的数据
-      users.value = res.data
-      total.value = res.total
+    if (res && res.code === 200 && res.data) {
+      // 处理分页数据
+      if (res.data.total !== undefined && res.data.data !== undefined) {
+        users.value = res.data.data
+        total.value = res.data.total
+      } else {
+        // 处理普通数据
+        users.value = Array.isArray(res.data) ? res.data : []
+        total.value = users.value.length
+      }
     } else {
       console.error('返回数据格式不正确:', res)
       users.value = []
       total.value = 0
-      ElMessage.warning('获取数据格式不正确')
+      ElMessage.warning(res.message || '获取数据格式不正确')
     }
   } catch (e) {
     console.error('获取用户数据失败:', e)

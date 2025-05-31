@@ -222,9 +222,16 @@ async function fetchUsers() {
     console.log('获取到的用户数据:', res)
     
     if (res && res.data) {
-      // 直接使用返回的数据
-      users.value = res.data
-      total.value = res.total
+      // 确保数据格式正确
+      const userList = Array.isArray(res.data) ? res.data : []
+      users.value = userList.map(user => ({
+        id: user.id,
+        userid: user.userid,
+        password: user.password,
+        fullname: user.fullname,
+        role: user.role
+      }))
+      total.value = res.total || userList.length
     } else {
       console.error('返回数据格式不正确:', res)
       users.value = []

@@ -52,58 +52,43 @@ request.interceptors.response.use(
     
     const res = response.data
     
-    // 处理Result统一响应格式
-    if (res && typeof res === 'object') {
-      // 如果返回的是Result格式
-      if (res.code !== undefined && res.data !== undefined) {
-        // 如果code不是200，说明有错误
-        if (res.code !== 200) {
-          ElMessage({
-            message: res.message || '请求失败',
-            type: 'error',
-            duration: 5 * 1000
-          })
-          
-          // 401: 未登录或token过期
-          if (res.code === 401) {
-            localStorage.removeItem('token')
-            router.push('/login')
-          }
-          
-          return Promise.reject(new Error(res.message || '请求失败'))
-        }
-        
-        // 正常返回数据
-        return {
-          code: res.code,
-          data: res.data,
-          message: res.message
-        }
-      }
-      
-      // 如果返回的是Map格式（包含data和total）
-      if (res.data !== undefined && res.total !== undefined) {
+    // 如果返回的是数组或对象，直接返回
+    if (Array.isArray(res) || (typeof res === 'object' && res !== null)) {
+      // 检查是否包含分页数据
+      if (res.total !== undefined && res.data !== undefined) {
         return {
           code: 200,
           data: res.data,
-          total: res.total,
-          message: 'success'
+          total: res.total
         }
       }
-      
-      // 如果不是Result格式，包装成Result格式
+      // 如果是普通对象或数组，包装成统一格式
       return {
         code: 200,
         data: res,
-        message: 'success'
+        total: Array.isArray(res) ? res.length : 0
       }
     }
     
-    // 如果返回的不是对象，包装成Result格式
-    return {
-      code: 200,
-      data: res,
-      message: 'success'
+    // 如果返回的状态码不是200，说明接口请求有误
+    if (res.code !== 200) {
+      ElMessage({
+        message: res.message || '请求失败',
+        type: 'error',
+        duration: 5 * 1000
+      })
+      
+      // 401: 未登录或token过期
+      if (res.code === 401) {
+        // 清除本地token
+        localStorage.removeItem('token')
+        // 跳转到登录页
+        router.push('/login')
+      }
+      
+      return Promise.reject(new Error(res.message || '请求失败'))
+    } else {
+      return res
     }
   },
   error => {
