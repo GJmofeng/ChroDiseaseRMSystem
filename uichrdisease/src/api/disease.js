@@ -1,44 +1,74 @@
 import request from '@/utils/request'
 
-// 获取慢病信息列表
-export function getDiseaseList(params) {
-  return request({
-    url: '/disease/list',
-    method: 'get',
-    params
-  })
+// 分页获取疾病列表
+export const getDiseaseList = async (params = {}) => {
+  try {
+    const response = await request({
+      url: '/disease/list',
+      method: 'get',
+      params: {
+        page: params.page || 1,
+        pageSize: params.pageSize || 10,
+        diseaseName: params.diseaseName?.trim() || '',
+        diseaseCode: params.diseaseCode?.trim() || ''
+      }
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
-// 新增慢病信息
-export function addDisease(data) {
-  return request({
-    url: '/disease/add',
-    method: 'post',
-    data
-  })
+// 添加疾病
+export const addDisease = async (disease) => {
+  try {
+    const response = await request({
+      url: '/disease/add',
+      method: 'post',
+      data: disease
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
-// 更新慢病信息
-export function updateDisease(data) {
-  return request({
-    url: '/disease/edit',
-    method: 'put',
-    data
-  })
+// 更新疾病信息
+export const updateDisease = async (disease) => {
+  try {
+    const response = await request({
+      url: '/disease/edit',
+      method: 'put',
+      data: disease
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
-// 删除慢病信息
-export function deleteDisease(id) {
-  return request({
-    url: `/disease/delete/${id}`,
-    method: 'delete'
-  })
+// 删除疾病
+export const deleteDisease = async (id) => {
+  try {
+    const response = await request({
+      url: `/disease/delete/${id}`,
+      method: 'delete'
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
-// 获取慢病信息详情
-export function getDiseaseDetail(id) {
-  return request({
-    url: `/disease/detail/${id}`,
-    method: 'get'
-  })
+// 获取疾病详情
+export const getDiseaseDetail = async (id) => {
+  try {
+    const response = await request({
+      url: `/disease/detail/${id}`,
+      method: 'get'
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }

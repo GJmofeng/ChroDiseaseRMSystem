@@ -154,11 +154,38 @@ const form = reactive({
 
 // 表单验证规则
 const rules = {
-  cardId: [{ required: true, message: '请输入卡号', trigger: 'blur' }],
-  insuredName: [{ required: true, message: '请输入参保人姓名', trigger: 'blur' }],
-  medicalName: [{ required: true, message: '请输入病种名称', trigger: 'blur' }],
-  startTime: [{ required: true, message: '请选择开始时间', trigger: 'change' }],
-  endTime: [{ required: true, message: '请选择结束时间', trigger: 'change' }]
+  cardId: [
+    { required: true, message: '请输入卡号', trigger: 'blur' },
+    { pattern: /^\d{17}[\dXx]$/, message: '请输入正确的18位卡号', trigger: 'blur' }
+  ],
+  insuredName: [
+    { required: true, message: '请输入参保人姓名', trigger: 'blur' },
+    { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
+  ],
+  medicalName: [
+    { required: true, message: '请输入病种名称', trigger: 'blur' },
+    { min: 2, max: 50, message: '长度在 2 到 50 个字符', trigger: 'blur' }
+  ],
+  startTime: [
+    { required: true, message: '请选择开始时间', trigger: 'change' },
+    { validator: (rule, value, callback) => {
+      if (value && form.endTime && new Date(value) > new Date(form.endTime)) {
+        callback(new Error('开始时间不能晚于结束时间'))
+      } else {
+        callback()
+      }
+    }, trigger: 'change' }
+  ],
+  endTime: [
+    { required: true, message: '请选择结束时间', trigger: 'change' },
+    { validator: (rule, value, callback) => {
+      if (value && form.startTime && new Date(value) < new Date(form.startTime)) {
+        callback(new Error('结束时间不能早于开始时间'))
+      } else {
+        callback()
+      }
+    }, trigger: 'change' }
+  ]
 }
 
 // 获取列表数据
@@ -166,23 +193,29 @@ const fetchData = async () => {
   loading.value = true
   try {
     let res
-    if (searchForm.cardId) {
+    if (searchForm.cardId?.trim()) {
       // 如果输入了卡号，优先使用卡号查询
-      res = await getMedicalByCardId(searchForm.cardId)
-    } else if (searchForm.insuredName || searchForm.medicalName) {
-      // 如果输入了参保人姓名或病种名称，使用组合查询
-      res = await getChronicCertList({
-        insuredName: searchForm.insuredName.trim(),
-        medicalName: searchForm.medicalName.trim()
-      })
+      res = await getMedicalByCardId(searchForm.cardId.trim())
+      if (res.code === 200) {
+        tableData.value = Array.isArray(res.data) ? res.data : []
+        total.value = tableData.value.length
+      }
     } else {
-      // 如果都没有输入，获取所有数据
-      res = await getChronicCertList({})
+      // 使用分页查询
+      res = await getChronicCertList({
+        page: currentPage.value,
+        pageSize: pageSize.value,
+        insuredName: searchForm.insuredName?.trim(),
+        medicalName: searchForm.medicalName?.trim()
+      })
+      
+      if (res.code === 200) {
+        tableData.value = res.data.list || []
+        total.value = res.data.total || 0
+      }
     }
     
     if (res.code === 200) {
-      tableData.value = Array.isArray(res.data) ? res.data : []
-      total.value = tableData.value.length
       if (tableData.value.length === 0) {
         ElMessage.info('未查询到相关数据')
       }
@@ -199,7 +232,7 @@ const fetchData = async () => {
 
 // 搜索
 const handleSearch = () => {
-  if (!searchForm.cardId && !searchForm.insuredName && !searchForm.medicalName) {
+  if (!searchForm.cardId?.trim() && !searchForm.insuredName?.trim() && !searchForm.medicalName?.trim()) {
     ElMessage.warning('请输入卡号、参保人姓名或病种名称进行查询')
     return
   }
@@ -212,7 +245,8 @@ const resetSearch = () => {
   Object.keys(searchForm).forEach(key => {
     searchForm[key] = ''
   })
-  handleSearch()
+  currentPage.value = 1
+  fetchData()
 }
 
 // 新增
@@ -262,9 +296,9 @@ const handleSubmit = async () => {
         // 构造提交的数据对象
         const submitData = {
           id: form.id || null,
-          cardId: form.cardId,
-          insuredName: form.insuredName,
-          medicalName: form.medicalName,
+          cardId: form.cardId.trim(),
+          insuredName: form.insuredName.trim(),
+          medicalName: form.medicalName.trim(),
           startTime: form.startTime ? new Date(form.startTime).toISOString().split('T')[0] : null,
           endTime: form.endTime ? new Date(form.endTime).toISOString().split('T')[0] : null
         }
@@ -275,6 +309,7 @@ const handleSubmit = async () => {
         } else {
           res = await addChronicCert(submitData)
         }
+        
         if (res.code === 200) {
           if (res.msg === '已存在') {
             ElMessage.warning('该记录已存在')

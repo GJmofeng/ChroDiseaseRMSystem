@@ -1,43 +1,68 @@
 import request from '@/utils/request'
 
 // 获取政策列表
-export function getPolicyList() {
-  return request({
-    url: '/policy/list',
-    method: 'get'
-  })
+export const getPolicyList = async () => {
+  try {
+    const response = await request({
+      url: '/policy/list',
+      method: 'get'
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
-// 新增政策
-export function addPolicy(data) {
-  return request({
-    url: '/policy/add',
-    method: 'post',
-    data
-  })
+// 添加政策
+export const addPolicy = async (policy) => {
+  try {
+    const response = await request({
+      url: '/policy/add',
+      method: 'post',
+      data: policy
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
 // 更新政策
-export function updatePolicy(data) {
-  return request({
-    url: '/policy/update',
-    method: 'put',
-    data
-  })
+export const updatePolicy = async (policy) => {
+  try {
+    const response = await request({
+      url: '/policy/update',
+      method: 'put',
+      data: policy
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
 // 删除政策
-export function deletePolicy(id) {
-  return request({
-    url: `/policy/delete/${id}`,
-    method: 'delete'
-  })
+export const deletePolicy = async (id) => {
+  try {
+    const response = await request({
+      url: `/policy/delete/${id}`,
+      method: 'delete'
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 }
 
 // 根据年度查询政策
-export function getPolicyByYear(year) {
-  return request({
-    url: `/policy/getyear/${year}`,
-    method: 'get'
-  })
+export const getPolicyByYear = async (year) => {
+  try {
+    const response = await request({
+      url: `/policy/getyear/${year}`,
+      method: 'get'
+    })
+    return response
+  } catch (error) {
+    throw error
+  }
 } 

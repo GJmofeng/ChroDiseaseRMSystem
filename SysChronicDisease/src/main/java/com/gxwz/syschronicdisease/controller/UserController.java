@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -33,7 +34,7 @@ public class UserController {
         return new Result("查询成功",userService.list(queryWrapper), 200);
     }
 
-    @GetMapping("/getOne")
+    @GetMapping("/getOne/{id}")
     public Result getOne(@PathVariable("id") Long id) {
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -134,17 +135,36 @@ public class UserController {
         }
     }
 
+//    @PostMapping("/login")
+//    public Result login(@RequestBody User user) {
+//
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("userid", user.getUserid());
+//        queryWrapper.eq("password", user.getPassword());
+//        User serviceOne = userService.getOne(queryWrapper);
+//        if (serviceOne != null) {
+//            return new Result("登录成功",serviceOne, 200);
+//        }else {
+//            return new Result("登录失败", null, 404);
+//        }
+//    }
+
     @PostMapping("/login")
     public Result login(@RequestBody User user) {
-
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userid", user.getUserid());
-        queryWrapper.eq("password", user.getPassword());
         User serviceOne = userService.getOne(queryWrapper);
-        if (serviceOne != null) {
-            return new Result("登录成功",serviceOne, 200);
-        }else {
-            return new Result("登录失败", null, 404);
+
+        if (serviceOne != null && passwordEncoder.matches(user.getPassword(), serviceOne.getPassword())) {
+            // 生成 token
+            String token = UUID.randomUUID().toString().replace("-", "");
+            // 将 token 存入用户信息中
+            serviceOne.setToken(token);
+            // 清除密码
+            serviceOne.setPassword(null);
+            return new Result("登录成功", serviceOne, 200);
+        } else {
+            return new Result("用户名或密码错误", null, 401);
         }
     }
 }

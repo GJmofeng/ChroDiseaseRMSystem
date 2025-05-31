@@ -205,9 +205,11 @@ const fetchData = async () => {
       pageSize: pageSize.value
     })
     if (res.code === 200) {
-      // 对数据按ID升序排序
-      tableData.value = res.data.records.sort((a, b) => a.id - b.id)
-      total.value = res.data.total
+      tableData.value = res.data.records || []
+      total.value = res.data.total || 0
+      if (tableData.value.length === 0) {
+        ElMessage.info('未查询到相关数据')
+      }
     } else {
       ElMessage.error(res.msg || '获取数据失败')
     }
@@ -302,19 +304,31 @@ const handleEdit = (row) => {
 const handleModalOk = async () => {
   if (!formRef.value) return
   
-  await formRef.value.validate(async (valid, fields) => {
+  await formRef.value.validate(async (valid) => {
     if (valid) {
       try {
+        const submitData = {
+          ...form,
+          cardId: form.cardId?.trim(),
+          insuredName: form.insuredName?.trim(),
+          phone: form.phone?.trim(),
+          address: form.address?.trim()
+        }
+
         const api = modalTitle.value.includes('新增') ? addParticipationInfo : updateParticipationInfo
-        const res = await api(form)
+        const res = await api(submitData)
+        
         if (res.code === 200) {
-          ElMessage.success(res.msg || `${modalTitle.value}成功`)
+          ElMessage.success(res.msg)
           modalVisible.value = false
           fetchData()
+        } else if (res.code === 500 && res.msg === '用户已存在') {
+          ElMessage.warning('该用户已存在')
         } else {
           ElMessage.error(res.msg || `${modalTitle.value}失败`)
         }
       } catch (error) {
+        console.error('提交失败:', error)
         ElMessage.error(`${modalTitle.value}失败`)
       }
     }

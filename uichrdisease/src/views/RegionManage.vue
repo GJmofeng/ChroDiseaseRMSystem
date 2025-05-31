@@ -172,28 +172,22 @@ function getLevelLabel(level) {
 
 async function fetchTree() {
   try {
-    console.log('开始获取树形数据...')
     const res = await getDivisionTree(searchName.value)
-    console.log('接口返回原始数据:', res)
-    
-    if (!Array.isArray(res)) {
-      console.error('接口返回数据格式错误:', res)
-      ElMessage.error('获取数据失败')
-      return
+    if (res.code === 200) {
+      // 添加层级信息
+      const addLevel = (data, level = 0) => {
+        if (!Array.isArray(data)) return []
+        return data.map(item => ({
+          ...item,
+          _level: level,
+          children: item.children ? addLevel(item.children, level + 1) : []
+        }))
+      }
+      
+      treeData.value = addLevel(res.data)
+    } else {
+      ElMessage.error(res.msg || '获取数据失败')
     }
-
-    // 添加层级信息
-    const addLevel = (data, level = 0) => {
-      if (!Array.isArray(data)) return []
-      return data.map(item => ({
-        ...item,
-        _level: level,
-        children: item.children ? addLevel(item.children, level + 1) : []
-      }))
-    }
-    
-    treeData.value = addLevel(res)
-    console.log('处理后的树形数据:', treeData.value)
   } catch (error) {
     console.error('获取树形数据失败:', error)
     ElMessage.error('获取数据失败')
@@ -248,95 +242,45 @@ function onEdit(row) {
 }
 
 async function onDelete(row) {
-  ElMessageBox.confirm(
-    `确定要删除行政区"${row.dname}"吗？删除后将无法恢复，且会同时删除其下级行政区。`,
-    '删除确认',
-    {
-      confirmButtonText: '确定删除',
-      cancelButtonText: '取消',
-      type: 'warning',
-      draggable: true,
-      closeOnClickModal: false,
-      beforeClose: async (action, instance, done) => {
-        if (action === 'confirm') {
-          instance.confirmButtonLoading = true
-          instance.confirmButtonText = '删除中...'
-          try {
-            // 先检查服务器连接
-            try {
-              await getDivisionTree('')
-            } catch (error) {
-              if (error.response?.status === 404) {
-                ElMessage.error('无法连接到服务器，请确保后端服务已启动（端口8080）')
-                done()
-                return
-              }
-            }
-            
-            const res = await deleteDivision(row.id)
-            if (res.code === 200) {
-              ElMessage.success('删除成功')
-              await fetchTree() // 重新加载树形数据
-            } else {
-              ElMessage.error(res.message || '删除失败')
-            }
-            done()
-          } catch (error) {
-            console.error('删除失败:', error)
-            if (error.response?.status === 404) {
-              ElMessage.error('接口未找到，请确保后端服务正常运行')
-            } else if (error.response?.status === 500) {
-              ElMessage.error('服务器内部错误：' + (error.response?.data?.message || '未知错误'))
-            } else if (error.code === 'ERR_NETWORK') {
-              ElMessage.error('网络错误，请检查网络连接和后端服务是否正常')
-            } else {
-              ElMessage.error(error.response?.data?.message || '删除失败，请稍后重试')
-            }
-            done()
-          }
-        } else {
-          done()
-        }
-      }
+  try {
+    await ElMessageBox.confirm('确定要删除该行政区吗？', '提示', {
+      type: 'warning'
+    })
+    
+    const res = await deleteDivision(row.id)
+    if (res.code === 200) {
+      ElMessage.success(res.msg)
+      fetchTree()
+    } else {
+      ElMessage.error(res.msg || '删除失败')
     }
-  ).catch(() => {
-    // 用户点击取消按钮时的处理
-    ElMessage.info('已取消删除')
-  })
+  } catch (error) {
+    if (error !== 'cancel') {
+      console.error('删除失败:', error)
+      ElMessage.error('删除失败')
+    }
+  }
 }
 
 async function onSubmit() {
-  if (!formRef.value) return
-  
   try {
     await formRef.value.validate()
     
-    console.log('提交表单数据:', form.value)
+    const api = isEdit.value ? updateDivision : addDivision
+    const res = await api(form.value)
     
-    // 验证上级部门选择
-    if (!isEdit.value && !form.value.parent) {
-      ElMessage.warning('请选择上级部门')
-      return
-    }
-    
-    const res = form.value.id 
-      ? await updateDivision(form.value)
-      : await addDivision(form.value)
-    
-    if (res.code === 0) {
-      ElMessage.success(form.value.id ? '更新成功' : '添加成功')
+    if (res.code === 200) {
+      ElMessage.success(res.msg)
       showDialog.value = false
       fetchTree()
+    } else if (res.code === 205) {
+      ElMessage.warning('该区域已存在')
     } else {
-      ElMessage.error(res.message || '操作失败')
+      ElMessage.error(res.msg || (isEdit.value ? '编辑失败' : '添加失败'))
     }
   } catch (error) {
-    console.error('表单提交失败:', error)
-    if (error.name === 'ValidationError') {
-      ElMessage.warning('请完善表单信息')
-    } else {
-      ElMessage.error('操作失败：' + (error.response?.data?.message || error.message))
-    }
+    console.error(isEdit.value ? '编辑失败:' : '添加失败:', error)
+    ElMessage.error(isEdit.value ? '编辑失败' : '添加失败')
   }
 }
 

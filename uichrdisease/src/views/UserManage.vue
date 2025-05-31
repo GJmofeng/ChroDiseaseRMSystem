@@ -276,17 +276,16 @@ function onAddUser() {
 }
 
 async function handleAddUser() {
-  addUserFormRef.value.validate(async (valid) => {
-    if (!valid) return
-    try {
-      await request.post('/user/add', addUserForm.value)
+  try {
+    const res = await request.post('/user/add', addUserForm.value)
+    if (res.code === 200) {
       ElMessage.success('添加成功')
       showAddUser.value = false
       fetchUsers()
-    } catch (e) {
-      ElMessage.error('添加失败')
     }
-  })
+  } catch (error) {
+    console.error('添加用户失败:', error)
+  }
 }
 
 function onAdjustDept() {
@@ -304,12 +303,14 @@ function onBatchDelete() {
     const ids = multipleSelection.value.map(u => u.id)
     console.log('删除这些id:', ids)
     try {
-      await request.post('/user/deleteBatch', ids)
-      ElMessage.success('删除成功')
-      fetchUsers()
-      multipleSelection.value = []
+      const res = await request.post('/user/deleteBatch', ids)
+      if (res.code === 200) {
+        ElMessage.success('删除成功')
+        fetchUsers()
+        multipleSelection.value = []
+      }
     } catch (e) {
-      ElMessage.error('删除失败')
+      console.error('批量删除失败:', e)
     }
   })
 }
@@ -354,17 +355,16 @@ function onEdit(row) {
 }
 
 async function handleEditUser() {
-  editUserFormRef.value.validate(async (valid) => {
-    if (!valid) return
-    try {
-      await request.post('/user/update', editUserForm.value)
+  try {
+    const res = await request.post('/user/update', editUserForm.value)
+    if (res.code === 200) {
       ElMessage.success('编辑成功')
       showEditUser.value = false
       fetchUsers()
-    } catch (e) {
-      ElMessage.error('编辑失败')
     }
-  })
+  } catch (error) {
+    console.error('编辑用户失败:', error)
+  }
 }
 
 function onResetPwd(row) {
@@ -374,11 +374,12 @@ function onResetPwd(row) {
     cancelButtonText: '取消'
   }).then(async () => {
     try {
-      await request.post('/user/resetPwd', { id: row.id })
-      ElMessage.success('密码已重置为123456')
-      fetchUsers()
-    } catch (e) {
-      ElMessage.error('重置失败')
+      const res = await request.post('/user/resetPwd', { id: row.id })
+      if (res.code === 200) {
+        ElMessage.success('密码重置成功')
+      }
+    } catch (error) {
+      console.error('重置密码失败:', error)
     }
   }).catch(() => {
     // 用户点击取消，不做任何操作

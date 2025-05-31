@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import axios from 'axios'
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -21,40 +20,18 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/user': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
+      '/api': {
+        target: 'http://yolo.ainiya.xyz',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/user/, '/user')
-      },
-      '/division': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/division/, '/division')
-      },
-      '/insureds': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/insureds/, '/insureds')
-      },
-      '/medicalCard': {
-        // target: 'http://localhost:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/medicalCard/, '/medicalCard')
-      },
-      '/disease': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/disease/, '/disease')
-      },
-      '/policy': {
-        // target: 'http://localhost:8080',
-        target: 'http://154.12.36.159:8080',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/policy/, '/policy')
+        secure: false,
+        configure: (proxy, options) => {
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            // 设置CORS头
+            proxyReq.setHeader('Access-Control-Allow-Origin', '*')
+            proxyReq.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS')
+            proxyReq.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+          })
+        }
       }
     }
   }

@@ -145,28 +145,22 @@ const getTableData = async () => {
     const res = await getDiseaseList({
       page: currentPage.value,
       pageSize: pageSize.value,
-      ...searchForm
+      diseaseName: searchForm.diseaseName?.trim(),
+      diseaseCode: searchForm.diseaseCode?.trim()
     })
 
-    // Axios 拦截器应该已经处理了非0的code并抛出错误
-    // 如果代码执行到这里，说明后端返回的code是0，并且 res.data 是包含 list 和 total 的对象
-    if (res.data && res.data.list !== undefined && res.data.total !== undefined) { // 确保 list 和 total 字段存在
-        tableData.value = res.data.list // <-- 这里改为 res.data.list
-        total.value = res.data.total   // <-- 这里改为 res.data.total
+    if (res.code === 200) {
+      tableData.value = res.data.list || []
+      total.value = res.data.total || 0
+      if (tableData.value.length === 0) {
+        ElMessage.info('未查询到相关数据')
+      }
     } else {
-        // 理论上如果code是0且请求成功，data字段结构应正常，但以防万一
-        ElMessage.error('获取数据失败，后端返回数据结构不符合预期') // 修正错误消息
-        tableData.value = []
-        total.value = 0
-        console.error('后端返回数据结构不符合预期:', res.data) // 修正控制台输出
+      ElMessage.error(res.msg || '获取数据失败')
     }
-
   } catch (error) {
-    // 这个catch块会捕获Axios拦截器抛出的错误（例如"系统错误"）
-    console.error('获取数据失败 Catch:', error)
-    // 显示拦截器抛出的错误消息给用户
-    ElMessage.error(error.message || '获取数据失败，请查看控制台了解详情')
-    // 清空数据
+    console.error('获取数据失败:', error)
+    ElMessage.error(error.message || '获取数据失败')
     tableData.value = []
     total.value = 0
   }
@@ -226,16 +220,30 @@ const handleSubmit = async () => {
   await formRef.value.validate(async (valid) => {
     if (valid) {
       try {
-        if (dialogType.value === 'add') {
-          await addDisease(form)
-        } else {
-          await updateDisease(form)
+        const submitData = {
+          ...form,
+          diseaseName: form.diseaseName?.trim(),
+          diseaseCode: form.diseaseCode?.trim(),
+          description: form.description?.trim()
         }
-        ElMessage.success(dialogType.value === 'add' ? '新增成功' : '编辑成功')
-        dialogVisible.value = false
-        getTableData()
+
+        let res
+        if (dialogType.value === 'add') {
+          res = await addDisease(submitData)
+        } else {
+          res = await updateDisease(submitData)
+        }
+        
+        if (res.code === 200) {
+          ElMessage.success(res.msg)
+          dialogVisible.value = false
+          getTableData()
+        } else {
+          ElMessage.error(res.msg || '操作失败')
+        }
       } catch (error) {
-        ElMessage.error(dialogType.value === 'add' ? '新增失败' : '编辑失败')
+        console.error('提交失败:', error)
+        ElMessage.error('提交失败')
       }
     }
   })

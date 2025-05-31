@@ -3,11 +3,15 @@ import request from '@/utils/request'
 // 登录接口
 export const login = async (userid, password) => {
   try {
-    const response = await request.post('/user/login', {
-      userid,
-      password
+    const response = await request({
+      url: '/user/login',
+      method: 'post',
+      data: {
+        userid,
+        password
+      }
     })
-    return response.data
+    return response
   } catch (error) {
     throw error
   }
@@ -17,7 +21,7 @@ export const login = async (userid, password) => {
 export const getUserInfo = async () => {
   try {
     const response = await request.get('/user/getOne')
-    return response.data
+    return response
   } catch (error) {
     throw error
   }

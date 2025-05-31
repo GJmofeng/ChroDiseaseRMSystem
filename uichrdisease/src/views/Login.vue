@@ -35,6 +35,7 @@
             v-model="password" 
             class="form-input" 
             placeholder="请输入密码" 
+            autocomplete="current-password"
             required
           >
         </div>
@@ -199,33 +200,27 @@ const refreshCaptcha = () => {
 // 处理登录
 const handleLogin = async () => {
   if (!userid.value || !password.value) {
-    errorMessage.value = '请输入用户ID和密码'
+    errorMessage.value = '请输入用户名和密码'
     return
   }
 
+  loading.value = true
+  errorMessage.value = ''
+
   try {
-    loading.value = true
-    errorMessage.value = ''
-    
-    const response = await login(userid.value, password.value)
-    
-    // 检查后端返回的登录结果
-    if (response.code === 200) {  // 假设后端成功状态码为200
-      // 保存用户信息到本地存储
-      localStorage.setItem('userInfo', JSON.stringify({
-        userid: response.data.userid,
-        token: response.data.token,
-        role: response.data.role
-      }))
+    const res = await login(userid.value, password.value)
+    if (res.code === 200) {
+      // 保存token和用户信息
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userInfo', JSON.stringify(res.data))
       
-      // 登录成功后跳转到前台主页
+      // 跳转到首页
       router.push('/')
     } else {
-      // 登录失败，显示后端返回的错误信息
-      errorMessage.value = response.msg || '登录失败，请检查用户ID和密码'
+      errorMessage.value = res.msg || '登录失败'
     }
   } catch (error) {
-    // 处理网络错误或服务器错误
+    console.error('登录失败:', error)
     errorMessage.value = error.response?.data?.msg || '登录失败，请稍后重试'
   } finally {
     loading.value = false

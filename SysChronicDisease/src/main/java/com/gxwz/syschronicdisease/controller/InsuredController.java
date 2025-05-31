@@ -7,7 +7,7 @@ import com.gxwz.syschronicdisease.entity.Result;
 import com.gxwz.syschronicdisease.service.InsuredService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/insureds")
 public class InsuredController {

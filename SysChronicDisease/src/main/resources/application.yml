@@ -10,6 +10,10 @@ spring:
     username: root
     password: 123456
 
+  security:
+    filter:
+      order: -100
+
 mybatis-plus:
   global-config:
     db-config:

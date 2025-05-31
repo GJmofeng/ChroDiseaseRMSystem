@@ -30,8 +30,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // 设置允许的源，使用具体的域名
-        configuration.setAllowedOrigins(Arrays.asList("http://154.12.36.159"));
+        // 设置允许的源，添加您的域名
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://yolo.ainiya.xyz",
+                "http://154.12.36.159",
+                "http://localhost:5173"
+        ));
         // 设置允许的方法
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         // 设置允许的头
@@ -50,7 +54,12 @@ public class SecurityConfig {
         // 设置允许的凭证
         configuration.setAllowCredentials(true);
         // 设置暴露的头
-        configuration.setExposedHeaders(Arrays.asList("Content-Length", "Content-Range"));
+        configuration.setExposedHeaders(Arrays.asList(
+                "Content-Length",
+                "Content-Range",
+                "Authorization",
+                "token"
+        ));
         // 设置预检请求的有效期
         configuration.setMaxAge(3600L);
 
