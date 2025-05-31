@@ -40,44 +40,20 @@
           >
         </div>
 
-        <!-- 验证码 -->
-        <div class="form-group">
-          <div class="captcha-group">
-            <div class="captcha-input">
-              <i class="fas fa-shield-alt"></i>
-              <input 
-                type="text" 
-                v-model="formData.captcha" 
-                class="form-input" 
-                placeholder="请输入验证码" 
-                required
-              >
-            </div>
-            <div class="captcha-image" @click="refreshCaptcha">
-              {{ captchaCode }}
-            </div>
-          </div>
-        </div>
-
-        <!-- 记住我和忘记密码 -->
+        <!-- 记住我 -->
         <div class="extra-options">
           <label class="remember-me">
-            <input type="checkbox" v-model="formData.remember">
+            <input type="checkbox" v-model="rememberMe">
             <span>记住我</span>
           </label>
-          <a href="#" class="forgot-password">忘记密码？</a>
         </div>
 
         <!-- 登录按钮 -->
-        <button type="submit" class="login-btn" :disabled="loading">登 录</button>
+        <button type="submit" class="login-btn" :disabled="loading">
+          {{ loading ? '登录中...' : '登 录' }}
+        </button>
 
-        <!-- 注册选项 -->
-        <div class="register-option">
-          <span>还没有账号？</span>
-          <router-link to="/register" class="register-link">立即注册</router-link>
-        </div>
-
-        <div v-if="errorMessage" class="text-red-500 text-sm text-center">
+        <div v-if="errorMessage" class="error-message">
           {{ errorMessage }}
         </div>
       </form>
@@ -86,18 +62,18 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '../api/auth'
 
 const router = useRouter()
-const captchaCode = ref('1234')
 const canvasContainer = ref(null)
 let particleSystem = null
 const userid = ref('')
 const password = ref('')
 const loading = ref(false)
 const errorMessage = ref('')
+const rememberMe = ref(false)
 
 class Particle {
   constructor(x, y, size, speedX, speedY, color) {
@@ -168,7 +144,51 @@ class ParticleSystem {
   }
 }
 
+// 处理登录
+const handleLogin = async () => {
+  if (!userid.value || !password.value) {
+    errorMessage.value = '请输入用户名和密码'
+    return
+  }
+
+  loading.value = true
+  errorMessage.value = ''
+
+  try {
+    const res = await login(userid.value, password.value)
+    if (res.code === 200) {
+      // 保存token和用户信息
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userInfo', JSON.stringify(res.data.user))
+      
+      // 如果选择记住我，保存用户名
+      if (rememberMe.value) {
+        localStorage.setItem('rememberedUserid', userid.value)
+      } else {
+        localStorage.removeItem('rememberedUserid')
+      }
+      
+      // 跳转到首页
+      router.push('/')
+    } else {
+      errorMessage.value = res.msg || '登录失败'
+    }
+  } catch (error) {
+    console.error('登录失败:', error)
+    errorMessage.value = error.response?.data?.msg || '登录失败，请稍后重试'
+  } finally {
+    loading.value = false
+  }
+}
+
+// 检查是否有记住的用户名
 onMounted(() => {
+  const rememberedUserid = localStorage.getItem('rememberedUserid')
+  if (rememberedUserid) {
+    userid.value = rememberedUserid
+    rememberMe.value = true
+  }
+  
   particleSystem = new ParticleSystem()
   
   window.addEventListener('resize', () => {
@@ -184,55 +204,6 @@ onUnmounted(() => {
     particleSystem.destroy()
   }
 })
-
-const formData = reactive({
-  username: '',
-  password: '',
-  captcha: '',
-  remember: false
-})
-
-// 刷新验证码
-const refreshCaptcha = () => {
-  captchaCode.value = Math.floor(1000 + Math.random() * 9000).toString()
-}
-
-// 处理登录
-const handleLogin = async () => {
-  if (!userid.value || !password.value) {
-    errorMessage.value = '请输入用户名和密码'
-    return
-  }
-
-  loading.value = true
-  errorMessage.value = ''
-
-  try {
-    const res = await login(userid.value, password.value)
-    if (res.code === 200) {
-      // 保存token和用户信息
-      if (res.data && res.data.token) {
-        localStorage.setItem('token', res.data.token)
-      }
-      if (res.data && res.data.user) {
-        localStorage.setItem('userInfo', JSON.stringify(res.data.user))
-      }
-      
-      // 跳转到首页
-      router.push('/')
-    } else {
-      errorMessage.value = res.message || '登录失败'
-    }
-  } catch (error) {
-    console.error('登录失败:', error)
-    errorMessage.value = error.response?.data?.message || '登录失败，请稍后重试'
-  } finally {
-    loading.value = false
-  }
-}
-
-// 页面加载时生成验证码
-refreshCaptcha()
 </script>
 
 <style scoped>
@@ -349,38 +320,6 @@ refreshCaptcha()
   color: #666;
 }
 
-.captcha-group {
-  display: flex;
-  gap: 12px;
-}
-
-.captcha-input {
-  flex: 1;
-}
-
-.captcha-input .form-input {
-  width: calc(100% - 56px);
-}
-
-.captcha-image {
-  width: 100px;
-  height: 42px;
-  border-radius: 8px;
-  background: #f5f7fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  color: #666;
-  -webkit-user-select: none;
-  user-select: none;
-  box-shadow: 
-    2px 2px 5px rgba(174, 174, 192, 0.2),
-    -2px -2px 5px rgba(255, 255, 255, 0.9);
-}
-
 .extra-options {
   display: flex;
   justify-content: space-between;
@@ -395,16 +334,6 @@ refreshCaptcha()
   align-items: center;
   gap: 8px;
   cursor: pointer;
-}
-
-.forgot-password {
-  color: #4c84ff;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
 }
 
 .login-btn {
@@ -444,22 +373,10 @@ refreshCaptcha()
   transform: scale(0.98);
 }
 
-.register-option {
+.error-message {
+  color: #ff4d4f;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 16px;
   font-size: 14px;
-  color: #666;
-}
-
-.register-link {
-  color: #4c84ff;
-  text-decoration: none;
-  margin-left: 8px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.register-link:hover {
-  text-decoration: underline;
 }
 </style> 

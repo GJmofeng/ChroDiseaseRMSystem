@@ -1,23 +1,20 @@
 import request from '@/utils/request'
+import { ElMessage } from 'element-plus'
 
 // 登录接口
 export const login = async (userid, password) => {
   try {
     const response = await request({
-      url: '/user/login',
+      url: '/api/user/login',
       method: 'post',
-      data: JSON.stringify({
-        userid: userid,
-        password: password
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+      data: {
+        userid,
+        password
       }
     })
     return response
   } catch (error) {
-    console.error('登录请求错误:', error)
+    ElMessage.error(error.response?.data?.message || '登录失败')
     throw error
   }
 }
@@ -25,9 +22,13 @@ export const login = async (userid, password) => {
 // 获取用户信息接口
 export const getUserInfo = async () => {
   try {
-    const response = await request.get('/user/getOne')
+    const response = await request({
+      url: '/api/user/getOne',
+      method: 'get'
+    })
     return response
   } catch (error) {
+    ElMessage.error(error.response?.data?.message || '获取用户信息失败')
     throw error
   }
 } 

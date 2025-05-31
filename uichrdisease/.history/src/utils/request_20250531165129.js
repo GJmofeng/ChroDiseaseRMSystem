@@ -7,8 +7,7 @@ const request = axios.create({
   timeout: 5000, // 请求超时时间
   headers: {
     'Content-Type': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json'
+    'X-Requested-With': 'XMLHttpRequest'
   }
 })
 
@@ -20,14 +19,6 @@ request.interceptors.request.use(
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`
     }
-    
-    // 打印请求信息，用于调试
-    console.log('Request:', {
-      url: config.url,
-      method: config.method,
-      data: config.data,
-      headers: config.headers
-    })
     
     // 处理OPTIONS请求
     if (config.method === 'options') {
@@ -47,13 +38,6 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   response => {
-    // 打印响应信息，用于调试
-    console.log('Response:', {
-      status: response.status,
-      data: response.data,
-      headers: response.headers
-    })
-    
     const res = response.data
     
     // 如果返回的状态码不是200，说明接口请求有误
@@ -79,14 +63,6 @@ request.interceptors.response.use(
   },
   error => {
     console.error('响应错误:', error)
-    // 打印详细的错误信息
-    if (error.response) {
-      console.error('错误响应:', {
-        status: error.response.status,
-        data: error.response.data,
-        headers: error.response.headers
-      })
-    }
     ElMessage({
       message: error.message || '请求失败',
       type: 'error',

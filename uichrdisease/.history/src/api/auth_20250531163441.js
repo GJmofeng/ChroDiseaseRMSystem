@@ -6,18 +6,13 @@ export const login = async (userid, password) => {
     const response = await request({
       url: '/user/login',
       method: 'post',
-      data: JSON.stringify({
-        userid: userid,
-        password: password
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+      data: {
+        userid,
+        password
       }
     })
     return response
   } catch (error) {
-    console.error('登录请求错误:', error)
     throw error
   }
 }

@@ -211,21 +211,17 @@ const handleLogin = async () => {
     const res = await login(userid.value, password.value)
     if (res.code === 200) {
       // 保存token和用户信息
-      if (res.data && res.data.token) {
-        localStorage.setItem('token', res.data.token)
-      }
-      if (res.data && res.data.user) {
-        localStorage.setItem('userInfo', JSON.stringify(res.data.user))
-      }
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userInfo', JSON.stringify(res.data))
       
       // 跳转到首页
       router.push('/')
     } else {
-      errorMessage.value = res.message || '登录失败'
+      errorMessage.value = res.msg || '登录失败'
     }
   } catch (error) {
     console.error('登录失败:', error)
-    errorMessage.value = error.response?.data?.message || '登录失败，请稍后重试'
+    errorMessage.value = error.response?.data?.msg || '登录失败，请稍后重试'
   } finally {
     loading.value = false
   }

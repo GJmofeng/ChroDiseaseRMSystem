@@ -19,5 +19,4 @@ public class User {
     private String password;
     private String fullname;
     private String role;
-    private String token;
 }
