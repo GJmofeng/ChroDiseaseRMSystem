@@ -68,22 +68,22 @@ const routes = [
       {
         path: 'reimbursement-form',
         name: 'ReimbursementForm',
-        component: ReimbursementForm
+        component: () => import('@/views/reimbursement/ReimbursementForm.vue')
       },
       {
         path: 'reimbursement-list',
         name: 'ReimbursementList',
-        component: ReimbursementList
+        component: () => import('@/views/reimbursement/ReimbursementList.vue')
       },
       {
         path: 'reimbursement-audit',
         name: 'ReimbursementAudit',
-        component: ReimbursementAudit
+        component: () => import('@/views/reimbursement/ReimbursementAudit.vue')
       },
       {
         path: 'reimbursement-remit',
         name: 'ReimbursementRemit',
-        component: ReimbursementRemit
+        component: () => import('@/views/reimbursement/ReimbursementRemit.vue')
       }
     ]
   },

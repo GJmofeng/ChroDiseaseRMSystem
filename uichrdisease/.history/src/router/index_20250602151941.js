@@ -9,10 +9,6 @@ import RegionManage from '../views/RegionManage.vue'
 import ParticipationInfo from '../views/business/ParticipationInfo.vue'
 import DiseaseInfo from '../views/disease/DiseaseInfo.vue'
 import PolicyManagement from '../views/policy/PolicyManagement.vue'
-import ReimbursementForm from '../views/reimbursement/ReimbursementForm.vue'
-import ReimbursementList from '../views/reimbursement/ReimbursementList.vue'
-import ReimbursementAudit from '../views/reimbursement/ReimbursementAudit.vue'
-import ReimbursementRemit from '../views/reimbursement/ReimbursementRemit.vue'
 
 const routes = [
   {
@@ -68,22 +64,22 @@ const routes = [
       {
         path: 'reimbursement-form',
         name: 'ReimbursementForm',
-        component: ReimbursementForm
+        component: () => import('@/views/reimbursement/ReimbursementForm.vue')
       },
       {
         path: 'reimbursement-list',
         name: 'ReimbursementList',
-        component: ReimbursementList
+        component: () => import('@/views/reimbursement/ReimbursementList.vue')
       },
       {
         path: 'reimbursement-audit',
         name: 'ReimbursementAudit',
-        component: ReimbursementAudit
+        component: () => import('@/views/reimbursement/ReimbursementAudit.vue')
       },
       {
         path: 'reimbursement-remit',
         name: 'ReimbursementRemit',
-        component: ReimbursementRemit
+        component: () => import('@/views/reimbursement/ReimbursementRemit.vue')
       }
     ]
   },

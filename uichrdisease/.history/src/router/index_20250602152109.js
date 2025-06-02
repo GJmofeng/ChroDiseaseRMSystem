@@ -68,7 +68,7 @@ const routes = [
       {
         path: 'reimbursement-form',
         name: 'ReimbursementForm',
-        component: ReimbursementForm
+        component: () => import('@/views/reimbursement/ReimbursementForm.vue')
       },
       {
         path: 'reimbursement-list',
@@ -83,7 +83,7 @@ const routes = [
       {
         path: 'reimbursement-remit',
         name: 'ReimbursementRemit',
-        component: ReimbursementRemit
+        component: () => import('@/views/reimbursement/ReimbursementRemit.vue')
       }
     ]
   },
