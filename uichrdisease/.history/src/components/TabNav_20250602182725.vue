@@ -149,11 +149,8 @@ const pathToTagConfig = {
   '/main/monthly-statistics': {
     title: '月度统计',
     icon: 'fa-chart-area'
-  },
-  '/main/user-profile': {
-    title: '个人中心',
-    icon: 'fa-user'
-  }
+  }，
+  
 }
 
 // 添加标签

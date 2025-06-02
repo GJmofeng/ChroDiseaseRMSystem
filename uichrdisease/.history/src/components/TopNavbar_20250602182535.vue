@@ -18,17 +18,6 @@
         <!-- 用户信息下拉菜单 -->
         <div class="relative">
           <div class="flex items-center space-x-2 cursor-pointer" @click.stop="toggleDropdown">
-            <div class="avatar-container w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
-              <img 
-                v-if="userAvatar" 
-                :src="userAvatar" 
-                alt="用户头像" 
-                class="w-full h-full object-cover"
-              />
-              <div v-else class="w-full h-full flex items-center justify-center bg-blue-500 text-white text-sm font-medium">
-                {{ usernameFirstChar }}
-              </div>
-            </div>
             <span class="text-gray-700">{{ username }}</span>
             <i class="fas fa-chevron-down text-gray-500 text-sm transition-transform" :class="{ 'transform rotate-180': isDropdownOpen }"></i>
           </div>
@@ -49,18 +38,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const username = ref('')
-const userAvatar = ref('')
 const isDropdownOpen = ref(false)
-
-// 获取用户名首字母作为默认头像
-const usernameFirstChar = computed(() => {
-  return username.value ? username.value.charAt(0).toUpperCase() : 'U'
-})
 
 // 切换下拉菜单
 const toggleDropdown = () => {
@@ -78,9 +61,8 @@ const handleClickOutside = (event) => {
 const checkLoginStatus = () => {
   const userInfo = localStorage.getItem('userInfo')
   if (userInfo) {
-    const { username: storedUsername, avatar } = JSON.parse(userInfo)
+    const { username: storedUsername } = JSON.parse(userInfo)
     username.value = storedUsername
-    userAvatar.value = avatar
   }
 }
 
@@ -125,16 +107,6 @@ onUnmounted(() => {
   border: 2px solid #2563EB;
   border-radius: 50%;
   animation: rotate 4s linear infinite;
-}
-
-.avatar-container {
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.avatar-container:hover {
-  border-color: #2563EB;
-  transform: scale(1.05);
 }
 
 @keyframes rotate {

@@ -292,15 +292,13 @@ function onEdit(row) {
 
 async function onDelete(row) {
   try {
-    await ElMessageBox.confirm(`确定要删除行政区"${row.dname}"吗？`, '提示', {
-      type: 'warning',
-      confirmButtonText: '确定删除',
-      cancelButtonText: '取消'
+    await ElMessageBox.confirm('确定要删除该行政区吗？', '提示', {
+      type: 'warning'
     })
     
     const res = await deleteDivision(row.id)
     if (res.code === 200) {
-      ElMessage.success(`行政区"${row.dname}"删除成功`)
+      ElMessage.success(res.msg)
       fetchTree()
     } else {
       ElMessage.error(res.msg || '删除失败')
@@ -321,24 +319,17 @@ async function onSubmit() {
     const res = await api(form.value)
     
     if (res.code === 200) {
-      // 根据操作类型显示不同的成功提示
-      if (isEdit.value) {
-        ElMessage.success(`行政区"${form.value.dname}"修改成功`)
-      } else if (form.value.parent === 0) {
-        ElMessage.success(`行政区"${form.value.dname}"新增成功`)
-      } else {
-        ElMessage.success(`行政区"${form.value.dname}"添加成功`)
-      }
+      ElMessage.success(res.msg)
       showDialog.value = false
       fetchTree()
     } else if (res.code === 205) {
-      ElMessage.warning(`该区域"${form.value.dname}"已存在，请勿重复添加`)
+      ElMessage.warning('该区域已存在')
     } else {
-      ElMessage.error(res.msg || (isEdit.value ? '修改失败' : '添加失败'))
+      ElMessage.error(res.msg || (isEdit.value ? '编辑失败' : '添加失败'))
     }
   } catch (error) {
-    console.error(isEdit.value ? '修改失败:' : '添加失败:', error)
-    ElMessage.error(isEdit.value ? '修改失败' : '添加失败')
+    console.error(isEdit.value ? '编辑失败:' : '添加失败:', error)
+    ElMessage.error(isEdit.value ? '编辑失败' : '添加失败')
   }
 }
 

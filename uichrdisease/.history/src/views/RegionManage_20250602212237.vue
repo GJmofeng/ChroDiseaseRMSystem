@@ -66,12 +66,7 @@
                 <span :style="{ 
                   paddingLeft: (item._level * 20) + 'px',
                   color: item._allowSelect ? '' : '#999'
-                }">
-                  {{ item.dname }}
-                  <span v-if="item._parentName" style="color: #999; margin-left: 8px;">
-                    ({{ item._parentName }})
-                  </span>
-                </span>
+                }">{{ item.dname }}</span>
               </el-option>
             </el-select>
           </el-form-item>
@@ -219,13 +214,7 @@ function resetSearch() {
 async function onAddRoot() {
   isEdit.value = false
   dialogTitle.value = '新建行政区'
-  form.value = { 
-    id: null, 
-    dname: '', 
-    level: '', 
-    sort: 0, 
-    parent: 0 
-  }
+  form.value = { id: null, dname: '', level: '', sort: 0, parent: 0 }
   selectedParentName.value = ''
   selectedParent.value = null
   filterKeyword.value = ''
@@ -236,44 +225,18 @@ async function onAddRoot() {
   }
   
   showDialog.value = true
+  console.log('新建对话框打开，当前数据状态：', {
+    treeData: treeData.value,
+    selectOptions: selectOptions.value
+  })
 }
 
 function onAddChild(row) {
   isEdit.value = false
   dialogTitle.value = '添加下级行政区'
-  form.value = { 
-    id: null, 
-    dname: '', 
-    level: '', 
-    sort: 0, 
-    parent: row.id 
-  }
-  
-  // 根据当前行的级别设置下级级别
-  switch (row.level) {
-    case 'province':
-      form.value.level = 'city'
-      break
-    case 'city':
-      form.value.level = 'district'
-      break
-    case 'district':
-      form.value.level = 'town'
-      break
-    case 'town':
-      form.value.level = 'village'
-      break
-    case 'village':
-      form.value.level = 'hamlet'
-      break
-    case 'street':
-      form.value.level = 'hamlet'
-      break
-  }
-  
+  form.value = { id: null, dname: '', level: '', sort: 0, parent: row.id }
   selectedParentName.value = row.dname
   selectedParent.value = row
-  
   // 确保数据已加载
   if (!treeData.value.length) {
     fetchTree()
@@ -292,15 +255,13 @@ function onEdit(row) {
 
 async function onDelete(row) {
   try {
-    await ElMessageBox.confirm(`确定要删除行政区"${row.dname}"吗？`, '提示', {
-      type: 'warning',
-      confirmButtonText: '确定删除',
-      cancelButtonText: '取消'
+    await ElMessageBox.confirm('确定要删除该行政区吗？', '提示', {
+      type: 'warning'
     })
     
     const res = await deleteDivision(row.id)
     if (res.code === 200) {
-      ElMessage.success(`行政区"${row.dname}"删除成功`)
+      ElMessage.success(res.msg)
       fetchTree()
     } else {
       ElMessage.error(res.msg || '删除失败')
@@ -321,24 +282,17 @@ async function onSubmit() {
     const res = await api(form.value)
     
     if (res.code === 200) {
-      // 根据操作类型显示不同的成功提示
-      if (isEdit.value) {
-        ElMessage.success(`行政区"${form.value.dname}"修改成功`)
-      } else if (form.value.parent === 0) {
-        ElMessage.success(`行政区"${form.value.dname}"新增成功`)
-      } else {
-        ElMessage.success(`行政区"${form.value.dname}"添加成功`)
-      }
+      ElMessage.success(res.msg)
       showDialog.value = false
       fetchTree()
     } else if (res.code === 205) {
-      ElMessage.warning(`该区域"${form.value.dname}"已存在，请勿重复添加`)
+      ElMessage.warning('该区域已存在')
     } else {
-      ElMessage.error(res.msg || (isEdit.value ? '修改失败' : '添加失败'))
+      ElMessage.error(res.msg || (isEdit.value ? '编辑失败' : '添加失败'))
     }
   } catch (error) {
-    console.error(isEdit.value ? '修改失败:' : '添加失败:', error)
-    ElMessage.error(isEdit.value ? '修改失败' : '添加失败')
+    console.error(isEdit.value ? '编辑失败:' : '添加失败:', error)
+    ElMessage.error(isEdit.value ? '编辑失败' : '添加失败')
   }
 }
 
@@ -367,8 +321,8 @@ watch(searchName, (val) => {
   fetchTree()
 })
 
-// 修改 flattenTreeData 函数，优化层级关系处理
-function flattenTreeData(data, level = 0, parentLevel = null, parentId = null) {
+// 将树形数据转换为扁平数组，并添加层级信息
+function flattenTreeData(data, level = 0, parentLevel = null) {
   if (!Array.isArray(data)) {
     console.warn('flattenTreeData接收到非数组数据:', data)
     return []
@@ -413,40 +367,19 @@ function flattenTreeData(data, level = 0, parentLevel = null, parentId = null) {
       ...item, 
       _level: level,
       _allowSelect: allowSelect,
-      _parentId: parentId,
-      _label: ''.padStart(level * 4, ' ') + item.dname,
-      _parentName: parentLevel ? getParentName(data, item.id) : ''
+      _label: ''.padStart(level * 4, ' ') + item.dname
     }
     
     result.push(newItem)
     
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      result = result.concat(flattenTreeData(item.children, level + 1, item.level, item.id))
+      result = result.concat(flattenTreeData(item.children, level + 1, item.level))
     }
   })
   return result
 }
 
-// 获取父级名称
-function getParentName(data, id) {
-  const findParent = (items, targetId) => {
-    for (const item of items) {
-      if (item.children) {
-        for (const child of item.children) {
-          if (child.id === targetId) {
-            return item.dname
-          }
-        }
-        const found = findParent(item.children, targetId)
-        if (found) return found
-      }
-    }
-    return null
-  }
-  return findParent(data, id)
-}
-
-// 修改 selectOptions 计算属性
+// 处理选项数据
 const selectOptions = computed(() => {
   console.log('开始计算selectOptions...')
   console.log('当前treeData:', treeData.value)
@@ -467,17 +400,30 @@ const selectOptions = computed(() => {
       }
       return true
     })
-    .sort((a, b) => {
-      // 首先按层级排序
-      if (a._level !== b._level) {
-        return a._level - b._level
-      }
-      // 然后按排序值排序
-      return (a.sort || 0) - (b.sort || 0)
-    })
+    .sort((a, b) => (a.sort || 0) - (b.sort || 0))
 })
 
-// 修改 handleParentChange 函数
+// 处理下拉框显示/隐藏
+async function handleDropdownVisible(visible) {
+  console.log('下拉框显示状态改变:', visible)
+  if (visible) {
+    filterKeyword.value = ''
+    // 确保有数据
+    if (!treeData.value || !treeData.value.length) {
+      console.log('下拉框打开时发现数据为空，开始获取数据...')
+      await fetchTree()
+    }
+    console.log('当前树形数据:', treeData.value)
+    console.log('当前selectOptions:', selectOptions.value)
+  }
+}
+
+// 过滤选项
+function filterParentOptions(query) {
+  filterKeyword.value = query
+}
+
+// 在选择上级部门时，自动设置当前部门的级别
 function handleParentChange(value) {
   const selectedParent = findParentById(treeData.value, value)
   if (selectedParent) {
@@ -504,9 +450,6 @@ function handleParentChange(value) {
       default:
         form.value.level = ''
     }
-    
-    // 设置父级ID
-    form.value.parent = selectedParent.id
   }
 }
 
@@ -546,26 +489,6 @@ function confirmParentSelect() {
     form.value.parent = selectedParent.value.id
   }
   showParentSelect.value = false
-}
-
-// 处理下拉框显示/隐藏
-async function handleDropdownVisible(visible) {
-  console.log('下拉框显示状态改变:', visible)
-  if (visible) {
-    filterKeyword.value = ''
-    // 确保有数据
-    if (!treeData.value || !treeData.value.length) {
-      console.log('下拉框打开时发现数据为空，开始获取数据...')
-      await fetchTree()
-    }
-    console.log('当前树形数据:', treeData.value)
-    console.log('当前selectOptions:', selectOptions.value)
-  }
-}
-
-// 过滤选项
-function filterParentOptions(query) {
-  filterKeyword.value = query
 }
 </script>
 

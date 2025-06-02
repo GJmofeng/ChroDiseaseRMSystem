@@ -66,12 +66,7 @@
                 <span :style="{ 
                   paddingLeft: (item._level * 20) + 'px',
                   color: item._allowSelect ? '' : '#999'
-                }">
-                  {{ item.dname }}
-                  <span v-if="item._parentName" style="color: #999; margin-left: 8px;">
-                    ({{ item._parentName }})
-                  </span>
-                </span>
+                }">{{ item.dname }}</span>
               </el-option>
             </el-select>
           </el-form-item>
@@ -292,15 +287,13 @@ function onEdit(row) {
 
 async function onDelete(row) {
   try {
-    await ElMessageBox.confirm(`确定要删除行政区"${row.dname}"吗？`, '提示', {
-      type: 'warning',
-      confirmButtonText: '确定删除',
-      cancelButtonText: '取消'
+    await ElMessageBox.confirm('确定要删除该行政区吗？', '提示', {
+      type: 'warning'
     })
     
     const res = await deleteDivision(row.id)
     if (res.code === 200) {
-      ElMessage.success(`行政区"${row.dname}"删除成功`)
+      ElMessage.success(res.msg)
       fetchTree()
     } else {
       ElMessage.error(res.msg || '删除失败')
@@ -321,24 +314,17 @@ async function onSubmit() {
     const res = await api(form.value)
     
     if (res.code === 200) {
-      // 根据操作类型显示不同的成功提示
-      if (isEdit.value) {
-        ElMessage.success(`行政区"${form.value.dname}"修改成功`)
-      } else if (form.value.parent === 0) {
-        ElMessage.success(`行政区"${form.value.dname}"新增成功`)
-      } else {
-        ElMessage.success(`行政区"${form.value.dname}"添加成功`)
-      }
+      ElMessage.success(res.msg)
       showDialog.value = false
       fetchTree()
     } else if (res.code === 205) {
-      ElMessage.warning(`该区域"${form.value.dname}"已存在，请勿重复添加`)
+      ElMessage.warning('该区域已存在')
     } else {
-      ElMessage.error(res.msg || (isEdit.value ? '修改失败' : '添加失败'))
+      ElMessage.error(res.msg || (isEdit.value ? '编辑失败' : '添加失败'))
     }
   } catch (error) {
-    console.error(isEdit.value ? '修改失败:' : '添加失败:', error)
-    ElMessage.error(isEdit.value ? '修改失败' : '添加失败')
+    console.error(isEdit.value ? '编辑失败:' : '添加失败:', error)
+    ElMessage.error(isEdit.value ? '编辑失败' : '添加失败')
   }
 }
 
@@ -414,8 +400,7 @@ function flattenTreeData(data, level = 0, parentLevel = null, parentId = null) {
       _level: level,
       _allowSelect: allowSelect,
       _parentId: parentId,
-      _label: ''.padStart(level * 4, ' ') + item.dname,
-      _parentName: parentLevel ? getParentName(data, item.id) : ''
+      _label: ''.padStart(level * 4, ' ') + item.dname
     }
     
     result.push(newItem)
@@ -425,25 +410,6 @@ function flattenTreeData(data, level = 0, parentLevel = null, parentId = null) {
     }
   })
   return result
-}
-
-// 获取父级名称
-function getParentName(data, id) {
-  const findParent = (items, targetId) => {
-    for (const item of items) {
-      if (item.children) {
-        for (const child of item.children) {
-          if (child.id === targetId) {
-            return item.dname
-          }
-        }
-        const found = findParent(item.children, targetId)
-        if (found) return found
-      }
-    }
-    return null
-  }
-  return findParent(data, id)
 }
 
 // 修改 selectOptions 计算属性

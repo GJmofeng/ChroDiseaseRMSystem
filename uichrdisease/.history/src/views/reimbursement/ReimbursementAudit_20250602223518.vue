@@ -22,7 +22,7 @@
         <el-table-column prop="address" label="地址" width="200" />
         <el-table-column prop="totalCost" label="总费用" width="120">
           <template #default="scope">
-            {{ scope.row.totalCost?.toFixed(2) || '-' }}
+            {{ scope.row.totalCost.toFixed(2) }}
           </template>
         </el-table-column>
         <el-table-column prop="reimbursementAmount" label="报销金额" width="120">
@@ -72,11 +72,6 @@
             </el-button>
           </template>
         </el-table-column>
-        <template #empty>
-          <div class="empty-block">
-            <el-empty description="暂无报销审核数据" />
-          </div>
-        </template>
       </el-table>
     </el-card>
 
@@ -138,10 +133,9 @@ export default {
         return tableData.value
       } else if (auditStatus.value === 'pending') {
         return tableData.value.filter(item => item.isReimbursement === '未审核')
-      } else if (auditStatus.value === 'processed') {
-        return tableData.value.filter(item => item.isReimbursement === '已审核' || item.isReimbursement === '审核不通过')
+      } else {
+        return tableData.value.filter(item => item.isReimbursement !== '未审核')
       }
-      return tableData.value
     })
 
     // 获取状态类型
@@ -164,12 +158,7 @@ export default {
       try {
         const response = await getAuditReimbursements()
         if (response.code === 200) {
-          // 确保数据中包含审核状态
-          tableData.value = response.data.map(item => ({
-            ...item,
-            isReimbursement: item.isReimbursement || '未审核',
-            auditTime: item.auditTime || null
-          }))
+          tableData.value = response.data
         }
       } catch (error) {
         ElMessage.error('加载数据失败：' + error.message)
@@ -215,8 +204,8 @@ export default {
     }
 
     const handleStatusChange = () => {
-      // 状态切换时不需要重新加载数据，直接使用计算属性过滤
-      // loadData()
+      // 状态切换时重新加载数据
+      loadData()
     }
 
     const handleViewDetail = (row) => {
@@ -308,10 +297,5 @@ export default {
 .detail-item .value {
   flex: 1;
   color: #303133;
-}
-
-.empty-block {
-  padding: 40px 0;
-  text-align: center;
 }
 </style> 

@@ -39,51 +39,12 @@
           <div ref="countChartRef" class="chart"></div>
         </div>
       </div>
-
-      <!-- 年度统计卡片 -->
-      <div class="stat-cards">
-        <el-row :gutter="20">
-          <el-col :span="8">
-            <el-card shadow="hover" class="stat-card">
-              <template #header>
-                <div class="stat-card-header">
-                  <span>年总报销金额</span>
-                  <i class="fas fa-yen-sign"></i>
-                </div>
-              </template>
-              <div class="stat-card-value">{{ totalAmount.toFixed(2) }} 元</div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" class="stat-card">
-              <template #header>
-                <div class="stat-card-header">
-                  <span>年报销笔数</span>
-                  <i class="fas fa-file-invoice"></i>
-                </div>
-              </template>
-              <div class="stat-card-value">{{ totalCount }} 笔</div>
-            </el-card>
-          </el-col>
-          <el-col :span="8">
-            <el-card shadow="hover" class="stat-card">
-              <template #header>
-                <div class="stat-card-header">
-                  <span>年平均报销金额</span>
-                  <i class="fas fa-calculator"></i>
-                </div>
-              </template>
-              <div class="stat-card-value">{{ averageAmount.toFixed(2) }} 元</div>
-            </el-card>
-          </el-col>
-        </el-row>
-      </div>
     </el-card>
   </div>
 </template>
 
 <script>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as echarts from 'echarts'
 import { getAllReimbursements } from '@/api/reimbursement'
@@ -98,13 +59,6 @@ export default {
     
     let amountChart = null
     let countChart = null
-
-    // 统计数据
-    const totalAmount = ref(0)
-    const totalCount = ref(0)
-    const averageAmount = computed(() => {
-      return totalCount.value ? totalAmount.value / totalCount.value : 0
-    })
 
     // 生成年份选项（近5年）
     const generateYearOptions = () => {
@@ -144,21 +98,12 @@ export default {
           // 按月份统计报销数量
           const monthlyCounts = Array(12).fill(0)
           
-          // 重置统计数据
-          totalAmount.value = 0
-          totalCount.value = 0
-          
           data.forEach(item => {
             const date = new Date(item.date)
             if (date.getFullYear().toString() === selectedYear.value) {
               const month = date.getMonth()
-              const amount = item.reimbursementAmount || 0
-              monthlyAmounts[month] += amount
+              monthlyAmounts[month] += item.reimbursementAmount || 0
               monthlyCounts[month]++
-              
-              // 累计总金额和总笔数
-              totalAmount.value += amount
-              totalCount.value++
             }
           })
 
@@ -242,9 +187,6 @@ export default {
       countChartRef,
       selectedYear,
       yearOptions,
-      totalAmount,
-      totalCount,
-      averageAmount,
       handleYearChange
     }
   }
@@ -360,34 +302,6 @@ export default {
   background-color: #f5f7fa;
 }
 
-.stat-cards {
-  margin-top: 20px;
-}
-
-.stat-card {
-  text-align: center;
-}
-
-.stat-card-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  color: #666;
-}
-
-.stat-card-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #409EFF;
-  margin-top: 10px;
-}
-
-.stat-card i {
-  font-size: 18px;
-  color: #409EFF;
-}
-
 @media screen and (max-width: 768px) {
   .charts-container {
     grid-template-columns: 1fr;
@@ -395,10 +309,6 @@ export default {
   
   .chart {
     height: 300px;
-  }
-
-  .stat-cards .el-col {
-    margin-bottom: 20px;
   }
 }
 </style> 
