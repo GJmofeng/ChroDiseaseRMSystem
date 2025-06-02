@@ -232,36 +232,6 @@ export default {
       loadData()
     }
 
-    // 导出报表
-    const handleExport = () => {
-      try {
-        const exportData = filteredTableData.value.map(item => ({
-          '卡号': item.cardId,
-          '参保人姓名': item.insuredName,
-          '医疗机构名称': item.medicalName,
-          '地址': item.address,
-          '总费用': item.totalCost?.toFixed(2) || '-',
-          '报销金额': item.reimbursementAmount?.toFixed(2) || '-',
-          '发票号码': item.invoiceNo,
-          '日期': item.date,
-          '审核状态': getStatusText(item.isReimbursement),
-          '审核时间': item.auditTime || '-'
-        }))
-
-        const ws = XLSX.utils.json_to_sheet(exportData)
-        const wb = XLSX.utils.book_new()
-        XLSX.utils.book_append_sheet(wb, ws, '报销审核数据')
-        
-        // 生成文件名
-        const fileName = `报销审核数据_${new Date().toLocaleDateString()}.xlsx`
-        XLSX.writeFile(wb, fileName)
-        
-        ElMessage.success('导出成功')
-      } catch (error) {
-        ElMessage.error('导出失败：' + error.message)
-      }
-    }
-
     onMounted(() => {
       loadData()
     })
@@ -278,8 +248,7 @@ export default {
       handleViewDetail,
       refreshList,
       getStatusType,
-      getStatusText,
-      handleExport
+      getStatusText
     }
   }
 }
@@ -300,11 +269,6 @@ export default {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-
-.header-right {
-  display: flex;
-  gap: 10px;
 }
 
 .title {
