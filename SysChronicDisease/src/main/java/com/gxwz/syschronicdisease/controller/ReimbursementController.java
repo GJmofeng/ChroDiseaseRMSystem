@@ -61,19 +61,38 @@ public class ReimbursementController {
         return new Result("修改成功", null, 200);
     }
 
+//    @GetMapping("/getAudit")    //只查询未审核记录的限制
+//    public Result getAudit() {
+//        QueryWrapper<Reimbursement> queryWrapper = new QueryWrapper<Reimbursement>().eq("is_reimbursement", "未审核");
+//        return new Result("查询成功", reimbursementService.list(queryWrapper), 200);
+//
+//    }
+
     @GetMapping("/getAudit")
     public Result getAudit() {
-        QueryWrapper<Reimbursement> queryWrapper = new QueryWrapper<Reimbursement>().eq("is_reimbursement", "未审核");
+        // 获取所有报销记录，按审核状态和日期排序
+        QueryWrapper<Reimbursement> queryWrapper = new QueryWrapper<Reimbursement>()
+                .orderByAsc("is_reimbursement")  // 未审核的排在前面
+                .orderByDesc("date");            // 同状态按日期倒序
         return new Result("查询成功", reimbursementService.list(queryWrapper), 200);
-
     }
+//    @GetMapping("/getRemit")  //只查询未汇款记录的限制
+//    public Result getRemit() {
+//        QueryWrapper<Reimbursement> queryWrapper = new QueryWrapper<Reimbursement>()
+//                .eq("is_reimbursement", "已审核")
+//                .eq("is_remit", "未汇款");
+//        return new Result("查询成功", reimbursementService.list(queryWrapper), 200);
+//    }
     @GetMapping("/getRemit")
     public Result getRemit() {
+    // 获取所有已审核的报销记录，按汇款状态和日期排序
         QueryWrapper<Reimbursement> queryWrapper = new QueryWrapper<Reimbursement>()
-                .eq("is_reimbursement", "已审核")
-                .eq("is_remit", "未汇款");
+            .eq("is_reimbursement", "已审核")  // 只获取已审核的记录
+            .orderByAsc("is_remit")            // 未汇款的排在前面
+            .orderByDesc("date");              // 同状态按日期倒序
         return new Result("查询成功", reimbursementService.list(queryWrapper), 200);
-    }
+}
+
     @GetMapping("/getStatics")
     public Result getStatics() {
         QueryWrapper<Reimbursement> reimbursementQueryWrapper = new QueryWrapper<Reimbursement>().eq("is_reimbursement", "已审核");

@@ -22,7 +22,7 @@
         <el-table-column prop="address" label="地址" width="200" />
         <el-table-column prop="totalCost" label="总费用" width="120">
           <template #default="scope">
-            {{ scope.row.totalCost?.toFixed(2) || '-' }}
+            {{ scope.row.totalCost.toFixed(2) }}
           </template>
         </el-table-column>
         <el-table-column prop="reimbursementAmount" label="报销金额" width="120">
@@ -72,11 +72,6 @@
             </el-button>
           </template>
         </el-table-column>
-        <template #empty>
-          <div class="empty-block">
-            <el-empty description="暂无报销审核数据" />
-          </div>
-        </template>
       </el-table>
     </el-card>
 
@@ -308,10 +303,5 @@ export default {
 .detail-item .value {
   flex: 1;
   color: #303133;
-}
-
-.empty-block {
-  padding: 40px 0;
-  text-align: center;
 }
 </style> 
