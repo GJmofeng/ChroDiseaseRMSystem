@@ -29,8 +29,7 @@ export default defineConfig({
         configure: (proxy, options) => {
           proxy.on('proxyReq', (proxyReq, req, res) => {
             // 设置CORS头
-            // proxyReq.setHeader('Access-Control-Allow-Origin', 'http://154.12.36.159')
-            proxyReq.setHeader('Access-Control-Allow-Origin', 'http://localhost')
+            proxyReq.setHeader('Access-Control-Allow-Origin', 'http://154.12.36.159')
             proxyReq.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS,PATCH')
             proxyReq.setHeader('Access-Control-Allow-Headers', 'Content-Type,X-CAF-Auth-Token,sessionToken,token,customercoderoute,authorization,conntectionid,Cookie,request-ajax,X-Requested-With')
             proxyReq.setHeader('Access-Control-Allow-Credentials', 'true')
@@ -38,8 +37,7 @@ export default defineConfig({
           })
           proxy.on('proxyRes', (proxyRes, req, res) => {
             // 确保响应头中包含CORS信息
-            // proxyRes.headers['Access-Control-Allow-Origin'] = 'http://154.12.36.159'
-            proxyRes.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+            proxyRes.headers['Access-Control-Allow-Origin'] = 'http://154.12.36.159'
             proxyRes.headers['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS,PATCH'
             proxyRes.headers['Access-Control-Allow-Headers'] = 'Content-Type,X-CAF-Auth-Token,sessionToken,token,customercoderoute,authorization,conntectionid,Cookie,request-ajax,X-Requested-With'
             proxyRes.headers['Access-Control-Allow-Credentials'] = 'true'

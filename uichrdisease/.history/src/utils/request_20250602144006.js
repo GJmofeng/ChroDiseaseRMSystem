@@ -5,7 +5,7 @@ import router from '@/router'
 // 创建axios实例
 const request = axios.create({
   // baseURL: 'http://154.12.36.159:8080',
-  baseURL: 'http://localhost:8080',
+  
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
