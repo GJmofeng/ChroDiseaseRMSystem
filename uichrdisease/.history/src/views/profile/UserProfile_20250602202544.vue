@@ -435,10 +435,10 @@ onMounted(() => {
   padding: 20px;
   background: #f5f7fa;
   min-height: 100vh;
-  height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(144, 147, 153, 0.3) transparent;
+  height: 100vh; /* 设置固定高度 */
+  overflow-y: auto; /* 添加垂直滚动条 */
+  scrollbar-width: thin; /* Firefox的滚动条样式 */
+  scrollbar-color: rgba(144, 147, 153, 0.3) transparent; /* Firefox的滚动条颜色 */
 }
 
 /* 自定义滚动条样式（Webkit浏览器） */
@@ -461,26 +461,25 @@ onMounted(() => {
   background: rgba(144, 147, 153, 0.5);
 }
 
-/* 移除固定定位，让卡片随页面滚动 */
-.profile-header {
-  margin-bottom: 20px;
-  background: #fff9f0;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-header:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
 /* 确保内容区域不会被滚动条影响 */
 .profile-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding-right: 8px;
+  padding-right: 8px; /* 为滚动条预留空间 */
+}
+
+/* 固定顶部用户信息卡片 */
+.profile-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-bottom: 20px;
+  background: #fff9f0;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
 }
 
 /* 确保卡片内容不会被滚动条遮挡 */
@@ -756,7 +755,7 @@ onMounted(() => {
   }
   
   .user-profile {
-    height: auto;
+    height: auto; /* 在小屏幕上取消固定高度 */
     overflow-y: visible;
   }
 }
