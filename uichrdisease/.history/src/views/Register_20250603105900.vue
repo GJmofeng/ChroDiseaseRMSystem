@@ -240,7 +240,7 @@ const handleRegister = async () => {
       ElMessage.error(response.message || '注册失败')
     }
   } catch (error) {
-    ElMessage.error('注册失败：' + (error.response?.data?.message || error.message))
+    ElMessage.error('注册失败：' + error.message)
   } finally {
     loading.value = false
   }

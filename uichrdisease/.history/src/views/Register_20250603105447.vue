@@ -87,7 +87,9 @@
         </div>
 
         <!-- 注册按钮 -->
-        <button type="submit" class="register-btn" :disabled="loading">注 册</button>
+        <button type="submit" class="register-btn" :disabled="loading">
+          {{ loading ? '注册中...' : '注 册' }}
+        </button>
 
         <!-- 返回登录 -->
         <div class="login-option">
@@ -103,13 +105,13 @@
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { register } from '@/api/auth'
+import { register } from '@/api/user'
 
 const router = useRouter()
 const captchaCode = ref('1234')
 const canvasContainer = ref(null)
-let particleSystem = null
 const loading = ref(false)
+let particleSystem = null
 
 class Particle {
   constructor(x, y, size, speedX, speedY, color) {
@@ -240,7 +242,7 @@ const handleRegister = async () => {
       ElMessage.error(response.message || '注册失败')
     }
   } catch (error) {
-    ElMessage.error('注册失败：' + (error.response?.data?.message || error.message))
+    ElMessage.error('注册失败：' + error.message)
   } finally {
     loading.value = false
   }

@@ -51,20 +51,16 @@
           >
         </div>
 
-        <!-- 角色选择 -->
+        <!-- 手机号 -->
         <div class="form-group">
-          <i class="fas fa-user-tag"></i>
-          <select 
-            v-model="formData.role" 
+          <i class="fas fa-mobile-alt"></i>
+          <input 
+            type="tel" 
+            v-model="formData.phone" 
             class="form-input" 
+            placeholder="请输入手机号" 
             required
           >
-            <option value="">请选择角色</option>
-            <option value="超级管理员">超级管理员</option>
-            <option value="县合管办领导">县合管办领导</option>
-            <option value="县合管办经办人">县合管办经办人</option>
-            <option value="乡镇农合经办人">乡镇农合经办人</option>
-          </select>
         </div>
 
         <!-- 验证码 -->
@@ -87,7 +83,7 @@
         </div>
 
         <!-- 注册按钮 -->
-        <button type="submit" class="register-btn" :disabled="loading">注 册</button>
+        <button type="submit" class="register-btn">注 册</button>
 
         <!-- 返回登录 -->
         <div class="login-option">
@@ -102,14 +98,11 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import { register } from '@/api/auth'
 
 const router = useRouter()
 const captchaCode = ref('1234')
 const canvasContainer = ref(null)
 let particleSystem = null
-const loading = ref(false)
 
 class Particle {
   constructor(x, y, size, speedX, speedY, color) {
@@ -201,7 +194,7 @@ const formData = reactive({
   username: '',
   password: '',
   confirmPassword: '',
-  role: '',
+  phone: '',
   captcha: ''
 })
 
@@ -211,39 +204,24 @@ const refreshCaptcha = () => {
 }
 
 // 处理注册
-const handleRegister = async () => {
+const handleRegister = () => {
   // 验证密码是否一致
   if (formData.password !== formData.confirmPassword) {
-    ElMessage.error('两次输入的密码不一致')
+    alert('两次输入的密码不一致')
     return
   }
 
   // 验证验证码
   if (formData.captcha !== captchaCode.value) {
-    ElMessage.error('验证码错误')
+    alert('验证码错误')
     return
   }
 
-  try {
-    loading.value = true
-    const response = await register({
-      userid: formData.username,
-      password: formData.password,
-      fullname: formData.username,
-      role: formData.role
-    })
-
-    if (response.code === 200) {
-      ElMessage.success('注册成功')
-      router.push('/login')
-    } else {
-      ElMessage.error(response.message || '注册失败')
-    }
-  } catch (error) {
-    ElMessage.error('注册失败：' + (error.response?.data?.message || error.message))
-  } finally {
-    loading.value = false
-  }
+  // TODO: 调用注册 API
+  console.log('注册信息：', formData)
+  
+  // 注册成功后跳转到登录页
+  router.push('/login')
 }
 
 // 页面加载时生成验证码
@@ -450,24 +428,5 @@ refreshCaptcha()
 
 .login-link:hover {
   text-decoration: underline;
-}
-
-.form-input[type="select"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1em;
-}
-
-.register-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.register-btn:disabled::before {
-  display: none;
 }
 </style> 
