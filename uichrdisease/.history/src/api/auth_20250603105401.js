@@ -32,11 +32,3 @@ export const getUserInfo = async () => {
   }
 } 
 
-// 用户注册
-export function register(data) {
-  return request({
-    url: '/user/register',
-    method: 'post',
-    data
-  })
-}
