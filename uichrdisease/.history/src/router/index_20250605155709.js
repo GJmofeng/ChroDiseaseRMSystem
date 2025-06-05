@@ -44,7 +44,7 @@ const routes = [
       {
         path: 'permission-manage',
         name: 'PermissionManage',
-        component: PermissionManage
+        component: () => import('@/views/permission/PermissionManage.vue')
       },
       {
         path: 'region-manage',

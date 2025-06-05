@@ -13,7 +13,6 @@ import ReimbursementForm from '../views/reimbursement/ReimbursementForm.vue'
 import ReimbursementList from '../views/reimbursement/ReimbursementList.vue'
 import ReimbursementAudit from '../views/reimbursement/ReimbursementAudit.vue'
 import ReimbursementRemit from '../views/reimbursement/ReimbursementRemit.vue'
-import PermissionManage from '../views/permission/PermissionManage.vue'
 
 const routes = [
   {
@@ -40,11 +39,6 @@ const routes = [
         path: 'user-manage',
         name: 'UserManage',
         component: UserManage
-      },
-      {
-        path: 'permission-manage',
-        name: 'PermissionManage',
-        component: PermissionManage
       },
       {
         path: 'region-manage',

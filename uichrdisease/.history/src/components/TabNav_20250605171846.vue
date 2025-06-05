@@ -153,10 +153,6 @@ const pathToTagConfig = {
   '/main/user-profile': {
     title: '个人中心',
     icon: 'fa-user'
-  },
-  '/main/permission-manage': {
-    title: '权限管理',
-    icon: 'fa-user-shield'
   }
 }
 
