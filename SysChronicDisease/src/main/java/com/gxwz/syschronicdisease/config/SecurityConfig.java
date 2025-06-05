@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().and()
                 .authorizeHttpRequests()
-                .antMatchers("/user/**","/division/**","/insureds/**","/medicalCard/**","/disease/**","/policy/**","/reimbursement/**").permitAll()
+                .antMatchers("/user/**","/division/**","/insureds/**","/medicalCard/**","/disease/**","/policy/**","/reimbursement/**","/menu/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().disable();
