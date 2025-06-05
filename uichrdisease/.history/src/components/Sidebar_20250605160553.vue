@@ -16,7 +16,7 @@
           <i class="fas fa-users"></i>
           <span v-show="!isCollapsed">用户管理</span>
         </div>
-        <div class="menu-item" :class="{ active: isActive('/main/permission-manage') }" @click="router.push('/main/permission-manage')">
+        <div class="menu-item">
           <i class="fas fa-shield-alt"></i>
           <span v-show="!isCollapsed">权限管理</span>
         </div>
